@@ -1,4 +1,4 @@
-## member list
+## ***Member list***
 
 - Lewis Kwok, lewis.kwok.2023@bristol.ac.uk, lewiskyh
 
@@ -9,6 +9,10 @@
 - Zhihao Meng, vp23970@bristol.ac.uk, amengnew
 
 - Yuxin Sun, vz23211@bristol.ac.uk, pblackcookie
+
+### **members photo**
+
+![members](/pictures/teammembers.jpg)
 
 -----
 
