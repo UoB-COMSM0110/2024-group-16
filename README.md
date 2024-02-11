@@ -78,5 +78,16 @@ expect brand new skills and boss?
 
 
 # Final Idea 
-## The Binding of Knight (need to update)
+
+## Game1 name 
+
+Click on the image below to jump to the video of paper prototype.
+
 [![Paper prototype of ideas](pictures/VideoCover.png "VideoCover")](https://youtu.be/3UcUQOiD24k?si=ynn56xHwD7vI0ifm)
+
+## Game2 name
+
+Click on the image below to jump to the video of paper prototype.
+
+[![Paper prototype of ideas](pictures/VideoCover.png "VideoCover")](https://youtu.be/cqox7BNGpro?si=KRlCIJkNvwlWVl1z)
+
