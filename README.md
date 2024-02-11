@@ -79,4 +79,4 @@ expect brand new skills and boss?
 
 # Final Idea 
 ## The Binding of Knight (need to update)
-[![Paper prototype of ideas](Pictures/VideoCover.png "VideoCover")]([https://youtu.be/iyaCUZtQJD4](https://youtu.be/3UcUQOiD24k?si=ynn56xHwD7vI0ifm)https://youtu.be/3UcUQOiD24k?si=ynn56xHwD7vI0ifm)
+[![Paper prototype of ideas](pictures/VideoCover.png "VideoCover")]([https://youtu.be/iyaCUZtQJD4](https://youtu.be/3UcUQOiD24k?si=ynn56xHwD7vI0ifm)https://youtu.be/3UcUQOiD24k?si=ynn56xHwD7vI0ifm)
