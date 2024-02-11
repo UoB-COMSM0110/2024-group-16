@@ -75,3 +75,8 @@ expect brand new skills and boss?
 
     3.Character movement articulation: including attack, skill, hit and hostile character effects.
 ---
+
+
+# Final Idea 
+## The Binding of Knight (need to update)
+[![Paper prototype of ideas](Pictures/VideoCover.png "VideoCover")]([https://youtu.be/iyaCUZtQJD4](https://youtu.be/3UcUQOiD24k?si=ynn56xHwD7vI0ifm)https://youtu.be/3UcUQOiD24k?si=ynn56xHwD7vI0ifm)
