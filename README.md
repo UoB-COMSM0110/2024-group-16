@@ -113,10 +113,10 @@ Click on the image below to jump to the video of paper prototype.
    room that instructs the user to operate the character with wasd, arrows etc.
 7. User presses buttons to control the character
 8. System tracks user's key presses and modifies the game data accordingly
-
 9. User completes the game.
 10. System displays "well done"
 
 alternative flow:
-9. User defeated
+
+9. User defeated  
 10. System displays "you're dead"
