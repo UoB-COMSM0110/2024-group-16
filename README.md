@@ -12,7 +12,7 @@
 
 ### **members photo**
 
-![members](/pictures/teammembers.jpg)
+![members](./pictures/teammembers.jpg)
 
 -----
 
