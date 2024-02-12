@@ -24,17 +24,17 @@
 
 Classic ruguelike game with lots of random elements, use WASD to move up, down, left, right, and use the arrow keys to fire bullets (tears)!
 
-![isaac00](/pictures/Isaac00.png)
+![isaac00](./pictures/Isaac00.png)
 
 Earn random drops or pedestal props by defeating bosses or clearing rooms.
 
-![isaac01](/pictures/Isaac01.png)
+![isaac01](./pictures/Isaac01.png)
 
 A combination of multiple props may have an unexpected effect! (This is definitely the charm of the game!)
 
-![isaac02](/pictures/Isaac02.png)
+![isaac02](./pictures/Isaac02.png)
 
-![isaac03](/pictures/Isaac03.png)
+![isaac03](./pictures/Isaac03.png)
 
 ### Twist：
 
@@ -57,11 +57,11 @@ Some of the new props and resources, and the effects of combining them with othe
 
 Horizontal Crossing Game with gravity. Fixed map and enemies, defeat enemies by attack or skill. Main character has more movement, turning left and right, attacking, jumping (two jumps), skills (maybe?), etc.
 
-![HK00](/pictures/HK00.png)
+![HK00](./pictures/HK00.png)
 
-![HK01](/pictures/HK01.png)
+![HK01](./pictures/HK01.png)
 
-![HK_effects](/pictures/HK_effects.png)
+![HK_effects](./pictures/HK_effects.png)
 
 ### Twist：
 
