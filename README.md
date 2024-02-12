@@ -15,7 +15,7 @@
 ![members](./pictures/teammembers.jpg)
 
 -----
-
+ 
 # GAME IDEAS
 
 ## ***Idea 1***
