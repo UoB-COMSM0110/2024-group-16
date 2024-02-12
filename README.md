@@ -91,3 +91,32 @@ Click on the image below to jump to the video of paper prototype.
 
 [![Paper prototype of ideas](pictures/VideoCover.png "VideoCover")](https://youtu.be/cqox7BNGpro?si=KRlCIJkNvwlWVl1z)
 
+
+
+# Requirements
+
+## Stakeholders
+
+1. Players
+2. Markers
+3. Game platform
+
+## User Case Specification
+
+1. Systems displays main menu with start and setting buttons
+2. User presses setting button
+3. Systems displays options, including volume, language, font, mode, as well as copyright info and a
+   reset button. System also provides options to modify default key presses.
+4. User presses esc to go back to the main menu
+5. User presses start
+6. Systems generates game data, including maps and in-game items. It displays prompts in the first
+   room that instructs the user to operate the character with wasd, arrows etc.
+7. User presses buttons to control the character
+8. System tracks user's key presses and modifies the game data accordingly
+
+9. User completes the game.
+10. System displays "well done"
+
+alternative flow:
+9. User defeated
+10. System displays "you're dead"
