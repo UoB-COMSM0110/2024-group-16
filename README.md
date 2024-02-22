@@ -120,3 +120,7 @@ alternative flow:
 
 9. User defeated  
 10. System displays "you're dead"
+    
+## Class diagram
+
+![class](./pictures/class.png)
