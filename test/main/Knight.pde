@@ -17,7 +17,9 @@ public class Knight{
   PImage[] Walk=new PImage[5];
   
   //Auxiliary variable
-  boolean moveUp, moveDown, moveLeft, moveRight; 
+  boolean moveUp, moveDown, moveLeft, moveRight;
+  boolean shootUp, shootDown, shootLeft, shootRight;
+  boolean isFaceToLeft;
   int currentFrame = 0; 
   int currentstatus = 0;
   int lastShootTime;
@@ -28,14 +30,28 @@ public class Knight{
      bulletSpeed = 10.0;
      shootSpeed = 2.0;
      lastShootTime = millis();
+     isFaceToLeft = true;
   }
   
+  public void turnToLeft(){
+    isFaceToLeft=true;
+  }
+  public void turnToRight(){
+    isFaceToLeft=false;
+  }
   
   public void drawIdle(){
     if(currentFrame%8==0){
       currentstatus = (currentstatus+1) % Idle.length;
     }
-    image(Idle[currentstatus], playerPos.x , playerPos.y);
+    if(!isFaceToLeft){
+      pushMatrix();
+      scale(-1, 1);
+      image(Idle[currentstatus], -playerPos.x-Idle[currentstatus].width , playerPos.y);
+      popMatrix();
+    }else{
+      image(Idle[currentstatus], playerPos.x , playerPos.y);
+    }
     currentFrame++;
   }
   
@@ -46,7 +62,14 @@ public class Knight{
     if(currentFrame%8==0){
       currentstatus = (currentstatus+1) % Walk.length;
     }
-    image(Walk[currentstatus], playerPos.x , playerPos.y);
+    if(!isFaceToLeft){
+      pushMatrix();
+      scale(-1, 1);
+      image(Walk[currentstatus], -playerPos.x-Walk[currentstatus].width , playerPos.y);
+      popMatrix();
+    }else{
+      image(Walk[currentstatus], playerPos.x , playerPos.y);
+    }
     currentFrame++;
   }
   
@@ -76,16 +99,39 @@ public class Knight{
     for (int i = fireBalls.size()-1; i >= 0; i--) {
       FireBalls fb = fireBalls.get(i);
       fb.move();
-      if (fb.pos.x < 70 || fb.pos.x > width-70 || fb.pos.y < 70 || fb.pos.y > height-70) {
+      if (fb.pos.x < 70 || fb.pos.x > width-70 || 
+          fb.pos.y < 70 || fb.pos.y > height-70) {
         fireBalls.remove(i);
       }
     }
   }
   
-  void drawFireBalls(PImage curFireBall) {
+  void drawFireBalls(PImage[] FireBallsUP,PImage[] FireBallsDOWN,
+                     PImage[] FireBallsLEFT,PImage[] FireBallsRIGHT) {
     
     for (FireBalls fb : fireBalls) {
-     image(curFireBall, fb.pos.x, fb.pos.y); 
+      if(fb.currentstatus > FireBallsUP.length){
+        fb.resetCurStatus();
+      }
+      if(fb.currentFrame%5==0){
+        fb.currentstatus = (currentstatus+1) % FireBallsUP.length;
+      }
+      switch(fb.direction){
+        case 1:
+          image(FireBallsUP[fb.currentstatus], fb.pos.x ,fb.pos.y );
+          break;
+        case 2:
+          image(FireBallsDOWN[fb.currentstatus], fb.pos.x ,fb.pos.y );
+          break;
+        case 3:
+          image(FireBallsLEFT[fb.currentstatus], fb.pos.x ,fb.pos.y );
+          break;
+        case 4:
+          image(FireBallsRIGHT[fb.currentstatus], fb.pos.x ,fb.pos.y );
+          break;      
+      }
+      
+      fb.incCurFrame();
     }
   }
   
@@ -94,22 +140,48 @@ public class Knight{
     float dirY = 0;
     if (curKeyCode == UP) {
       dirY = -1;
+      shootUp=true;
     }
     if (curKeyCode == DOWN) {
       dirY = 1;
+      shootDown=true;
     }
     if (curKeyCode == LEFT) {
       dirX = -1;
+      shootLeft=true;
     }
     if (curKeyCode == RIGHT) {
       dirX = 1;
+      shootRight=true;
     }
     
-    //keep shootSpeed
-    if(millis()-lastShootTime > 1000.0/shootSpeed){
-      FireBalls fb = new FireBalls(playerPos.x, playerPos.y+50, dirX, dirY, bulletSpeed);
-      fireBalls.add(fb);
-      lastShootTime=millis();
+    //You can't shoot right when facing left, and vice versa.
+    if(!((shootRight && isFaceToLeft)|| (shootLeft && !isFaceToLeft) )){
+      //keep shootSpeed
+      if(millis()-lastShootTime > 1000.0/shootSpeed){
+        if(shootUp){
+        FireBalls fb = new FireBalls
+            (playerPos.x, playerPos.y+50, dirX, dirY, bulletSpeed,1);
+            fireBalls.add(fb);
+        }else if(shootDown){
+        FireBalls fb = new FireBalls
+            (playerPos.x, playerPos.y+50, dirX, dirY, bulletSpeed,2);
+            fireBalls.add(fb);
+        }else if(shootLeft){
+        FireBalls fb = new FireBalls
+            (playerPos.x, playerPos.y+50, dirX, dirY, bulletSpeed,3);
+            fireBalls.add(fb);
+        }else if(shootRight){
+        FireBalls fb = new FireBalls
+            (playerPos.x, playerPos.y+50, dirX, dirY, bulletSpeed,4);
+            fireBalls.add(fb);
+        }
+        lastShootTime=millis();
+      }
     }
   }
+  
+  
+  
+  
 }

@@ -1,16 +1,21 @@
 public class Manager{
   PImage gameBg;
-  
-  
-    
+      
   //by default, use the main menu
   Scene curScene=Scene.MAIN_MENU;
-    
+  
+  //Menu pointer
   MenuPointer menuPointer = new MenuPointer(wwidth,wheight);
+
+  //player
   Knight player = new Knight();
+  
+  //save and load some useful images
   MultiUseImages multi_use_images = new MultiUseImages();
-   
-   
+  
+  //save map info
+  Rooms[] rooms = new Rooms[5];
+  
   void drawMap() {
     switch(curScene){
       case MAIN_MENU:
@@ -49,8 +54,12 @@ public class Manager{
       player.drawIdle();
     }
     player.moveFireBalls();
-    player.drawFireBalls(multi_use_images.fireBalls[0]);
-    
+
+    player.drawFireBalls(multi_use_images.fireBalls_up,
+                         multi_use_images.fireBalls_down,
+                         multi_use_images.fireBalls_left,
+                         multi_use_images.fireBalls_right);
+
   }
     
   void drawOptions(){

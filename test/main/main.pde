@@ -25,19 +25,28 @@ void setup() {
   title.resize(1000,300);
   
   //Some frequently used image resources, including obstacles, enemies, drops, bullets, etc.
-  for(int i=0;i<newManager.multi_use_images.fireBalls.length;i++){
-    newManager.multi_use_images.fireBalls[i]=
-      loadImage("../images/Knight/Fireballs/fireball_"+i+".png");
-    newManager.multi_use_images.fireBalls[i].resize(80,50);
+  for(int i=0;i<newManager.multi_use_images.fireBalls_up.length;i++){
+    newManager.multi_use_images.fireBalls_up[i]=
+      loadImage("../images/Knight/Fireballs/fireball_up_"+i+".png");
+    newManager.multi_use_images.fireBalls_up[i].resize(50,80);
+    newManager.multi_use_images.fireBalls_down[i]=
+      loadImage("../images/Knight/Fireballs/fireball_down_"+i+".png");
+    newManager.multi_use_images.fireBalls_down[i].resize(50,80);
+    newManager.multi_use_images.fireBalls_left[i]=
+      loadImage("../images/Knight/Fireballs/fireball_left_"+i+".png");
+    newManager.multi_use_images.fireBalls_left[i].resize(80,50);
+    newManager.multi_use_images.fireBalls_right[i]=
+      loadImage("../images/Knight/Fireballs/fireball_right_"+i+".png");
+    newManager.multi_use_images.fireBalls_right[i].resize(80,50);
   }
   
   
   //Gaming
   newManager.gameBg=loadImage("../images/Map/basement.png");
-  for(int i=0;i<newmap.player.Idle.length;i++){
+  for(int i=0;i<newManager.player.Idle.length;i++){
     newManager.player.Idle[i]=loadImage("../images/Knight/Idle/Idle_"+i+".PNG");
   }
-  for(int i=0;i<newmap.player.Walk.length;i++){
+  for(int i=0;i<newManager.player.Walk.length;i++){
     newManager.player.Walk[i]=loadImage("../images/Knight/Walk/Walk_"+i+".PNG");
   }
   newManager.gameBg.resize(wwidth,wheight);
@@ -79,9 +88,11 @@ void keyPressed(){
     }
     if (key == 'a') {
       newManager.player.moveLeft = true;
+      newManager.player.turnToLeft();
     }
     if (key == 'd') {
       newManager.player.moveRight = true;
+      newManager.player.turnToRight();
     }
     if (keyCode == UP || keyCode == DOWN || keyCode == LEFT || keyCode == RIGHT) {
       newManager.player.shootFireBalls(keyCode);
@@ -104,5 +115,17 @@ void keyReleased() {
   }
   if (key == 'd') {
     newManager.player.moveRight = false;
+  }
+  if(keyCode == UP){
+    newManager.player.shootUp = false;
+  }
+  if(keyCode == DOWN){
+    newManager.player.shootDown = false;
+  }
+  if(keyCode == LEFT){
+    newManager.player.shootLeft = false;
+  }
+  if(keyCode == RIGHT){
+    newManager.player.shootRight = false;
   }
 }
