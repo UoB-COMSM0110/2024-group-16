@@ -1,6 +1,10 @@
 public class Manager{
+  
+  PFont mainMenuFont;
+  PImage menuBg;
   PImage gameBg;
-      
+  PImage title;
+  int buttonInterval = 50;
   //by default, use the main menu
   Scene curScene=Scene.MAIN_MENU;
   
@@ -16,7 +20,24 @@ public class Manager{
   //save map info
   Rooms[] rooms = new Rooms[5];
   
-  void drawMap() {
+  public Manager(){
+    
+    mainMenuFont = createFont("../Fonts/TrajanPro-Bold.otf", 40); 
+    
+    menuBg=loadImage("../images/Menu/controller_prompt_bg.png");
+    menuBg.resize(width,height);
+    
+    title=loadImage("../images/Menu/vheart_title.png");  
+    title.resize(1000,300);
+    
+    gameBg=loadImage("../images/Map/basement.png");
+    gameBg.resize(width,height);
+    
+  }
+  
+  
+  
+  public void drawMap() {
     switch(curScene){
       case MAIN_MENU:
         drawMainMenu();
@@ -81,7 +102,7 @@ public class Manager{
   void drawButton(float x, float y, String label) {
     textAlign(CENTER, CENTER);
     fill(255);
-    textFont(customFont); 
+    textFont(mainMenuFont); 
     text(label, x, y);
   } 
 }

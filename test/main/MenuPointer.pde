@@ -7,12 +7,18 @@ public class MenuPointer {
   int wwidth;
   int wheight;
   int status;
+  int smallOffset = 20;
+  int buttonInterval = 50;
   PImage[] img=new PImage[2];
   public MenuPointer(int wwidth,int wheight){
     status = 0 ;
     this.wwidth=wwidth;
     this.wheight=wheight;
     updatePos();
+    img[0]=loadImage("../images/Menu/Pointers/pointerLeft.png");
+    img[1]=loadImage("../images/Menu/Pointers/pointerRight.png");
+    img[0].resize(80,60);
+    img[1].resize(80,60);
   }
   
   

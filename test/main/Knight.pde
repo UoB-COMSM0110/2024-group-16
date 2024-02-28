@@ -31,6 +31,13 @@ public class Knight{
      shootSpeed = 2.0;
      lastShootTime = millis();
      isFaceToLeft = true;
+     
+     for(int i=0;i<Idle.length;i++){
+        Idle[i]=loadImage("../images/Knight/Idle/Idle_"+i+".PNG");
+     }
+     for(int i=0;i<Walk.length;i++){
+       Walk[i]=loadImage("../images/Knight/Walk/Walk_"+i+".PNG");
+     }
   }
   
   public void turnToLeft(){
