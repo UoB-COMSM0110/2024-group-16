@@ -84,19 +84,27 @@ public class Knight{
   public boolean movePlayer(){
     boolean isMove = false;
     if (moveUp) {
-      playerPos.y -= moveSpeed;
+      if(playerPos.y >= 110){
+        playerPos.y -= moveSpeed;
+      }
       isMove = true;
     }
     if (moveDown) {
-      playerPos.y += moveSpeed;
+      if(playerPos.y <= 570){
+        playerPos.y += moveSpeed;
+      }
       isMove = true;
     }
     if (moveLeft) {
-      playerPos.x -= moveSpeed;
+      if(playerPos.x >= 115){
+        playerPos.x -= moveSpeed;
+      }
       isMove = true;
     }
     if (moveRight) {
-      playerPos.x += moveSpeed;
+      if(playerPos.x <= 1220){
+        playerPos.x += moveSpeed;
+      }
       isMove = true;
     }
     return isMove;
