@@ -5,12 +5,16 @@ public class Manager{
   PImage gameBg;
   PImage title;
   int buttonInterval = 50;
+  int curRoom;
   //by default, use the main menu
   Scene curScene=Scene.MAIN_MENU;
   
   //Menu pointer
-  MenuPointer menuPointer = new MenuPointer(wwidth,wheight);
+  MenuPointer menuPointer = new MenuPointer();
 
+  //UI
+  UI ui=new UI();
+  
   //player
   Knight player = new Knight();
   
@@ -30,9 +34,11 @@ public class Manager{
     title=loadImage("../images/Menu/vheart_title.png");  
     title.resize(1000,300);
     
-    gameBg=loadImage("../images/Map/basement.png");
-    gameBg.resize(width,height);
+    for(int i=0;i<5;i++){
+      rooms[i]=new Rooms(i);
+    }
     
+    curRoom=0;
   }
   
   
@@ -61,21 +67,47 @@ public class Manager{
     image(menuPointer.img[0],menuPointer.getPosXLeft(),menuPointer.getPosYLeft());
     image(menuPointer.img[1],menuPointer.getPosXRight(),menuPointer.getPosYRight());
   
-    drawButton(wwidth / 2 - 50 , wheight / 2 + buttonInterval , "Start");
-    drawButton(wwidth / 2 - 50 , wheight / 2 + 3 * buttonInterval , "Options");
-    drawButton(wwidth / 2 - 50 , wheight / 2 + 5 * buttonInterval , "Exit");
+    drawButton(width / 2 - 50 , height / 2 + buttonInterval , "Start");
+    drawButton(width / 2 - 50 , height / 2 + 3 * buttonInterval , "Options");
+    drawButton(width / 2 - 50 , height / 2 + 5 * buttonInterval , "Exit");
   }
  
   void drawGaming(){
-    image(this.gameBg,0,0);
     
+    //roombg
+    image(this.rooms[curRoom].roomBg,0,0);
+    for(int i=0;i<4;i++){
+      if(rooms[curRoom].doors[i]!=null){
+        image(rooms[curRoom].doors[i],rooms[curRoom].doorsCoordinates[2*i],
+                                      rooms[curRoom].doorsCoordinates[2*i+1]);
+      }
+    }
+    
+    //UI
+    image(ui.HUD_main,20,20);
+    for(int i=0;i<player.getmaxHP();i++){
+      image(ui.HUD_emptyHP,120+40*i,70);
+    }
+    
+    for(int i=0;i<player.getHP();i++){
+      image(ui.HUD_HP,119+40*i,70);
+    }
+    
+    //obstacle or items or drops
+    for(int i=0;i<4;i++){
+      image(multi_use_images.grass[i],115+i*obstacleWidth,110+i*obstacleWidth);
+    }
+        
+    
+    //player
     if(player.movePlayer()){
       player.drawWalk();
     }else{
       player.drawIdle();
     }
+    
+    //fireballs
     player.moveFireBalls();
-
     player.drawFireBalls(multi_use_images.fireBalls_up,
                          multi_use_images.fireBalls_down,
                          multi_use_images.fireBalls_left,

@@ -4,7 +4,7 @@ public class MultiUseImages{
   PImage[] fireBalls_up = new PImage[7];
   PImage[] fireBalls_down = new PImage[7];
   PImage[] fireBalls_right = new PImage[7];
-  PImage[] grass = new PImage[7];
+  PImage[] grass = new PImage[4];
   
   
   public MultiUseImages(){
@@ -20,6 +20,11 @@ public class MultiUseImages{
       
       fireBalls_right[i]=loadImage("../images/Knight/Fireballs/fireball_right_"+i+".png");
       fireBalls_right[i].resize(80,50);
+    }
+    
+    for(int i=0;i<grass.length;i++){
+      grass[i]=loadImage("../images/Obstacle/Grass/grass_0"+i+".png");
+      grass[i].resize(obstacleWidth,obstacleWidth);
     }
   }
 

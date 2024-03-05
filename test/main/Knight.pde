@@ -3,6 +3,10 @@ public class Knight{
   //Position
   PVector playerPos;
   
+  int maxHP;
+  int HP;
+  int MP;
+  
   //Character properties
   float moveSpeed;
   float attack;
@@ -26,6 +30,9 @@ public class Knight{
   
   public Knight(){
      playerPos = new PVector(700, 400);
+     maxHP=6;
+     HP=3;
+     MP=2;
      moveSpeed = 7.0;
      bulletSpeed = 10.0;
      shootSpeed = 2.0;
@@ -106,8 +113,8 @@ public class Knight{
     for (int i = fireBalls.size()-1; i >= 0; i--) {
       FireBalls fb = fireBalls.get(i);
       fb.move();
-      if (fb.pos.x < 70 || fb.pos.x > width-70 || 
-          fb.pos.y < 70 || fb.pos.y > height-70) {
+      if (fb.pos.x < 70 || fb.pos.x > width-100 ||
+          fb.pos.y < 70 || fb.pos.y > height-100) {
         fireBalls.remove(i);
       }
     }
@@ -188,7 +195,13 @@ public class Knight{
     }
   }
   
+  // set & get func
   
+  
+  
+  public int getmaxHP(){return maxHP;}
+  public int getHP(){return HP;}
+  public int getMP(){return MP;}
   
   
 }

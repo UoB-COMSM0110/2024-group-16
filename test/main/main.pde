@@ -1,16 +1,6 @@
-/*
-PFont mainMenuFont; 
-PImage menuBg;
-PImage title;
-*/
 Manager newManager;
-int wwidth=1400;
-int wheight=800;
-/*
-int buttonInterval = 50;
-int smallOffset = 20;
-*/
 
+int obstacleWidth = 98;
 void setup() {
   size(1400, 800);
   newManager = new Manager();
