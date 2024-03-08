@@ -17,6 +17,9 @@ public class Manager{
   
   //player
   Knight player = new Knight();
+
+  //enemy
+  Enemiy Crawlid = new Enemiy();
   
   //save and load some useful images
   MultiUseImages multi_use_images = new MultiUseImages();
@@ -97,7 +100,7 @@ public class Manager{
     for(int i=0;i<4;i++){
       image(multi_use_images.grass[i],115+i*obstacleWidth,110+i*obstacleWidth);
     }
-        
+    Crawlid.drawEnemy();    
     
     //player
     if(player.movePlayer()){
