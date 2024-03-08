@@ -19,7 +19,7 @@ public class Manager{
   Knight player = new Knight();
 
   //enemy
-  Enemiy Crawlid = new Enemiy();
+  Enemy Crawlid = new Enemy();
   
   //save and load some useful images
   MultiUseImages multi_use_images = new MultiUseImages();

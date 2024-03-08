@@ -1,7 +1,7 @@
 public class Enemy{
   
   //Position
-  PVector EnemyPos;
+  PVector enemyPos;
   
   //Character properties
   float moveSpeed;
@@ -16,7 +16,7 @@ public class Enemy{
   
   //Animation
   PImage enemies;
-  PImage enemiesWalk=new PImage[5];
+  //PImage enemiesWalk=new PImage[5];
   
   //Auxiliary variable
   boolean moveUp, moveDown, moveLeft, moveRight; 
@@ -24,19 +24,19 @@ public class Enemy{
   int currentstatus = 0;
   int lastShootTime;
   
-  public void Enemy(float x, float y, float h) {
-    EnemyPos = new PVector(x, y);
-    enemies = loadImage("../images/Enemies/Crawlid.png")
-    health = h;
+  public Enemy() {
+    enemyPos = new PVector(900, 600);
+    enemies = loadImage("../images/Enemies/Crawlid_0.png");
+    health = 10;
     radius = 20;
   }
   
   
   public void drawEnemy(){
-    if(currentFrame%8==0){
-      currentstatus = (currentstatus+1) % enemies.length;
-    }
-    image(enemies, EnemyPos.x , EnemyPos.y);
+    //if(currentFrame%8==0){
+    //  currentstatus = currentFrame;
+    //}
+    image(enemies, enemyPos.x , enemyPos.y);
     currentFrame++;
   }
   
@@ -64,11 +64,11 @@ public class Enemy{
     }
   }
 
-  public void takeDamage(float damage) {
-  health -= damage;
-  if (health <= 0) {
-    // 敌人被击败
-    parent.println("Enemy defeated!");
-  }
-}
+//  public void takeDamage(float damage) {
+//  health -= damage;
+//  if (health <= 0) {
+//    // 敌人被击败
+//    parent.println("Enemy defeated!");
+//  }
+//}
 }

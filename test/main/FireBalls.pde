@@ -28,7 +28,7 @@ public class FireBalls{
   }
 
   public boolean checkCollision(Enemy enemy) {
-    float d = PVector.dist(this.pos, enemy.position);
+    float d = PVector.dist(this.pos, enemy.enemyPos);
     return d < radius + enemy.radius;
   }
 }
