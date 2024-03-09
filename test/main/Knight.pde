@@ -36,7 +36,7 @@ public class Knight{
      maxHP=6;
      HP=3;
      MP=2;
-     moveSpeed = 7.0;
+     moveSpeed = 20.0;
      bulletSpeed = 10.0;
      shootSpeed = 2.0;
      lastShootTime = millis();
