@@ -5,6 +5,8 @@ public class Manager{
   PImage gameBg;
   PImage title;
   int buttonInterval = 50;
+  
+  
   int curRoom;
   //by default, use the main menu
   Scene curScene=Scene.MAIN_MENU;
@@ -79,6 +81,7 @@ public class Manager{
     
     
     //roombg & door
+    
     this.rooms[curRoom].drawRoom();
     
     //UI
@@ -138,8 +141,31 @@ public class Manager{
   } 
   
   public void changeRoom(float playerPosX,float playerPosY){
-    if(playerPosX > 650 && playerPosX< 760 ){
-      
+    if(rooms[curRoom].doors[0]!=null                
+                 && playerPosX >= rooms[curRoom].doorsCoordinates[0] 
+                 && playerPosX <= rooms[curRoom].doorsCoordinates[0]+110 
+                 && playerPosY <= horiMargin){
+      //the door exists 
+      if(curRoom == 0){
+        curRoom=1;
+      }else if(curRoom == 3){
+        curRoom=0;
+      }
+      player.setPosY(vertiMargin+6*obstacleWidth-player.getHeight()-10);
+    }else if(rooms[curRoom].doors[2]!=null                
+                 && playerPosX >=rooms[curRoom].doorsCoordinates[0] 
+                 && playerPosX <= rooms[curRoom].doorsCoordinates[0]+110 
+                 && playerPosY >= vertiMargin+6*obstacleWidth-player.getHeight()){
+      if(curRoom == 0){
+        curRoom=3;
+      }else if(curRoom == 1){
+        curRoom=0;
+      }
+      player.setPosY(vertiMargin+obstacleWidth+10);
     }
+    
+    
+    
+    
   }
 }

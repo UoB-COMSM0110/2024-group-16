@@ -21,16 +21,15 @@ public class Knight{
   PImage[] Walk=new PImage[5];
   
   //Auxiliary variable
+  int knightHeight = 127;
+  int knightWidth = 65;
   boolean moveUp, moveDown, moveLeft, moveRight;
   boolean shootUp, shootDown, shootLeft, shootRight;
   boolean isFaceToLeft;
   int currentFrame = 0; 
-  int currentstatus = 0;
+  int currentStatus = 0;
   int lastShootTime;
   
-  // Knight picture properties
-  int KnightHeight = 127;
-  int KnightWidth = 65;
   
   public Knight(){
      playerPos = new PVector(700, 400);
@@ -60,33 +59,33 @@ public class Knight{
   
   public void drawIdle(){
     if(currentFrame%8==0){
-      currentstatus = (currentstatus+1) % Idle.length;
+      currentStatus = (currentStatus+1) % Idle.length;
     }
     if(!isFaceToLeft){
       pushMatrix();
       scale(-1, 1);
-      image(Idle[currentstatus], -playerPos.x-Idle[currentstatus].width , playerPos.y);
+      image(Idle[currentStatus], -playerPos.x-Idle[currentStatus].width , playerPos.y);
       popMatrix();
     }else{
-      image(Idle[currentstatus], playerPos.x , playerPos.y);
+      image(Idle[currentStatus], playerPos.x , playerPos.y);
     }
     currentFrame++;
   }
   
   public void drawWalk(){
-    if(currentstatus>=Walk.length){
-      currentstatus=0;
+    if(currentStatus>=Walk.length){
+      currentStatus=0;
     }
     if(currentFrame%8==0){
-      currentstatus = (currentstatus+1) % Walk.length;
+      currentStatus = (currentStatus+1) % Walk.length;
     }
     if(!isFaceToLeft){
       pushMatrix();
       scale(-1, 1);
-      image(Walk[currentstatus], -playerPos.x-Walk[currentstatus].width , playerPos.y);
+      image(Walk[currentStatus], -playerPos.x-Walk[currentStatus].width , playerPos.y);
       popMatrix();
     }else{
-      image(Walk[currentstatus], playerPos.x , playerPos.y);
+      image(Walk[currentStatus], playerPos.x , playerPos.y);
     }
     currentFrame++;
   }
@@ -95,13 +94,13 @@ public class Knight{
   public boolean movePlayer(){
     boolean isMove = false;
     if (moveUp) { //110+98-127
-      if(playerPos.y >= vertiMargin + obstacleWidth - KnightHeight){
+      if(playerPos.y >= vertiMargin + obstacleWidth - knightHeight){
         playerPos.y -= moveSpeed;
       }
       isMove = true;
     }
     if (moveDown) { //110+98*6-127
-      if(playerPos.y <= vertiMargin + obstacleWidth*6 - KnightHeight){
+      if(playerPos.y <= vertiMargin + obstacleWidth*6 - knightHeight){
         playerPos.y += moveSpeed;
       }
       isMove = true;
@@ -113,7 +112,7 @@ public class Knight{
       isMove = true;
     }
     if (moveRight) {//115+98*12-65=1226
-      if(playerPos.x <= horiMargin + obstacleWidth*12 - KnightWidth){
+      if(playerPos.x <= horiMargin + obstacleWidth*12 - knightWidth){
         playerPos.x += moveSpeed;
       }
       isMove = true;
@@ -136,24 +135,24 @@ public class Knight{
                      PImage[] FireBallsLEFT,PImage[] FireBallsRIGHT) {
     
     for (FireBalls fb : fireBalls) {
-      if(fb.currentstatus > FireBallsUP.length){
+      if(fb.currentStatus > FireBallsUP.length){
         fb.resetCurStatus();
       }
       if(fb.currentFrame%5==0){
-        fb.currentstatus = (currentstatus+1) % FireBallsUP.length;
+        fb.currentStatus = (currentStatus+1) % FireBallsUP.length;
       }
       switch(fb.direction){
         case 1:
-          image(FireBallsUP[fb.currentstatus], fb.pos.x ,fb.pos.y );
+          image(FireBallsUP[fb.currentStatus], fb.pos.x ,fb.pos.y );
           break;
         case 2:
-          image(FireBallsDOWN[fb.currentstatus], fb.pos.x ,fb.pos.y );
+          image(FireBallsDOWN[fb.currentStatus], fb.pos.x ,fb.pos.y );
           break;
         case 3:
-          image(FireBallsLEFT[fb.currentstatus], fb.pos.x ,fb.pos.y );
+          image(FireBallsLEFT[fb.currentStatus], fb.pos.x ,fb.pos.y );
           break;
         case 4:
-          image(FireBallsRIGHT[fb.currentstatus], fb.pos.x ,fb.pos.y );
+          image(FireBallsRIGHT[fb.currentStatus], fb.pos.x ,fb.pos.y );
           break;      
       }
       
@@ -216,6 +215,9 @@ public class Knight{
   public int getMP(){return MP;}
   public float getPosX(){return playerPos.x;}
   public float getPosY(){return playerPos.y;}
+  public int getHeight(){return knightHeight;}
+  public int getWidth(){return knightWidth;}
+  
   
   public void setmaxHP(int maxHP){this.maxHP=maxHP;}
   public void setHP(int HP){this.HP=HP;}

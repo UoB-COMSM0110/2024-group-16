@@ -21,7 +21,7 @@ public class Enemy{
   //Auxiliary variable
   boolean moveUp, moveDown, moveLeft, moveRight; 
   int currentFrame = 0;
-  int currentstatus = 0;
+  int currentStatus = 0;
   int lastShootTime;
   
   public Enemy() {
