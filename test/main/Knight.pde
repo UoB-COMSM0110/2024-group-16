@@ -28,6 +28,10 @@ public class Knight{
   int currentstatus = 0;
   int lastShootTime;
   
+  // Knight picture properties
+  int KnightHeight = 127;
+  int KnightWidth = 65;
+  
   public Knight(){
      playerPos = new PVector(700, 400);
      maxHP=6;
@@ -90,20 +94,28 @@ public class Knight{
   
   public boolean movePlayer(){
     boolean isMove = false;
-    if (moveUp) {
-      playerPos.y -= moveSpeed;
+    if (moveUp) { //110+98-127
+      if(playerPos.y >= vertiMargin + obstacleWidth - KnightHeight){
+        playerPos.y -= moveSpeed;
+      }
       isMove = true;
     }
-    if (moveDown) {
-      playerPos.y += moveSpeed;
+    if (moveDown) { //110+98*6-127
+      if(playerPos.y <= vertiMargin + obstacleWidth*6 - KnightHeight){
+        playerPos.y += moveSpeed;
+      }
       isMove = true;
     }
-    if (moveLeft) {
-      playerPos.x -= moveSpeed;
+    if (moveLeft) {//115
+      if(playerPos.x >= horiMargin){
+        playerPos.x -= moveSpeed;
+      }
       isMove = true;
     }
-    if (moveRight) {
-      playerPos.x += moveSpeed;
+    if (moveRight) {//115+98*12-65=1226
+      if(playerPos.x <= horiMargin + obstacleWidth*12 - KnightWidth){
+        playerPos.x += moveSpeed;
+      }
       isMove = true;
     }
     return isMove;
