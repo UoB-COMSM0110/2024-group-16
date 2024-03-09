@@ -12,7 +12,7 @@ public class FireBalls{
     pos = new PVector(x, y);
     vel = new PVector(dirX, dirY).normalize().mult(speed);
     direction=dir;
-    radius = 10;
+    radius = 30;
   }
   
   public void move(){
@@ -27,8 +27,18 @@ public class FireBalls{
     currentFrame++;
   }
 
-  public boolean checkCollision(Enemy enemy) {
-    float d = PVector.dist(this.pos, enemy.enemyPos);
+  public boolean checkEnemyCollision(Enemy enemy) {
+    PVector fixedPos = new PVector(enemy.enemyPos.x + 10, enemy.enemyPos.y + 10);
+    float d = PVector.dist(this.pos, fixedPos);
     return d < radius + enemy.radius;
   }
+  
+  
+  
+  public boolean checkObstacleCollision(Obstacle obstacle) {
+    PVector fixedPos = new PVector(obstacle.obstaclePos.x + 50, obstacle.obstaclePos.y + 50);
+    float d = PVector.dist(this.pos, fixedPos);
+    return d < radius + obstacle.radius;
+  }
+  
 }

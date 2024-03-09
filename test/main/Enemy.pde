@@ -63,11 +63,16 @@ public class Enemy{
       }
     }
   }
+  
+  //public boolean checkFireballCollision(FireBalls fireball) {
+  //  PVector fixedPos = new PVector(enemy.enemyPos.x + 10, enemy.enemyPos.y + 10);
+  //  float d = PVector.dist(this.pos, fixedPos);
+  //  return d < radius + enemy.radius;
+  //}
 
 //  public void takeDamage(float damage) {
 //  health -= damage;
 //  if (health <= 0) {
-//    // 敌人被击败
 //    parent.println("Enemy defeated!");
 //  }
 //}

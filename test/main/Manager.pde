@@ -6,7 +6,6 @@ public class Manager{
   PImage title;
   int buttonInterval = 50;
   
-  
   int curRoom;
   //by default, use the main menu
   Scene curScene=Scene.MAIN_MENU;
@@ -25,6 +24,9 @@ public class Manager{
   
   //save map info init-up-left-down-right
   Rooms[] rooms = new Rooms[5];
+  
+  //grass
+  Grass grass = new Grass();
   
   public Manager(){
     
@@ -96,7 +98,7 @@ public class Manager{
     
     //obstacle or items or drops
     for(int i=0;i<4;i++){
-      image(multi_use_images.grass[i],115+i*obstacleWidth,110+i*obstacleWidth);
+      image(multi_use_images.grass[i],115,110);
     }
         
     
@@ -114,6 +116,13 @@ public class Manager{
                          multi_use_images.fireBalls_down,
                          multi_use_images.fireBalls_left,
                          multi_use_images.fireBalls_right);
+                         
+    // check collision of gass and fireball                         
+    if(!player.fireBalls.isEmpty() && 
+    player.fireBalls.get(player.fireBalls.size() - 1).checkObstacleCollision(grass)) {
+      player.fireBalls.remove(player.fireBalls.size()-1);
+    }
+                             
 
   }
     
