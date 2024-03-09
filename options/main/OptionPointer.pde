@@ -28,9 +28,13 @@ public class OptionPointer{
   
   public float getPosX(){return posX;}
   public float getPosY(){return posY;}
+  public void setPosX(int newPosX){posX = newPosX;}
+  public void setPosY(int newPosY){posY = newPosY;}
+  
+  
   
   public int getStatus(){return status;}
-  //public void setStatus(int newStatus){status = newStatus;}
+  public void setStatus(int newStatus){status = newStatus;}
   
   private void updatePos(){
     switch (status){
@@ -53,7 +57,6 @@ public class OptionPointer{
       case 4:
         posX = width / 2  + horiOffset - smallHoriOffset;
         posY = height/2  + vertOffset;
-        status = 0;
         break;
       case 5:
         posX = width / 2 ;

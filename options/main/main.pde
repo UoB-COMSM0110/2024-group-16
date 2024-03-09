@@ -21,6 +21,8 @@ void keyPressed(){
   }
   //in the main menu
   if( newManager.curScene == Scene.MAIN_MENU ){//in the main menu
+    // reset the cursor postion and status
+    newManager.optionPointer.setStatus(0);
     newManager.preScene = Scene.MAIN_MENU;
     if(keyCode == ESC){
       exit();
@@ -61,7 +63,6 @@ void keyPressed(){
     if (keyCode == UP || keyCode == DOWN || keyCode == LEFT || keyCode == RIGHT) {
       newManager.player.shootFireBalls(keyCode);
     } 
-    
   }
   //other keyboard activities
   // in the options
@@ -86,9 +87,13 @@ void keyPressed(){
           newManager.curScene=Scene.GAMING; 
         }
       }else if(newManager.optionPointer.getStatus()==4){
-            
+        if(newManager.preScene == Scene.MAIN_MENU) {     
+          //newManager.curScene=Scene.GAMING; 
           newManager.curScene=Scene.MAIN_MENU;
-          //newManager.optionPointer.setStatus(0);
+        }else if(newManager.preScene == Scene.GAMING) {     
+          //newManager.curScene=Scene.GAMING; 
+          newManager.curScene=Scene.MAIN_MENU;
+        }
       }else if(newManager.optionPointer.getStatus()==5){
         exit();
       }
