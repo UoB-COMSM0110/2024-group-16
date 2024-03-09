@@ -14,6 +14,7 @@ public class Manager{
   
   //Menu pointer
   MenuPointer menuPointer = new MenuPointer();
+  OptionPointer optionPointer = new OptionPointer();
 
   //UI
   UI ui=new UI();
@@ -121,11 +122,15 @@ public class Manager{
   }
     
   public void drawOptions(){
-    background(255);
-    textAlign(CENTER, CENTER);
-    fill(0);
-    textSize(24);
-    text("OPTIONS", width/2, height/2);
+    background(200);
+    image(optionPointer.img[0],optionPointer.getPosX(),optionPointer.getPosY());
+    
+    drawButton(width / 2 - 50 , height / 4 + buttonInterval , "Sound Settings");
+    drawButton(width / 2 - 50 , height / 4 + 2*buttonInterval , "KeyBoard Settings");
+    drawButton(width / 2 - 50 , height / 4 + 3*buttonInterval , "Languages Settings");
+    drawButton(width / 2 - 50 , height / 4 + 4*buttonInterval , "Back to Gaming");
+    drawButton(width / 2 - 50 , height / 4 + 5*buttonInterval , "Exit");
+    
   }
   
   public void drawGameOver(){

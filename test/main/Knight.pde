@@ -100,8 +100,7 @@ public class Knight{
       isMove = true;
     }
     if (moveDown) { //110+98*6-127
-      //if(playerPos.y <= vertiMargin + obstacleWidth*6 - knightHeight){
-      if(playerPos.y <= vertiMargin + 96.6*6 - knightHeight){
+      if(playerPos.y <= vertiMargin + obstacleWidth*6 - knightHeight){
         playerPos.y += moveSpeed;
       }
       isMove = true;
