@@ -23,6 +23,7 @@ void keyPressed(){
   if( newManager.curScene == Scene.MAIN_MENU ){//in the main menu
     // reset the cursor postion and status
     newManager.optionPointer.setStatus(0);
+    image(newManager.optionPointer.img,newManager.optionPointer.getPosX(),newManager.optionPointer.getPosY());
     newManager.preScene = Scene.MAIN_MENU;
     if(keyCode == ESC){
       exit();
