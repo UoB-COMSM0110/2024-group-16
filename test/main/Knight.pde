@@ -206,10 +206,11 @@ public class Knight{
     }
   }
   
+  public void cleanFireballs(){
+    fireBalls.clear();    
+  }
+  
   // set & get func
-  
-  
-  
   public int getmaxHP(){return maxHP;}
   public int getHP(){return HP;}
   public int getMP(){return MP;}

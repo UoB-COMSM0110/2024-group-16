@@ -1,6 +1,8 @@
 public class Grass extends Obstacle{
-
-    public Grass(){
-
-    }
+    
+  public Grass(float posX,float posY){
+    super.pos = new PVector(posX,posY);
+    super.type = 0 ;
+    super.hardness = 2;
+  }
 }
