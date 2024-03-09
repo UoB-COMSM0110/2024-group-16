@@ -4,7 +4,7 @@ public class HardObstacle extends Obstacle{
     super.pos = new PVector(posX,posY);
     super.type = 1 ;
     super.hardness = Integer.MAX_VALUE;
-    super.radius = 45;
+    super.radius = 40;
     hardObsType = (int)random(0,3);
   }
 }

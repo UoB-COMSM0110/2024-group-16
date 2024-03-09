@@ -33,7 +33,7 @@ public class Rooms{
           doors[1]=null;
           doors[2]=loadImage("../images/Map/itemroom_door_down.png");
           doors[3]=null;
-          doors[2].resize(60,110);
+          doors[2].resize(80,110);
           break;
         //common room
         case 2:
@@ -42,7 +42,7 @@ public class Rooms{
           doors[1]=null;
           doors[2]=null;
           doors[3]=loadImage("../images/Map/commondoor_left.png");
-          doors[3].resize(115,60);
+          doors[3].resize(115,80);
           break;
         //other use: to be update
         case 3:
@@ -51,7 +51,7 @@ public class Rooms{
           doors[1]=null;
           doors[2]=null;
           doors[3]=null;
-          doors[0].resize(60,110);
+          doors[0].resize(80,110);
           break;
         //Boos room
         case 4:
@@ -60,7 +60,7 @@ public class Rooms{
           doors[1]=loadImage("../images/Map/bossroom_door_right.png");
           doors[2]=null;
           doors[3]=null;
-          doors[1].resize(115,60);
+          doors[1].resize(115,80);
           break;
       }
       roomBg.resize(width,height);
@@ -68,7 +68,7 @@ public class Rooms{
       //normal enemy room
       if(roometype==2 || roometype==3){
         //create obstacle & enemies
-        int times = (int)random(1,50);
+        int times = (int)random(1,20);
         while(times>0){
           obs=randomCreateObstacle(obs,map);
           times--;
@@ -114,4 +114,5 @@ public class Rooms{
         }
       }
     }
+   
 }
