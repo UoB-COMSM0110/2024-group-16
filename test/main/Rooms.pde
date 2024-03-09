@@ -2,6 +2,8 @@ public class Rooms{
     PImage roomBg;
     PImage[] doors= new PImage[4];
     PImage lockedDoor;
+    
+    
     int[] doorsCoordinates = {650,0,width-115,340,650,height-110,0,340};
     
     
@@ -59,22 +61,14 @@ public class Rooms{
           break;
       }
       roomBg.resize(width,height);
-      /*
-      doors[0].resize(60,110);
-      doors[1].resize(115,60);
-      doors[2].resize(60,110);
-      doors[3].resize(115,60);
-      */
-      /*
-      //doors
-      doorsCoordinates[0]=650;
-      doorsCoordinates[1]=0;
-      doorsCoordinates[2]=width-115;
-      doorsCoordinates[3]=340;
-      doorsCoordinates[4]=650;
-      doorsCoordinates[5]=height-60;
-      doorsCoordinates[6]=0;
-      doorsCoordinates[7]=340;
-      */
+    }
+    
+    public void drawRoom(){
+      image(this.roomBg,0,0);
+      for(int i=0;i<4;i++){
+        if(this.doors[i]!=null){
+          image(this.doors[i],this.doorsCoordinates[2*i],this.doorsCoordinates[2*i+1]);
+        }
+      }
     }
 }

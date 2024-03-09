@@ -17,14 +17,11 @@ public class Manager{
   
   //player
   Knight player = new Knight();
-
-  //enemy
-  Enemy Crawlid = new Enemy();
   
   //save and load some useful images
   MultiUseImages multi_use_images = new MultiUseImages();
   
-  //save map info
+  //save map info init-up-left-down-right
   Rooms[] rooms = new Rooms[5];
   
   public Manager(){
@@ -63,7 +60,7 @@ public class Manager{
       }
   }
   
-  void drawMainMenu(){
+  public void drawMainMenu(){
     image(menuBg,0,0);
     image(title,150,50);
     
@@ -75,16 +72,14 @@ public class Manager{
     drawButton(width / 2 - 50 , height / 2 + 5 * buttonInterval , "Exit");
   }
  
-  void drawGaming(){
+  public void drawGaming(){
     
-    //roombg
-    image(this.rooms[curRoom].roomBg,0,0);
-    for(int i=0;i<4;i++){
-      if(rooms[curRoom].doors[i]!=null){
-        image(rooms[curRoom].doors[i],rooms[curRoom].doorsCoordinates[2*i],
-                                      rooms[curRoom].doorsCoordinates[2*i+1]);
-      }
-    }
+    //change room
+    changeRoom(player.getPosX(),player.getPosY());
+    
+    
+    //roombg & door
+    this.rooms[curRoom].drawRoom();
     
     //UI
     image(ui.HUD_main,20,20);
@@ -100,7 +95,7 @@ public class Manager{
     for(int i=0;i<4;i++){
       image(multi_use_images.grass[i],115+i*obstacleWidth,110+i*obstacleWidth);
     }
-    Crawlid.drawEnemy();    
+        
     
     //player
     if(player.movePlayer()){
@@ -108,6 +103,7 @@ public class Manager{
     }else{
       player.drawIdle();
     }
+    
     
     //fireballs
     player.moveFireBalls();
@@ -118,7 +114,7 @@ public class Manager{
 
   }
     
-  void drawOptions(){
+  public void drawOptions(){
     background(255);
     textAlign(CENTER, CENTER);
     fill(0);
@@ -126,7 +122,7 @@ public class Manager{
     text("OPTIONS", width/2, height/2);
   }
   
-  void drawGameOver(){
+  public void drawGameOver(){
     background(255);
     textAlign(CENTER, CENTER);
     fill(0);
@@ -134,10 +130,16 @@ public class Manager{
     text("Game Over", width/2, height/2);
   }
     
-  void drawButton(float x, float y, String label) {
+  public void drawButton(float x, float y, String label) {
     textAlign(CENTER, CENTER);
     fill(255);
     textFont(mainMenuFont); 
     text(label, x, y);
   } 
+  
+  public void changeRoom(float playerPosX,float playerPosY){
+    if(playerPosX > 650 && playerPosX< 760 ){
+      
+    }
+  }
 }

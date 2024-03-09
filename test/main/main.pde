@@ -1,6 +1,9 @@
 Manager newManager;
 
 int obstacleWidth = 98;
+int vertiMargin = 110;
+int horiMargin = 115;
+
 void setup() {
   size(1400, 800);
   newManager = new Manager();

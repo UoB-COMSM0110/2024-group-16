@@ -91,27 +91,19 @@ public class Knight{
   public boolean movePlayer(){
     boolean isMove = false;
     if (moveUp) {
-      if(playerPos.y >= 110){
-        playerPos.y -= moveSpeed;
-      }
+      playerPos.y -= moveSpeed;
       isMove = true;
     }
     if (moveDown) {
-      if(playerPos.y <= 570){
-        playerPos.y += moveSpeed;
-      }
+      playerPos.y += moveSpeed;
       isMove = true;
     }
     if (moveLeft) {
-      if(playerPos.x >= 115){
-        playerPos.x -= moveSpeed;
-      }
+      playerPos.x -= moveSpeed;
       isMove = true;
     }
     if (moveRight) {
-      if(playerPos.x <= 1220){
-        playerPos.x += moveSpeed;
-      }
+      playerPos.x += moveSpeed;
       isMove = true;
     }
     return isMove;
@@ -210,6 +202,13 @@ public class Knight{
   public int getmaxHP(){return maxHP;}
   public int getHP(){return HP;}
   public int getMP(){return MP;}
+  public float getPosX(){return playerPos.x;}
+  public float getPosY(){return playerPos.y;}
   
+  public void setmaxHP(int maxHP){this.maxHP=maxHP;}
+  public void setHP(int HP){this.HP=HP;}
+  public void setMP(int MP){this.MP=MP;}
+  public void setPosX(float posX){ playerPos.x=posX;}
+  public void setPosY(float posY){ playerPos.y=posY;}
   
 }
