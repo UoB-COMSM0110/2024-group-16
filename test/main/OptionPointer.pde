@@ -2,7 +2,9 @@ public class OptionPointer{
   float posX;
   float posY;
   int status;
-  int smallOffset = 20;
+  int horiOffset = 150;
+  int smallHoriOffset = 30;
+  int vertOffset = 20;
   int buttonInterval = 50;
   PImage[] img=new PImage[1];
   
@@ -10,14 +12,14 @@ public class OptionPointer{
     status = 0 ;
     updatePos();
     img[0]=loadImage("../images/Options/Cursor.png");
-    img[0].resize(60,40);
+    img[0].resize(80,60);
   }
   public void movePointers(int e){
     if(e==-1){
-      status=(status+1)%5;
+      status=(status+1)%6;
     }else if(e==1){
       if(status==0){
-        status=5;
+        status=6;
       }
       status=(status-1);
     }
@@ -32,8 +34,28 @@ public class OptionPointer{
   private void updatePos(){
     switch (status){
       case 0:
-        posX = width / 2 + smallOffset;
-        posY = height / 2 + smallOffset;
+        posX = width / 2  + horiOffset;
+        posY = height/2 - 4*buttonInterval + vertOffset;
+        break;
+      case 1:
+        posX = width / 2  + horiOffset + smallHoriOffset;
+        posY = height/2 - 3*buttonInterval  + vertOffset;
+        break;
+      case 2:
+        posX = width / 2  + horiOffset + smallHoriOffset;
+        posY = height/2 - 2*buttonInterval  + vertOffset;
+        break;
+      case 3:
+        posX = width / 2  + horiOffset - smallHoriOffset;
+        posY = height/2 - buttonInterval  + vertOffset;
+        break;
+      case 4:
+        posX = width / 2  + horiOffset - smallHoriOffset;
+        posY = height/2  + vertOffset;
+        break;
+      case 5:
+        posX = width / 2 ;
+        posY = height/2 + buttonInterval + vertOffset;
         break;
     }
   }

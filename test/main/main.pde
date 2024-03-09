@@ -70,7 +70,28 @@ void keyPressed(){
      newManager.curScene = Scene.OPTIONS; 
   }
   if(newManager.curScene == Scene.OPTIONS){
-    if(keyCode == ENTER){
+    if(keyCode == UP){
+      newManager.optionPointer.movePointers(1);
+    }else if(keyCode == DOWN){
+      newManager.optionPointer.movePointers(-1);
+    }else if(keyCode == 32){
+      //turn to other scene
+      if(newManager.optionPointer.getStatus()==0){
+        // add music setting
+      }else if(newManager.optionPointer.getStatus()==1){
+        // add keyboard setting
+      }else if(newManager.optionPointer.getStatus()==2){
+        // add language setting
+      }else if(newManager.optionPointer.getStatus()==3){
+        newManager.curScene=Scene.GAMING; 
+      }else if(newManager.optionPointer.getStatus()==4){
+        newManager.curScene=Scene.MAIN_MENU;
+      }else if(newManager.optionPointer.getStatus()==5){
+        exit();
+      }
+     //}
+    }
+    /*if(keyCode == ENTER){
       if(newManager.preScene == Scene.MAIN_MENU){
         newManager.curScene=Scene.MAIN_MENU;
       }
@@ -80,7 +101,7 @@ void keyPressed(){
     }
     if(key == 'q' || key == 'Q'){
       exit();
-    }
+    }*/
   }
   
 }
