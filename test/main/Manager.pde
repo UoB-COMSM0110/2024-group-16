@@ -10,6 +10,7 @@ public class Manager{
   int curRoom;
   //by default, use the main menu
   Scene curScene=Scene.MAIN_MENU;
+  Scene preScene=Scene.MAIN_MENU;
   
   //Menu pointer
   MenuPointer menuPointer = new MenuPointer();

@@ -4,7 +4,6 @@ int obstacleWidth = 98;
 int vertiMargin = 110;
 int horiMargin = 115;
 int imageShift = 20;
-String currentState = "MAIN_MENU"; // default state
 
 void setup() {
   size(1400, 800);
@@ -23,7 +22,7 @@ void keyPressed(){
   
   //in the main menu
   if( newManager.curScene == Scene.MAIN_MENU ){//in the main menu
-    currentState = "MAIN_MENU";
+    newManager.preScene = Scene.MAIN_MENU;
     if(keyCode == ESC){
       exit();
     }
@@ -45,7 +44,7 @@ void keyPressed(){
   
   //in the game
   if(newManager.curScene==Scene.GAMING){
-    currentState = "GAMING";
+    newManager.preScene = Scene.GAMING;
     if (key == 'w') {
       newManager.player.moveUp = true;
     }
@@ -72,9 +71,12 @@ void keyPressed(){
   }
   if(newManager.curScene == Scene.OPTIONS){
     if(keyCode == ENTER){
-      println(currentState);
-      if(currentState.equals("MAIN_MENU")){newManager.curScene=Scene.MAIN_MENU;}
-      if(currentState.equals("GAMING")){newManager.curScene=Scene.GAMING;}
+      if(newManager.preScene == Scene.MAIN_MENU){
+        newManager.curScene=Scene.MAIN_MENU;
+      }
+      if(newManager.preScene == Scene.GAMING){
+        newManager.curScene=Scene.GAMING;
+      }
     }
     if(key == 'q' || key == 'Q'){
       exit();
