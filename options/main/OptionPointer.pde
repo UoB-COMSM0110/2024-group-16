@@ -35,7 +35,6 @@ public class OptionPointer{
   
   public int getStatus(){return status;}
   public void setStatus(int newStatus){status = newStatus;}
-  //public void getUpdatePos(int nowStatus){updatePos();}
   
   private void updatePos(){
     switch (status){
