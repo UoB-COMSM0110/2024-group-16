@@ -38,7 +38,7 @@ public class Manager{
     
     menuBg=loadImage("../images/Menu/controller_prompt_bg.png");
     menuBg.resize(width,height);
-    optionBg=loadImage("../images/Menu/menu_option_bg");
+    optionBg=loadImage("../images/Menu/menu_option_bg.png");
     optionBg.resize(width,height);
     title=loadImage("../images/Menu/vheart_title.png");  
     title.resize(1000,300);
@@ -61,7 +61,7 @@ public class Manager{
         drawGaming();
         break;
       case OPTIONS:
-        drawOptions();
+        drawOptions(); 
         break;
       case GAME_OVER:
          drawGameOver();
@@ -70,6 +70,7 @@ public class Manager{
   }
   
   public void drawMainMenu(){
+    println("In the drawmMainMenu");
     image(menuBg,0,0);
     image(title,150,50);
     
@@ -82,6 +83,7 @@ public class Manager{
   }
  
   public void drawGaming(){
+    println("In the drawGaming");
     
     //change room
     changeRoom(player.getPosX(),player.getPosY());
@@ -125,6 +127,7 @@ public class Manager{
   }
     
   public void drawOptions(){
+    println("In the drawOptions");
     image(optionBg,0,0);
     image(optionPointer.img,optionPointer.getPosX(),optionPointer.getPosY());
     

@@ -35,7 +35,6 @@ void keyPressed(){
         newManager.curScene=Scene.GAMING;
       }else if(newManager.menuPointer.getStatus()==1){
         newManager.curScene=Scene.OPTIONS;
-        println(newManager.curScene);
       }else if(newManager.menuPointer.getStatus()==2){
         exit();
       }
@@ -87,14 +86,14 @@ void keyPressed(){
           newManager.curScene=Scene.GAMING; 
         }
       }else if(newManager.optionPointer.getStatus()==4){
-        newManager.preScene = Scene.OPTIONS;
-        newManager.curScene=Scene.MAIN_MENU;
+            
+          newManager.curScene=Scene.MAIN_MENU;
+          //newManager.optionPointer.setStatus(0);
       }else if(newManager.optionPointer.getStatus()==5){
         exit();
       }
     }
   }
-  
 }
 
 void keyReleased() {
