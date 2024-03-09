@@ -10,6 +10,11 @@ public class MultiUseImages{
   PImage[] primal_aspid = new PImage[13];
   PImage[] zombie_fly = new PImage[7];
   PImage[] hardObstacle = new PImage[3];
+  PImage[] small_coin = new PImage[5];
+  PImage[] silver_coin = new PImage[4];
+  PImage[] gold_coin = new PImage[5];
+  PImage[] bling_coin = new PImage[4];
+  
   
   public MultiUseImages(){
     for(int i=0;i<fireBalls_up.length;i++){
@@ -51,6 +56,19 @@ public class MultiUseImages{
     
     for(int i=0;i<zombie_fly.length;i++){
       primal_aspid[i]=loadImage("../images/Enemies/Zombie_Fly_"+convertNumber(i)+".png");
+    }
+    
+    for(int i=0;i<small_coin.length;i++){
+      small_coin[i]=loadImage("../images/HUD/Small_Coin_"+convertNumber(i)+".png");
+    }
+    for(int i=0;i<silver_coin.length;i++){
+      silver_coin[i]=loadImage("../images/HUD/Silver_Coin_"+convertNumber(i)+".png");
+    }
+    for(int i=0;i<gold_coin.length;i++){
+      gold_coin[i]=loadImage("../images/HUD/Gold_Coin_"+convertNumber(i)+".png");
+    }
+    for(int i=0;i<bling_coin.length;i++){
+      bling_coin[i]=loadImage("../images/HUD/Bling_Coin_"+convertNumber(i)+".png");
     }
  
   }
