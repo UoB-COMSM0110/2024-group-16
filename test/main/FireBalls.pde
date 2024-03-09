@@ -36,8 +36,9 @@ public class FireBalls{
   
   
   public boolean checkObstacleCollision(Obstacle obstacle) {
-    PVector fixedPos = new PVector(obstacle.obstaclePos.x + 50, obstacle.obstaclePos.y + 50);
-    float d = PVector.dist(this.pos, fixedPos);
+    PVector fixedPos = new PVector(obstacle.pos.x + 50, obstacle.pos.y + 50);
+    PVector fixedbullet = new PVector(this.pos.x + 25, this.pos.y + 50);
+    float d = PVector.dist(fixedbullet, fixedPos);
     return d < radius + obstacle.radius;
   }
   

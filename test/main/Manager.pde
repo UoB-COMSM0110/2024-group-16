@@ -114,6 +114,16 @@ public class Manager{
                          multi_use_images.fireBalls_down,
                          multi_use_images.fireBalls_left,
                          multi_use_images.fireBalls_right);
+                         
+     // check collision of gass and fireball
+     for(Obstacle temp:rooms[curRoom].obs){
+       if(!player.fireBalls.isEmpty() && 
+      player.fireBalls.get(player.fireBalls.size() - 1).checkObstacleCollision(temp)) {
+      player.fireBalls.remove(player.fireBalls.size()-1);
+     
+     }
+     
+     }
 
   }
     

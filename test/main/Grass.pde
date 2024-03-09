@@ -4,5 +4,6 @@ public class Grass extends Obstacle{
     super.pos = new PVector(posX,posY);
     super.type = 0 ;
     super.hardness = 2;
+    super.radius = 45;
   }
 }
