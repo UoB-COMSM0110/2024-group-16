@@ -26,6 +26,8 @@ public class Manager{
   //save map info init-up-left-down-right
   Rooms[] rooms = new Rooms[5];
   
+  
+  
   public Manager(){
     
     mainMenuFont = createFont("../Fonts/TrajanPro-Bold.otf", 40); 
@@ -141,6 +143,8 @@ public class Manager{
   } 
   
   public void changeRoom(float playerPosX,float playerPosY){
+    
+    //top door
     if(rooms[curRoom].doors[0]!=null                
                  && playerPosX >= rooms[curRoom].doorsCoordinates[0] 
                  && playerPosX <= rooms[curRoom].doorsCoordinates[0]+110 
@@ -151,7 +155,10 @@ public class Manager{
       }else if(curRoom == 3){
         curRoom=0;
       }
-      player.setPosY(vertiMargin+6*obstacleWidth-player.getHeight()-10);
+      //update the pos of knight
+      player.setPosY(vertiMargin+6*obstacleWidth-player.getHeight()-imageShift);
+      
+    //bottom door
     }else if(rooms[curRoom].doors[2]!=null                
                  && playerPosX >=rooms[curRoom].doorsCoordinates[0] 
                  && playerPosX <= rooms[curRoom].doorsCoordinates[0]+110 
@@ -161,11 +168,35 @@ public class Manager{
       }else if(curRoom == 1){
         curRoom=0;
       }
-      player.setPosY(vertiMargin+obstacleWidth+10);
-    }
-    
-    
-    
-    
+      //update the pos of knight
+      player.setPosY(vertiMargin+obstacleWidth+imageShift);
+      
+     //right door
+     }else if(rooms[curRoom].doors[1]!=null
+                 && player.getPosX() >= horiMargin+12*obstacleWidth-player.getWidth()
+                 && player.getPosY() >= rooms[curRoom].doorsCoordinates[3]-2*imageShift
+                 && player.getPosY() <= rooms[curRoom].doorsCoordinates[3]+80-2*imageShift){
+      if(curRoom == 0){
+        curRoom=2;
+      }else if(curRoom == 4){
+        curRoom=0;
+      }
+      player.setPosX(horiMargin+imageShift);
+      
+     //left door
+     }else if(rooms[curRoom].doors[3]!=null
+                 && player.getPosX() <= horiMargin +imageShift
+                 && player.getPosY() >= rooms[curRoom].doorsCoordinates[3]-2*imageShift
+                 && player.getPosY() <= rooms[curRoom].doorsCoordinates[3]+80-2* imageShift){
+      if(curRoom == 0){
+        curRoom=4;
+      }else if(curRoom == 2){
+        curRoom=0;
+      }
+      player.setPosX(horiMargin+12*obstacleWidth-player.getWidth()-imageShift);
+     
+     
+     }
+      
   }
 }

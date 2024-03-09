@@ -3,6 +3,7 @@ Manager newManager;
 int obstacleWidth = 98;
 int vertiMargin = 110;
 int horiMargin = 115;
+int imageShift = 20;
 
 void setup() {
   size(1400, 800);

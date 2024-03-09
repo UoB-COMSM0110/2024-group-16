@@ -6,6 +6,9 @@ public class Rooms{
     
     int[] doorsCoordinates = {650,0,width-115,340,650,height-110,0,340};
     
+    //save obstacle
+    ArrayList<Obstacle> obs = new ArrayList<>();
+    
     
     public Rooms (int roometype){
       
@@ -61,6 +64,12 @@ public class Rooms{
           break;
       }
       roomBg.resize(width,height);
+      
+      //normal enemy room
+      if(roometype==2||roometype==3){
+        //create obstacle & enemies
+         
+      }
     }
     
     public void drawRoom(){

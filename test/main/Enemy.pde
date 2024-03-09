@@ -40,19 +40,6 @@ public class Enemy{
     currentFrame++;
   }
   
-  // public void drawWalk(){
-  //   if(currentstatus>=enemiesWalk.length){
-  //     currentstatus=0;
-  //   }
-  //   if(currentFrame%8==0){
-  //     currentstatus = (currentstatus+1) % enemiesWalk.length;
-  //   }
-  //   image(Walk[currentstatus], EnemyPos.x , EnemyPos.y);
-  //   currentFrame++;
-  // }
-  
-  
-  
   void moveFireBalls() {
     for (int i = fireBalls.size()-1; i >= 0; i--) {
       FireBalls fb = fireBalls.get(i);
@@ -64,11 +51,4 @@ public class Enemy{
     }
   }
 
-//  public void takeDamage(float damage) {
-//  health -= damage;
-//  if (health <= 0) {
-//    // 敌人被击败
-//    parent.println("Enemy defeated!");
-//  }
-//}
 }
