@@ -10,7 +10,7 @@ public class Manager{
   int curRoom;
   //by default, use the main menu
   Scene curScene=Scene.MAIN_MENU;
-
+  
   //Menu pointer
   MenuPointer menuPointer = new MenuPointer();
 
@@ -97,9 +97,7 @@ public class Manager{
     }
     
     //obstacle or items or drops
-    for(int i=0;i<4;i++){
-      image(multi_use_images.grass[i],115+i*obstacleWidth,110+i*obstacleWidth);
-    }
+    drawObstacle(rooms[curRoom].obs);
         
     
     //player
@@ -155,6 +153,7 @@ public class Manager{
       }else if(curRoom == 3){
         curRoom=0;
       }
+      player.cleanFireballs();
       //update the pos of knight
       player.setPosY(vertiMargin+6*obstacleWidth-player.getHeight()-imageShift);
       
@@ -168,6 +167,7 @@ public class Manager{
       }else if(curRoom == 1){
         curRoom=0;
       }
+      player.cleanFireballs();
       //update the pos of knight
       player.setPosY(vertiMargin+obstacleWidth+imageShift);
       
@@ -181,6 +181,7 @@ public class Manager{
       }else if(curRoom == 4){
         curRoom=0;
       }
+      player.cleanFireballs();
       player.setPosX(horiMargin+imageShift);
       
      //left door
@@ -193,10 +194,19 @@ public class Manager{
       }else if(curRoom == 2){
         curRoom=0;
       }
+      player.cleanFireballs();
       player.setPosX(horiMargin+12*obstacleWidth-player.getWidth()-imageShift);
-     
-     
      }
-      
   }
+  public void drawObstacle(ArrayList<Obstacle> obs){
+   for(Obstacle temp : obs){
+     //this is grass
+     if(temp.type == 0){
+       image(multi_use_images.grass[0],temp.pos.x,temp.pos.y);
+     }else if(temp.type == 1){
+       HardObstacle hard = (HardObstacle)temp;
+       image(multi_use_images.hardObstacle[hard.hardObsType],temp.pos.x,temp.pos.y);
+     }
+    }
+  }  
 }

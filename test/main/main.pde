@@ -1,10 +1,10 @@
+
 Manager newManager;
 
 int obstacleWidth = 98;
 int vertiMargin = 110;
 int horiMargin = 115;
 int imageShift = 20;
-
 
 void setup() {
   size(1400, 800);
@@ -16,10 +16,8 @@ void draw() {
 }
 
 void keyPressed(){
-
-  
   //in the main menu
-  
+  if( newManager.curScene == Scene.MAIN_MENU ){//in the main menu
     if(keyCode == UP){
       newManager.menuPointer.movePointers(1);
     }else if(keyCode == DOWN){
@@ -34,7 +32,7 @@ void keyPressed(){
         exit();
       }
     }
-  
+  }
   
   //in the game
   if(newManager.curScene==Scene.GAMING){
@@ -57,8 +55,9 @@ void keyPressed(){
     } 
     
   }
+  //other keyboard activities
+  
 }
- 
 
 void keyReleased() {
   if (key == 'w') {
