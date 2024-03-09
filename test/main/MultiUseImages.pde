@@ -61,6 +61,15 @@ public class MultiUseImages{
     for(int i=0;i<small_coin.length;i++){
       small_coin[i]=loadImage("../images/HUD/Small_Coin_"+convertNumber(i)+".png");
     }
+    for(int i=0;i<silver_coin.length;i++){
+      silver_coin[i]=loadImage("../images/HUD/Silver_Coin_"+convertNumber(i)+".png");
+    }
+    for(int i=0;i<gold_coin.length;i++){
+      gold_coin[i]=loadImage("../images/HUD/Gold_Coin_"+convertNumber(i)+".png");
+    }
+    for(int i=0;i<bling_coin.length;i++){
+      bling_coin[i]=loadImage("../images/HUD/Bling_Coin_"+convertNumber(i)+".png");
+    }
  
   }
   
