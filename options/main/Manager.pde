@@ -3,6 +3,7 @@ public class Manager{
   PFont mainMenuFont;
   PImage menuBg;
   PImage gameBg;
+  PImage optionBg;
   PImage title;
   int buttonInterval = 50;
   int smallOffset = 20;
@@ -37,7 +38,8 @@ public class Manager{
     
     menuBg=loadImage("../images/Menu/controller_prompt_bg.png");
     menuBg.resize(width,height);
-    
+    optionBg=loadImage("../images/Menu/menu_option_bg");
+    optionBg.resize(width,height);
     title=loadImage("../images/Menu/vheart_title.png");  
     title.resize(1000,300);
     
@@ -123,7 +125,7 @@ public class Manager{
   }
     
   public void drawOptions(){
-    background(200);
+    image(optionBg,0,0);
     image(optionPointer.img,optionPointer.getPosX(),optionPointer.getPosY());
     
     drawButton(width / 2 - 50 , height / 4 + smallOffset , "Sound Settings");
