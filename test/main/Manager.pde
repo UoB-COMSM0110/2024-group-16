@@ -124,7 +124,7 @@ public class Manager{
     
   public void drawOptions(){
     background(200);
-    image(optionPointer.img[0],optionPointer.getPosX(),optionPointer.getPosY());
+    image(optionPointer.img,optionPointer.getPosX(),optionPointer.getPosY());
     
     drawButton(width / 2 - 50 , height / 4 + smallOffset , "Sound Settings");
     drawButton(width / 2 - 50 , height / 4 + 1*buttonInterval + smallOffset, "KeyBoard Settings");

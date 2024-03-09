@@ -6,13 +6,13 @@ public class OptionPointer{
   int smallHoriOffset = 30;
   int vertOffset = 20;
   int buttonInterval = 50;
-  PImage[] img=new PImage[1];
+  PImage img=new PImage();
   
   public OptionPointer(){
     status = 0 ;
     updatePos();
-    img[0]=loadImage("../images/Options/Cursor.png");
-    img[0].resize(80,60);
+    img=loadImage("../images/Options/Cursor.png");
+    img.resize(80,60);
   }
   public void movePointers(int e){
     if(e==-1){
