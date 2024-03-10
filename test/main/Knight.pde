@@ -48,7 +48,6 @@ public class Knight{
      for(int i=0;i<Walk.length;i++){
        Walk[i]=loadImage("../images/Knight/Walk/Walk_"+i+".PNG");
      }
-     radius = 40;
   }
   
   public void turnToLeft(){

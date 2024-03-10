@@ -47,28 +47,28 @@ public class MultiUseImages{
     }
     
     for(int i=0;i<crawlid.length;i++){
-      crawlid[i]=loadImage("../images/Enemies/Crawlid_"+convertNumber(i)+".png");
+      crawlid[i]=loadImage("../images/Enemies/Crawlid/Crawlid_"+convertNumber(i)+".png");
     }
     
     for(int i=0;i<primal_aspid.length;i++){
-      primal_aspid[i]=loadImage("../images/Enemies/Primal_Aspid_"+convertNumber(i)+".png");
+      primal_aspid[i]=loadImage("../images/Enemies/Primal_Aspid/Primal_Aspid_"+convertNumber(i)+".png");
     }
     
     for(int i=0;i<zombie_fly.length;i++){
-      primal_aspid[i]=loadImage("../images/Enemies/Zombie_Fly_"+convertNumber(i)+".png");
+      primal_aspid[i]=loadImage("../images/Enemies/Zombie_Fly/Zombie_Fly_"+convertNumber(i)+".png");
     }
     
     for(int i=0;i<small_coin.length;i++){
-      small_coin[i]=loadImage("../images/HUD/Small_Coin_"+convertNumber(i)+".png");
+      small_coin[i]=loadImage("../images/HUD/Small_Coin/Small_Coin_"+convertNumber(i)+".png");
     }
     for(int i=0;i<silver_coin.length;i++){
-      silver_coin[i]=loadImage("../images/HUD/Silver_Coin_"+convertNumber(i)+".png");
+      silver_coin[i]=loadImage("../images/HUD/Silver_Coin/Silver_Coin_"+convertNumber(i)+".png");
     }
     for(int i=0;i<gold_coin.length;i++){
-      gold_coin[i]=loadImage("../images/HUD/Gold_Coin_"+convertNumber(i)+".png");
+      gold_coin[i]=loadImage("../images/HUD/Gold_Coin/Gold_Coin_"+convertNumber(i)+".png");
     }
     for(int i=0;i<bling_coin.length;i++){
-      bling_coin[i]=loadImage("../images/HUD/Bling_Coin_"+convertNumber(i)+".png");
+      bling_coin[i]=loadImage("../images/HUD/Bling_Coin/Bling_Coin_"+convertNumber(i)+".png");
     }
  
   }

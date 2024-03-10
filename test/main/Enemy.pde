@@ -26,7 +26,7 @@ public class Enemy{
   
   public Enemy() {
     enemyPos = new PVector(900, 600);
-    enemies = loadImage("../images/Enemies/Crawlid_0.png");
+    enemies = loadImage("../images/Enemies/Crawlid/Crawlid_00.png");
     health = 10;
     radius = 20;
   }
