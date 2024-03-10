@@ -6,7 +6,7 @@ public class Manager{
   PImage optionBg;
   PImage title;
   int buttonInterval = 50;
-  int smallOffset = 15;
+  int buttonIntervalOption = 60;
   
   
   int curRoom;
@@ -131,12 +131,11 @@ public class Manager{
     image(optionBg,0,0);
     image(optionPointer.img,optionPointer.getPosX(),optionPointer.getPosY());
     
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 - smallOffset , "Sound Settings");
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 1*buttonInterval - smallOffset, "KeyBoard Settings");
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 2*buttonInterval - smallOffset, "Languages Settings");
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 3*buttonInterval - smallOffset, "Back to Game");
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 4*buttonInterval - smallOffset, "Back to Menu");
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3  + 5*buttonInterval - smallOffset, "Exit");
+    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 , "Sound Settings");
+    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + buttonIntervalOption, "KeyBoard Settings");
+    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 2*buttonIntervalOption, "Back to Game");
+    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 3*buttonIntervalOption, "Back to Menu");
+    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3  + 4*buttonIntervalOption, "Exit");
     
   }
   

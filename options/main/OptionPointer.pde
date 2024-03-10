@@ -5,7 +5,7 @@ public class OptionPointer{
   int horiOffset = 150;
   int smallHoriOffset = 20;
   int vertOffset = 15;
-  int buttonInterval = 50;
+  int buttonInterval = 60;
   PImage img=new PImage();
   
   public OptionPointer(){
@@ -16,10 +16,10 @@ public class OptionPointer{
   }
   public void movePointers(int e){
     if(e==-1){
-      status=(status+1)%6;
+      status=(status+1)%5;
     }else if(e==1){
       if(status==0){
-        status=6;
+        status=5;
       }
       status=(status-1);
     }
@@ -43,24 +43,25 @@ public class OptionPointer{
         posY = 2 * height / 3 - vertOffset;
         break;
       case 1:
-        posX = 3 * width / 4 - 3 * buttonInterval  + horiOffset + 4 * smallHoriOffset;
+        posX = 3 * width / 4 - 3 * buttonInterval  + 3 * horiOffset / 2 + smallHoriOffset;
         posY = 2 * height / 3 + 1 * buttonInterval - vertOffset / 3;
         break;
-      case 2:
+      /*case 2:
         posX = 3 * width / 4 - 3 * buttonInterval  + horiOffset + 4 * smallHoriOffset;
         posY = 2 * height / 3 + 2 * buttonInterval - vertOffset;
         break;
+        */
+      case 2:
+        posX = 3 * width / 4 - 3 * buttonInterval  + horiOffset + 2 * smallHoriOffset;
+        posY = 2 * height / 3 + 2 * buttonInterval  - vertOffset;
+        break;
       case 3:
-        posX = 3 * width / 4 - 3 * buttonInterval  + horiOffset + smallHoriOffset;
+        posX = 3 * width / 4 - 3 * buttonInterval  + horiOffset + 2 * smallHoriOffset;
         posY = 2 * height / 3 + 3 * buttonInterval  - vertOffset;
         break;
       case 4:
-        posX = 3 * width / 4 - 3 * buttonInterval  + horiOffset + smallHoriOffset;
-        posY = 2 * height / 3 + 4 * buttonInterval  - vertOffset;
-        break;
-      case 5:
-        posX = 3 * width / 4 - 3 * buttonInterval + 3 * smallHoriOffset;
-        posY = 2 * height / 3 + 5 * buttonInterval - 3 *vertOffset;
+        posX = 3 * width / 4 - 3 * buttonInterval + 4 * smallHoriOffset;
+        posY = 2 * height / 3 + 4 * buttonInterval - 2 * vertOffset;
         break;
     }
   }

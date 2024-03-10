@@ -81,13 +81,11 @@ void keyPressed(){
         // add music setting
       }else if(newManager.optionPointer.getStatus()==1){
         // add keyboard setting
-      }else if(newManager.optionPointer.getStatus()==2){
-        // add language setting
-      }else if(newManager.optionPointer.getStatus()==3){ 
+      }else if(newManager.optionPointer.getStatus()==2){ 
         if(newManager.preScene == Scene.GAMING) {     
           newManager.curScene=Scene.GAMING; 
         }
-      }else if(newManager.optionPointer.getStatus()==4){
+      }else if(newManager.optionPointer.getStatus()==3){
         if(newManager.preScene == Scene.MAIN_MENU) {     
           //newManager.curScene=Scene.GAMING; 
           newManager.curScene=Scene.MAIN_MENU;
@@ -95,7 +93,7 @@ void keyPressed(){
           //newManager.curScene=Scene.GAMING; 
           newManager.curScene=Scene.MAIN_MENU;
         }
-      }else if(newManager.optionPointer.getStatus()==5){
+      }else if(newManager.optionPointer.getStatus()==4){
         exit();
       }
     }
