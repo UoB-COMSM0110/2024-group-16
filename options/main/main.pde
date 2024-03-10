@@ -87,10 +87,8 @@ void keyPressed(){
         }
       }else if(newManager.optionPointer.getStatus()==3){
         if(newManager.preScene == Scene.MAIN_MENU) {     
-          //newManager.curScene=Scene.GAMING; 
           newManager.curScene=Scene.MAIN_MENU;
         }else if(newManager.preScene == Scene.GAMING) {     
-          //newManager.curScene=Scene.GAMING; 
           newManager.curScene=Scene.MAIN_MENU;
         }
       }else if(newManager.optionPointer.getStatus()==4){
