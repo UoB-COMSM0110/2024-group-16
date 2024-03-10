@@ -70,7 +70,6 @@ public class Manager{
   }
   
   public void drawMainMenu(){
-    println("In the drawmMainMenu");
     image(menuBg,0,0);
     image(title,150,50);
     
@@ -83,7 +82,6 @@ public class Manager{
   }
  
   public void drawGaming(){
-    println("In the drawGaming");
     
     //change room
     changeRoom(player.getPosX(),player.getPosY());
@@ -135,7 +133,6 @@ public class Manager{
   }
     
   public void drawOptions(){
-    println("In the drawOptions");
     image(optionBg,0,0);
     image(optionPointer.img,optionPointer.getPosX(),optionPointer.getPosY());
     
