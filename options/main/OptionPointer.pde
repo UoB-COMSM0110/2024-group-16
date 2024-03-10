@@ -3,8 +3,8 @@ public class OptionPointer{
   float posY;
   int status;
   int horiOffset = 150;
-  int smallHoriOffset = 30;
-  int vertOffset = 20;
+  int smallHoriOffset = 20;
+  int vertOffset = 15;
   int buttonInterval = 50;
   PImage img=new PImage();
   
@@ -39,28 +39,28 @@ public class OptionPointer{
   private void updatePos(){
     switch (status){
       case 0: 
-        posX = width / 2  + horiOffset +smallHoriOffset/2;
-        posY = height/2 - 4*buttonInterval + vertOffset;
+        posX = 3 * width / 4 - 3 * buttonInterval + horiOffset + 3 * smallHoriOffset;
+        posY = 2 * height / 3 - vertOffset;
         break;
       case 1:
-        posX = width / 2  + horiOffset + smallHoriOffset;
-        posY = height/2 - 3*buttonInterval  + vertOffset;
+        posX = 3 * width / 4 - 3 * buttonInterval  + horiOffset + 4 * smallHoriOffset;
+        posY = 2 * height / 3 + 1 * buttonInterval - vertOffset / 3;
         break;
       case 2:
-        posX = width / 2  + horiOffset + smallHoriOffset;
-        posY = height/2 - 2*buttonInterval  + vertOffset;
+        posX = 3 * width / 4 - 3 * buttonInterval  + horiOffset + 4 * smallHoriOffset;
+        posY = 2 * height / 3 + 2 * buttonInterval - vertOffset;
         break;
       case 3:
-        posX = width / 2  + horiOffset - smallHoriOffset;
-        posY = height/2 - buttonInterval  + vertOffset;
+        posX = 3 * width / 4 - 3 * buttonInterval  + horiOffset + smallHoriOffset;
+        posY = 2 * height / 3 + 3 * buttonInterval  - vertOffset;
         break;
       case 4:
-        posX = width / 2  + horiOffset - smallHoriOffset;
-        posY = height/2  + vertOffset;
+        posX = 3 * width / 4 - 3 * buttonInterval  + horiOffset + smallHoriOffset;
+        posY = 2 * height / 3 + 4 * buttonInterval  - vertOffset;
         break;
       case 5:
-        posX = width / 2 ;
-        posY = height/2 + buttonInterval + vertOffset;
+        posX = 3 * width / 4 - 3 * buttonInterval + 3 * smallHoriOffset;
+        posY = 2 * height / 3 + 5 * buttonInterval - 3 *vertOffset;
         break;
     }
   }
