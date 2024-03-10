@@ -8,7 +8,7 @@ public class Rooms{
     
     //save obstacle
     ArrayList<Obstacle> obs = new ArrayList<>();
-    
+    int[][] map = new int[12][6];
     
     public Rooms (int roometype){
       
@@ -33,7 +33,7 @@ public class Rooms{
           doors[1]=null;
           doors[2]=loadImage("../images/Map/itemroom_door_down.png");
           doors[3]=null;
-          doors[2].resize(60,110);
+          doors[2].resize(80,110);
           break;
         //common room
         case 2:
@@ -42,7 +42,7 @@ public class Rooms{
           doors[1]=null;
           doors[2]=null;
           doors[3]=loadImage("../images/Map/commondoor_left.png");
-          doors[3].resize(115,60);
+          doors[3].resize(115,80);
           break;
         //other use: to be update
         case 3:
@@ -51,7 +51,7 @@ public class Rooms{
           doors[1]=null;
           doors[2]=null;
           doors[3]=null;
-          doors[0].resize(60,110);
+          doors[0].resize(80,110);
           break;
         //Boos room
         case 4:
@@ -60,17 +60,51 @@ public class Rooms{
           doors[1]=loadImage("../images/Map/bossroom_door_right.png");
           doors[2]=null;
           doors[3]=null;
-          doors[1].resize(115,60);
+          doors[1].resize(115,80);
           break;
       }
       roomBg.resize(width,height);
       
       //normal enemy room
-      if(roometype==2||roometype==3){
+      if(roometype==2 || roometype==3){
         //create obstacle & enemies
-         
+        int times = (int)random(1,20);
+        while(times>0){
+          obs=randomCreateObstacle(obs,map);
+          times--;
+        }
+        
       }
     }
+    
+   public ArrayList<Obstacle> randomCreateObstacle(ArrayList<Obstacle> obs,int[][] map){
+      int x = (int)random(1,11);
+      int y = (int)random(1,5);
+      
+      
+      //have had obstacle,get a new number
+      while(map[x][y]==1){
+        x = (int)random(1,11);
+        y = (int)random(1,5);
+      }
+      
+      
+      switch((int)random(0,2)){
+        case 0:
+          Obstacle grass = new Grass(obstacleWidth*x+horiMargin,obstacleWidth*y+vertiMargin);
+          obs.add(grass);
+          map[x][y]=1;
+          break;
+        case 1:
+          Obstacle hardObs = new HardObstacle(obstacleWidth*x+horiMargin,obstacleWidth*y+vertiMargin);
+          obs.add(hardObs);
+          map[x][y]=1;
+          break;
+      }
+    
+      return obs;
+    }
+    
     
     public void drawRoom(){
       image(this.roomBg,0,0);
@@ -80,4 +114,5 @@ public class Rooms{
         }
       }
     }
+   
 }

@@ -104,9 +104,7 @@ public class Manager{
     }
     
     //obstacle or items or drops
-    for(int i=0;i<4;i++){
-      image(multi_use_images.grass[i],115+i*obstacleWidth,110+i*obstacleWidth);
-    }
+    drawObstacle(rooms[curRoom].obs);
         
     
     //player
@@ -123,6 +121,16 @@ public class Manager{
                          multi_use_images.fireBalls_down,
                          multi_use_images.fireBalls_left,
                          multi_use_images.fireBalls_right);
+                         
+     // check collision of gass and fireball
+     for(Obstacle temp:rooms[curRoom].obs){
+       if(!player.fireBalls.isEmpty() && 
+      player.fireBalls.get(player.fireBalls.size() - 1).checkObstacleCollision(temp)) {
+      player.fireBalls.remove(player.fireBalls.size()-1);
+     
+     }
+     
+     }
 
   }
     
@@ -155,33 +163,35 @@ public class Manager{
   } 
   
   public void changeRoom(float playerPosX,float playerPosY){
-    
+        
     //top door
     if(rooms[curRoom].doors[0]!=null                
                  && playerPosX >= rooms[curRoom].doorsCoordinates[0] 
-                 && playerPosX <= rooms[curRoom].doorsCoordinates[0]+110 
-                 && playerPosY <= horiMargin){
+                 && playerPosX <= rooms[curRoom].doorsCoordinates[0]+80 
+                 && playerPosY <= horiMargin - player.getHeight()+obstacleWidth){
       //the door exists 
       if(curRoom == 0){
         curRoom=1;
       }else if(curRoom == 3){
         curRoom=0;
       }
+      player.cleanFireballs();
       //update the pos of knight
       player.setPosY(vertiMargin+6*obstacleWidth-player.getHeight()-imageShift);
       
     //bottom door
     }else if(rooms[curRoom].doors[2]!=null                
-                 && playerPosX >=rooms[curRoom].doorsCoordinates[0] 
-                 && playerPosX <= rooms[curRoom].doorsCoordinates[0]+110 
+                 && playerPosX >=rooms[curRoom].doorsCoordinates[0]-10 
+                 && playerPosX <= rooms[curRoom].doorsCoordinates[0]+70 
                  && playerPosY >= vertiMargin+6*obstacleWidth-player.getHeight()){
       if(curRoom == 0){
         curRoom=3;
       }else if(curRoom == 1){
         curRoom=0;
       }
+      player.cleanFireballs();
       //update the pos of knight
-      player.setPosY(vertiMargin+obstacleWidth+imageShift);
+      player.setPosY(vertiMargin-imageShift);
       
      //right door
      }else if(rooms[curRoom].doors[1]!=null
@@ -193,6 +203,7 @@ public class Manager{
       }else if(curRoom == 4){
         curRoom=0;
       }
+      player.cleanFireballs();
       player.setPosX(horiMargin+imageShift);
       
      //left door
@@ -205,10 +216,22 @@ public class Manager{
       }else if(curRoom == 2){
         curRoom=0;
       }
+      player.cleanFireballs();
       player.setPosX(horiMargin+12*obstacleWidth-player.getWidth()-imageShift);
-     
-     
      }
-      
+     
   }
+  
+  
+  public void drawObstacle(ArrayList<Obstacle> obs){
+   for(Obstacle temp : obs){
+     //this is grass
+     if(temp.type == 0){
+       image(multi_use_images.grass[0],temp.pos.x,temp.pos.y);
+     }else if(temp.type == 1){
+       HardObstacle hard = (HardObstacle)temp;
+       image(multi_use_images.hardObstacle[hard.hardObsType],temp.pos.x,temp.pos.y);
+     }
+    }
+  }  
 }

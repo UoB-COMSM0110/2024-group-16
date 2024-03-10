@@ -40,6 +40,19 @@ public class Enemy{
     currentFrame++;
   }
   
+  // public void drawWalk(){
+  //   if(currentstatus>=enemiesWalk.length){
+  //     currentstatus=0;
+  //   }
+  //   if(currentFrame%8==0){
+  //     currentstatus = (currentstatus+1) % enemiesWalk.length;
+  //   }
+  //   image(Walk[currentstatus], EnemyPos.x , EnemyPos.y);
+  //   currentFrame++;
+  // }
+  
+  
+  
   void moveFireBalls() {
     for (int i = fireBalls.size()-1; i >= 0; i--) {
       FireBalls fb = fireBalls.get(i);
@@ -50,5 +63,17 @@ public class Enemy{
       }
     }
   }
+  
+  //public boolean checkFireballCollision(FireBalls fireball) {
+  //  PVector fixedPos = new PVector(enemy.enemyPos.x + 10, enemy.enemyPos.y + 10);
+  //  float d = PVector.dist(this.pos, fixedPos);
+  //  return d < radius + enemy.radius;
+  //}
 
+//  public void takeDamage(float damage) {
+//  health -= damage;
+//  if (health <= 0) {
+//    parent.println("Enemy defeated!");
+//  }
+//}
 }

@@ -36,7 +36,7 @@ public class Knight{
      maxHP=6;
      HP=3;
      MP=2;
-     moveSpeed = 20.0;
+     moveSpeed = 7.0;
      bulletSpeed = 10.0;
      shootSpeed = 2.0;
      lastShootTime = millis();
@@ -48,6 +48,7 @@ public class Knight{
      for(int i=0;i<Walk.length;i++){
        Walk[i]=loadImage("../images/Knight/Walk/Walk_"+i+".PNG");
      }
+     radius = 40;
   }
   
   public void turnToLeft(){
@@ -206,10 +207,11 @@ public class Knight{
     }
   }
   
+  public void cleanFireballs(){
+    fireBalls.clear();    
+  }
+  
   // set & get func
-  
-  
-  
   public int getmaxHP(){return maxHP;}
   public int getHP(){return HP;}
   public int getMP(){return MP;}
