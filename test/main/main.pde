@@ -1,18 +1,41 @@
+
 Manager newManager;
 
 int obstacleWidth = 98;
 int vertiMargin = 110;
 int horiMargin = 115;
 int imageShift = 20;
+boolean hasDone = false;
+int gameMode = 0;
+
+//control the loading images
+PImage[] loadingImage=new PImage[8];
+int curFrame = 1;
+int curStatus = 0;
 
 void setup() {
   size(1400, 800);
-  newManager = new Manager();
+  for(int i=0;i<loadingImage.length;i++){
+    loadingImage[i]=loadImage("../images/Loading/loading_icon_0"+i+".png");
+  }
+  Thread loadingThread = new Thread(new LoadingThread());
+  loadingThread.start();
 }
 
+
 void draw() {
-  newManager.drawMap();
+  if(!hasDone){
+     background(0);
+     image(loadingImage[curStatus],width/2-loadingImage[curStatus].width/2,height/2-loadingImage[curStatus].height/2);
+     if(curFrame%5==0){
+        curStatus=(curStatus+1)%8;
+     }
+     curFrame++;
+  }else{
+    newManager.drawMap();
+  }
 }
+
 
 void keyPressed(){
    // Forbbiden the ESC using  quit to exit the processing
