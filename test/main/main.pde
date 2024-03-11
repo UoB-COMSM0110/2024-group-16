@@ -32,7 +32,7 @@ void keyPressed(){
       newManager.menuPointer.movePointers(1);
     }else if(keyCode == DOWN){
       newManager.menuPointer.movePointers(-1);
-    }else if(keyCode == 32){
+    }else if(keyCode == 32 || keyCode == ENTER){
       //turn to other scene
       if(newManager.menuPointer.getStatus()==0){
         newManager.curScene=Scene.GAMING;
@@ -75,12 +75,12 @@ void keyPressed(){
       newManager.optionPointer.movePointers(1);
     }else if(keyCode == DOWN){
       newManager.optionPointer.movePointers(-1);
-    }else if(keyCode == 32){
+    }else if(keyCode == 32 || keyCode == ENTER){
       //turn to other scene
       if(newManager.optionPointer.getStatus()==0){
         // add music setting
       }else if(newManager.optionPointer.getStatus()==1){
-        // add keyboard setting
+        // add different levels of the game mode ( normal or different)
       }else if(newManager.optionPointer.getStatus()==2){ 
         if(newManager.preScene == Scene.GAMING) {     
           newManager.curScene=Scene.GAMING; 
