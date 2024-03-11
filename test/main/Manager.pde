@@ -137,7 +137,7 @@ public class Manager{
     image(optionPointer.img,optionPointer.getPosX(),optionPointer.getPosY());
     
     drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 , "Sound Settings");
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + buttonIntervalOption, "KeyBoard Settings");
+    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + buttonIntervalOption, "Game Mode");
     drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 2*buttonIntervalOption, "Back to Game");
     drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 3*buttonIntervalOption, "Back to Menu");
     drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3  + 4*buttonIntervalOption, "Exit");

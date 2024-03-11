@@ -43,14 +43,9 @@ public class OptionPointer{
         posY = 2 * height / 3 - vertOffset;
         break;
       case 1:
-        posX = 3 * width / 4 - 3 * buttonInterval  + 3 * horiOffset / 2 + smallHoriOffset;
+        posX = 3 * width / 4 - 3 * buttonInterval  + horiOffset + smallHoriOffset;
         posY = 2 * height / 3 + 1 * buttonInterval - vertOffset / 3;
         break;
-      /*case 2:
-        posX = 3 * width / 4 - 3 * buttonInterval  + horiOffset + 4 * smallHoriOffset;
-        posY = 2 * height / 3 + 2 * buttonInterval - vertOffset;
-        break;
-        */
       case 2:
         posX = 3 * width / 4 - 3 * buttonInterval  + horiOffset + 2 * smallHoriOffset;
         posY = 2 * height / 3 + 2 * buttonInterval  - vertOffset;
