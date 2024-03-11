@@ -14,9 +14,6 @@ public class Enemy{
   //FireBalls
   ArrayList<FireBalls> fireBalls = new ArrayList<FireBalls>();
   
-  //Animation
-  PImage enemies;
-  //PImage enemiesWalk=new PImage[5];
   
   //Auxiliary variable
   boolean moveUp, moveDown, moveLeft, moveRight; 
@@ -26,19 +23,11 @@ public class Enemy{
   
   public Enemy() {
     enemyPos = new PVector(900, 600);
-    enemies = loadImage("../images/Enemies/Crawlid/Crawlid_00.png");
     health = 10;
     radius = 20;
   }
   
   
-  public void drawEnemy(){
-    //if(currentFrame%8==0){
-    //  currentstatus = currentFrame;
-    //}
-    image(enemies, enemyPos.x , enemyPos.y);
-    currentFrame++;
-  }
   
   // public void drawWalk(){
   //   if(currentstatus>=enemiesWalk.length){

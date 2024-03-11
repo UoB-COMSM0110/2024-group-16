@@ -120,7 +120,7 @@ public class Manager{
                          multi_use_images.fireBalls_left,
                          multi_use_images.fireBalls_right);
                          
-     // collision of gass and fireball
+     // collision of grass and fireball
      for(Obstacle temp:rooms[curRoom].obs){
        if(!player.fireBalls.isEmpty() && 
       player.fireBalls.get(player.fireBalls.size() - 1).checkObstacleCollision(temp)) {
@@ -130,16 +130,16 @@ public class Manager{
      
      // collision of grass and knight
        if(player.checkObstacleCollision(temp)) {
-         if (player.moveUp) { //110+98-127
+         if (player.moveUp) { 
           player.playerPos.y += player.moveSpeed;
         }
-         if (player.moveDown) { //110+98*6-127
+         if (player.moveDown) { 
          player.playerPos.y -= player.moveSpeed;
         }
-         if (player.moveLeft) {//115
+         if (player.moveLeft) {
          player.playerPos.x += player.moveSpeed;
         }
-         if (player.moveRight) {//115+98*12-65=1226
+         if (player.moveRight) {
          player.playerPos.x -= player.moveSpeed;
         }
        }
