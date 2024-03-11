@@ -124,3 +124,10 @@ alternative flow:
 ## Class diagram
 
 ![class](./pictures/class.png)
+
+
+## User evaluations
+
+Write up the findings of user evaluations and add it to the github repo.
+
+![wee8_workshop_findings](./pictures/wee8_workshop_findings.png)
