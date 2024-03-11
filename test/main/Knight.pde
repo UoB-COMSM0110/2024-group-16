@@ -2,7 +2,7 @@ public class Knight{
   
   //Position
   PVector playerPos;
-  
+  float radius;
   int maxHP;
   int HP;
   int MP;
@@ -33,6 +33,7 @@ public class Knight{
   
   public Knight(){
      playerPos = new PVector(700, 400);
+     radius = 35;
      maxHP=6;
      HP=3;
      MP=2;
@@ -208,6 +209,16 @@ public class Knight{
   
   public void cleanFireballs(){
     fireBalls.clear();    
+  }
+  
+  // check collision of knight and obstacle
+  public boolean checkObstacleCollision(Obstacle obstacle) {
+    PVector fixedPos = new PVector(obstacle.pos.x + 50, obstacle.pos.y + 50);
+    PVector fixedKnight;
+    fixedKnight = new PVector(this.playerPos.x + 33, this.playerPos.y + 97);
+    
+    float d = PVector.dist(fixedKnight, fixedPos);
+    return d < this.radius + obstacle.radius;
   }
   
   // set & get func
