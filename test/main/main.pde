@@ -105,9 +105,15 @@ void keyPressed(){
       }else if(keyCode == 32 || keyCode == ENTER){
         //turn to other scene
         if(newManager.optionPointer.getStatus()==0){
-          // add music setting
+          // add sound setting
+          if(keyCode == ENTER){
+          newManager.optionPointer.setStatus(1);
+          newManager.optionPointer.curOption = Option.SOUND_SETTING;
+          }
         }else if(newManager.optionPointer.getStatus()==1){
           // add different game level setting
+          newManager.optionPointer.curOption = Option.GAME_MODE;
+          //newManager.optionPointer.changeOption();
           if(keyCode == 32 || keyCode == ENTER){
             newManager.optionPointer.setStatus(0);
             //newManger.GameModeStatus

@@ -6,13 +6,13 @@ public class Manager{
   PImage optionBg;
   PImage title;
   int buttonInterval = 50;
-  int buttonIntervalOption = 60;
   
   
   int curRoom;
   //by default, use the main menu
   Scene curScene=Scene.MAIN_MENU;
   Scene preScene=Scene.MAIN_MENU;
+  Option curOption=Option.SOUND_SETTING;
   
   //Menu pointer
   MenuPointer menuPointer = new MenuPointer();
@@ -151,13 +151,9 @@ public class Manager{
   public void drawOptions(){
     image(optionBg,0,0);
     image(optionPointer.img,optionPointer.getPosX(),optionPointer.getPosY());
-    
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 , "Sound Settings");
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + buttonIntervalOption, "Game Mode");
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 2*buttonIntervalOption, "Back to Game");
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 3*buttonIntervalOption, "Back to Menu");
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3  + 4*buttonIntervalOption, "Exit");
-    
+    optionPointer.drawButtons(optionPointer.getStatus());
+    // In the options using state Machine to change the bottons
+    //optionPointer.drawButtons(1);
   }
   
   public void drawGameOver(){

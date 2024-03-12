@@ -7,9 +7,14 @@ public class OptionPointer{
   int vertOffset = 15;
   int buttonInterval = 60;
   PImage img=new PImage();
+  PFont optionFont;
+  Option curOption=Option.OPTION_MENU;
+  //Manager drawB = new Manager();
   
   public OptionPointer(){
     status = 0 ;
+    optionFont = createFont("../Fonts/TrajanPro-Bold.otf", 40);
+    //drawButtons();
     updatePos();
     updatePos3();
     img=loadImage("../images/Options/Cursor.png");
@@ -89,5 +94,41 @@ public class OptionPointer{
         posY = 2 * height / 3 + 2 * buttonInterval  + 2 * vertOffset;
         break;
     }
+  }
+  public void drawButton(float x, float y, String label) {
+    textAlign(CENTER, CENTER);
+    fill(255);
+    textFont(optionFont); 
+    text(label, x, y);
+  }
+  public void changeOption(){
+    switch(curOption){
+      case OPTION_MENU:
+        drawButtons(0);
+      case SOUND_SETTING:
+        drawButtons(1);
+        break;
+      case GAME_MODE:
+        drawButtons(2);
+        break;
+      }
+  }
+  public void drawButtons(int Mode){
+      if(Mode == 0){
+        drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 , "Sound Settings");
+        drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + buttonInterval, "Game Mode");
+        drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 2*buttonInterval, "Back to Game");
+        drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 3*buttonInterval, "Back to Menu");
+        drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3  + 4*buttonInterval, "Exit");
+      }else if(Mode == 1){
+        drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 , "SE");
+        drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + buttonInterval, "MUSIC");
+        drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3+ 2*buttonInterval , "Back to Options");
+        
+      }else if(Mode == 2){
+        drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 , "Normal Mode");
+        drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + buttonInterval, "Random Mode");
+        drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 2*buttonInterval , "Back to Options");
+      }
   }
 }
