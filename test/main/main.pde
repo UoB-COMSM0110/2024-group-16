@@ -90,6 +90,10 @@ void keyPressed(){
       } 
     }
   //other keyboard activities
+  // in the game mode
+  if(newManager.curScene == Scene.GAME_MODE){
+       newManager.curScene = Scene.GAME_MODE; 
+    }
   // in the options
 
     if(newManager.curScene != Scene.MAIN_MENU && keyCode == ESC ){
@@ -104,8 +108,12 @@ void keyPressed(){
         //turn to other scene
         if(newManager.optionPointer.getStatus()==0){
           // add music setting
+          
         }else if(newManager.optionPointer.getStatus()==1){
-          // add keyboard setting
+          // add different game level setting
+          if(keyCode == 32 || keyCode == ENTER){
+            newManager.curScene = Scene.GAME_MODE;
+          }
         }else if(newManager.optionPointer.getStatus()==2){ 
           if(newManager.preScene == Scene.GAMING) {     
             newManager.curScene=Scene.GAMING; 

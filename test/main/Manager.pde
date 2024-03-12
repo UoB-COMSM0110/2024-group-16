@@ -63,7 +63,10 @@ public class Manager{
       case OPTIONS:
         drawOptions(); 
         break;
-      case GAME_OVER:
+      case GAME_MODE:
+         drawGameMode();
+         break;
+     case GAME_OVER:
          drawGameOver();
          break;
       }
@@ -160,6 +163,13 @@ public class Manager{
     
   }
   
+  public void drawGameMode(){
+    image(optionBg,0,0);
+    image(optionPointer.img,optionPointer.getPosX(),optionPointer.getPosY());
+    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 , "Normal Mode");
+    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + buttonIntervalOption, "Random Mode");
+  }
+  
   public void drawGameOver(){
     background(255);
     textAlign(CENTER, CENTER);
@@ -167,6 +177,8 @@ public class Manager{
     textSize(24);
     text("Game Over", width/2, height/2);
   }
+  
+  
     
   public void drawButton(float x, float y, String label) {
     textAlign(CENTER, CENTER);
