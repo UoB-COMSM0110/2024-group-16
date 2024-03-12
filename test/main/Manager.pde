@@ -17,6 +17,7 @@ public class Manager{
   //Menu pointer
   MenuPointer menuPointer = new MenuPointer();
   OptionPointer optionPointer = new OptionPointer();
+  ModePointer modePointer = new ModePointer();
 
   //UI
   UI ui=new UI();
@@ -165,9 +166,10 @@ public class Manager{
   
   public void drawGameMode(){
     image(optionBg,0,0);
-    image(optionPointer.img,optionPointer.getPosX(),optionPointer.getPosY());
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 , "Normal Mode");
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + buttonIntervalOption, "Random Mode");
+    image(modePointer.img,modePointer.getPosX(),modePointer.getPosY());
+    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + buttonIntervalOption, "Normal Mode");
+    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 2*buttonIntervalOption, "Random Mode");
+    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 3*buttonIntervalOption, "Back to Options");
   }
   
   public void drawGameOver(){
