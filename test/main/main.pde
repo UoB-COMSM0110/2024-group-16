@@ -39,7 +39,7 @@ void draw() {
 
 void keyPressed(){
   if(hasDone){
-   // Forbbiden the ESC using  quit to exit the processing
+   // Forbbiden the ESC key to quit the whole processing
      if(key==27){
       key=0;
     }
@@ -56,7 +56,7 @@ void keyPressed(){
         newManager.menuPointer.movePointers(1);
       }else if(keyCode == DOWN){
         newManager.menuPointer.movePointers(-1);
-      }else if(keyCode == 32){
+      }else if(keyCode == 32 || keyCode == ENTER){
         //turn to other scene
         if(newManager.menuPointer.getStatus()==0){
           newManager.curScene=Scene.GAMING;
@@ -99,7 +99,7 @@ void keyPressed(){
         newManager.optionPointer.movePointers(1);
       }else if(keyCode == DOWN){
         newManager.optionPointer.movePointers(-1);
-      }else if(keyCode == 32){
+      }else if(keyCode == 32 || keyCode == ENTER){
         //turn to other scene
         if(newManager.optionPointer.getStatus()==0){
           // add music setting
