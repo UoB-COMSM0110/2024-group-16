@@ -240,7 +240,12 @@ public class Manager{
    for(Obstacle temp : obs){
      //this is grass
      if(temp.type == 0){
-       image(multi_use_images.grass[0],temp.pos.x,temp.pos.y);
+       Grass grass = (Grass)temp;
+       image(multi_use_images.grass[grass.curStatus],temp.pos.x,temp.pos.y);
+       if(grass.curFrame%35==0){
+         grass.curStatus=(grass.curStatus+1)%4;
+       }
+       grass.curFrame++;       
      }else if(temp.type == 1){
        HardObstacle hard = (HardObstacle)temp;
        image(multi_use_images.hardObstacle[hard.hardObsType],temp.pos.x,temp.pos.y);

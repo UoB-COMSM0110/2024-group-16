@@ -12,6 +12,10 @@ public class Rooms{
     
     public Rooms (int roometype){
       
+      map[5][1]=1;
+      map[6][1]=1;
+      map[1][2]=1;
+      map[1][3]=1;
       switch(roometype){
         //initial room
         case 0:
@@ -68,7 +72,7 @@ public class Rooms{
       //normal enemy room
       if(roometype==2 || roometype==3){
         //create obstacle & enemies
-        int times = (int)random(1,20);
+        int times = (int)random(1,30);
         while(times>0){
           obs=randomCreateObstacle(obs,map);
           times--;
