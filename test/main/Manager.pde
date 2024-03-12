@@ -17,7 +17,6 @@ public class Manager{
   //Menu pointer
   MenuPointer menuPointer = new MenuPointer();
   OptionPointer optionPointer = new OptionPointer();
-  ModePointer modePointer = new ModePointer();
 
   //UI
   UI ui=new UI();
@@ -64,9 +63,6 @@ public class Manager{
       case OPTIONS:
         drawOptions(); 
         break;
-      case GAME_MODE:
-         drawGameMode();
-         break;
      case GAME_OVER:
          drawGameOver();
          break;
@@ -162,14 +158,6 @@ public class Manager{
     drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 3*buttonIntervalOption, "Back to Menu");
     drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3  + 4*buttonIntervalOption, "Exit");
     
-  }
-  
-  public void drawGameMode(){
-    image(optionBg,0,0);
-    image(modePointer.img,modePointer.getPosX(),modePointer.getPosY());
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + buttonIntervalOption, "Normal Mode");
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 2*buttonIntervalOption, "Random Mode");
-    drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 3*buttonIntervalOption, "Back to Options");
   }
   
   public void drawGameOver(){

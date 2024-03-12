@@ -49,8 +49,6 @@ void keyPressed(){
       // reset the cursor postion and status
       newManager.optionPointer.setStatus(0);
       newManager.optionPointer.updatePos();
-      newManager.modePointer.setStatus(0);
-      newManager.modePointer.updatePos();
       newManager.preScene = Scene.MAIN_MENU;
       if(keyCode == ESC){
         exit();
@@ -93,31 +91,6 @@ void keyPressed(){
       } 
     }
   //other keyboard activities
-  // in the game mode
-  if(newManager.curScene == Scene.GAME_MODE){
-       newManager.curScene = Scene.GAME_MODE;
-       if(keyCode == UP){
-        newManager.modePointer.movePointers(1);
-      }else if(keyCode == DOWN){
-        newManager.modePointer.movePointers(-1);
-      }else if(keyCode == 32 || keyCode == ENTER){
-        //turn to other scene or changing the game mode
-        if(newManager.modePointer.getStatus()==0){
-          gameMode = 0;
-          println("In normal mode: " + gameMode);
-        }else if(newManager.modePointer.getStatus()==1){
-          // set the random difficult game levels
-          gameMode = (int)random(10);
-          println(gameMode);
-        }else if(newManager.modePointer.getStatus()==2){
-            /*println("In 2 status");
-            //newManager.curScene=Scene.OPTIONS;
-            if(newManager.preScene == Scene.GAME_MODE) {     
-            newManager.curScene=Scene.OPTIONS;
-          }*/
-        }
-      }
-    }
   // in the options
 
     if(newManager.curScene != Scene.MAIN_MENU && keyCode == ESC){
@@ -137,7 +110,7 @@ void keyPressed(){
           // add different game level setting
           if(keyCode == 32 || keyCode == ENTER){
             newManager.optionPointer.setStatus(0);
-            newManager.curScene = Scene.GAME_MODE;
+            //newManger.GameModeStatus
             
           }
         }else if(newManager.optionPointer.getStatus()==2){ 

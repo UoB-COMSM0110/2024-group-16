@@ -11,6 +11,7 @@ public class OptionPointer{
   public OptionPointer(){
     status = 0 ;
     updatePos();
+    updatePos3();
     img=loadImage("../images/Options/Cursor.png");
     img.resize(60,60);
   }
@@ -25,6 +26,18 @@ public class OptionPointer{
     }
     updatePos();
   }
+  public void movePointers3(int e){
+    if(e==-1){
+      status=(status+1)%3;
+    }else if(e==1){
+      if(status==0){
+        status=3;
+      }
+      status=(status-1);
+    }
+    updatePos3();
+  }
+  
   
   public float getPosX(){return posX;}
   public float getPosY(){return posY;}
@@ -57,6 +70,23 @@ public class OptionPointer{
       case 4:
         posX = 3 * width / 4 - 3 * buttonInterval + 4 * smallHoriOffset;
         posY = 2 * height / 3 + 4 * buttonInterval - 2 * vertOffset;
+        break;
+    }
+  }
+  
+  private void updatePos3(){
+    switch (status){
+      case 0: 
+        posX = 3 * width / 4 - 3 * buttonInterval + horiOffset + 3 * smallHoriOffset;
+        posY = 2 * height / 3 + 2 * vertOffset;
+        break;
+      case 1:
+        posX = 3 * width / 4 - 3 * buttonInterval + horiOffset + 3 * smallHoriOffset;
+        posY = 2 * height / 3 + 1 * buttonInterval + 5 * vertOffset / 3;
+        break;
+      case 2:
+        posX = 3 * width / 4 - 3 * buttonInterval + horiOffset + 4 * smallHoriOffset;
+        posY = 2 * height / 3 + 2 * buttonInterval  + 2 * vertOffset;
         break;
     }
   }
