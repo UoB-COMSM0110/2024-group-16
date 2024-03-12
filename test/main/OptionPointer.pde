@@ -1,7 +1,10 @@
 public class OptionPointer{
   float posX;
   float posY;
-  int status;
+  int status; // need to using
+  int soundSetStatus;
+  int gameModeStatus;
+ 
   int horiOffset = 150;
   int smallHoriOffset = 20;
   int vertOffset = 15;
@@ -13,6 +16,8 @@ public class OptionPointer{
   
   public OptionPointer(){
     status = 0 ;
+    soundSetStatus=0;
+    gameModeStatus=0;
     optionFont = createFont("../Fonts/TrajanPro-Bold.otf", 40);
     //drawButtons();
     updatePos();
@@ -32,13 +37,19 @@ public class OptionPointer{
     updatePos();
   }
   public void movePointers3(int e){
+    int state = 0;
+    if(curOption == Option.SOUND_SETTING){
+      state = soundSetStatus;
+    }else if(curOption == Option.GAME_MODE){
+      state = gameModeStatus;
+    }
     if(e==-1){
-      status=(status+1)%3;
+      state=(state+1)%3;
     }else if(e==1){
-      if(status==0){
-        status=3;
+      if(state==0){
+        state=3;
       }
-      status=(status-1);
+      state=(state-1);
     }
     updatePos3();
   }
@@ -53,6 +64,10 @@ public class OptionPointer{
   
   public int getStatus(){return status;}
   public void setStatus(int newStatus){status = newStatus;}
+  public int getSoundStatus(){return soundSetStatus;}
+  public void setSoundStatus(int newStatus){soundSetStatus = newStatus;}
+  public int getGameModeStatus(){return gameModeStatus;}
+  public void setGameModeStatus(int newStatus){gameModeStatus = newStatus;}
   
   private void updatePos(){
     switch (status){
@@ -80,7 +95,13 @@ public class OptionPointer{
   }
   
   private void updatePos3(){
-    switch (status){
+    int state = 0;
+    if(curOption == Option.SOUND_SETTING){
+      state = soundSetStatus;
+    }else if(curOption == Option.GAME_MODE){
+      state = gameModeStatus;
+    }
+    switch (state){
       case 0: 
         posX = 3 * width / 4 - 3 * buttonInterval + horiOffset + 3 * smallHoriOffset;
         posY = 2 * height / 3 + 2 * vertOffset;

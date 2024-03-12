@@ -12,7 +12,7 @@ public class Manager{
   //by default, use the main menu
   Scene curScene=Scene.MAIN_MENU;
   Scene preScene=Scene.MAIN_MENU;
-  Option curOption=Option.SOUND_SETTING;
+  Option curOption=Option.OPTION_MENU;
   
   //Menu pointer
   MenuPointer menuPointer = new MenuPointer();
