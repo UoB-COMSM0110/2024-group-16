@@ -47,7 +47,7 @@ void keyPressed(){
     //in the main menu
     if( newManager.curScene == Scene.MAIN_MENU ){//in the main menu
       // reset the cursor postion and status
-      newManager.optionPointer.setStatus(0);
+      newManager.optionPointer.setStatus(2);
       newManager.optionPointer.updatePos();
       newManager.preScene = Scene.MAIN_MENU;
       if(keyCode == ESC){
@@ -98,28 +98,34 @@ void keyPressed(){
     }
     if(newManager.curScene == Scene.OPTIONS){
       newManager.curScene = Scene.OPTIONS; 
+      //newManager.optionPointer.curOption = Option.OPTION_MENU;
       if(keyCode == UP){
         newManager.optionPointer.movePointers(1);
       }else if(keyCode == DOWN){
         newManager.optionPointer.movePointers(-1);
       }else if(keyCode == 32 || keyCode == ENTER){
-        //turn to other scene
         if(newManager.optionPointer.getStatus()==0){
           // add sound setting
-          if(keyCode == 32 || keyCode == ENTER){
           newManager.optionPointer.curOption = Option.SOUND_SETTING;
-          newManager.optionPointer.setSoundStatus(0);}
+          newManager.optionPointer.setSoundStatus(0);
+          // setting move pointers
+          if(keyCode == UP){
+          newManager.optionPointer.movePointers3(1);
+          }else if(keyCode == DOWN){
+            newManager.optionPointer.movePointers3(-1);
+          }else if(keyCode == 32 || keyCode == ENTER){
+            // add moving pointer status
+          }
+          
         }else if(newManager.optionPointer.getStatus()==1){
           // add different game level setting
-          if(keyCode == 32 || keyCode == ENTER){
           newManager.optionPointer.curOption = Option.GAME_MODE;
-          newManager.optionPointer.setGameModeStatus(0);}
-          //newManager.optionPointer.changeOption();
-          if(keyCode == 32 || keyCode == ENTER){
-            newManager.optionPointer.setStatus(0);
-            //newManger.GameModeStatus
-            
-          }
+          newManager.optionPointer.setGameModeStatus(0);
+          //movePointers3 moving function write on where?
+          // Now write here..
+          
+          
+          
         }else if(newManager.optionPointer.getStatus()==2){ 
           if(newManager.preScene == Scene.GAMING) {     
             newManager.curScene=Scene.GAMING; 

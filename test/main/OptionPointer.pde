@@ -38,11 +38,6 @@ public class OptionPointer{
   }
   public void movePointers3(int e){
     int state = 0;
-    if(curOption == Option.SOUND_SETTING){
-      state = soundSetStatus;
-    }else if(curOption == Option.GAME_MODE){
-      state = gameModeStatus;
-    }
     if(e==-1){
       state=(state+1)%3;
     }else if(e==1){
@@ -52,6 +47,11 @@ public class OptionPointer{
       state=(state-1);
     }
     updatePos3();
+    if(curOption == Option.SOUND_SETTING){
+      soundSetStatus = state;
+    }else if(curOption == Option.GAME_MODE){
+      gameModeStatus = state;
+    }
   }
   
   
@@ -96,11 +96,6 @@ public class OptionPointer{
   
   private void updatePos3(){
     int state = 0;
-    if(curOption == Option.SOUND_SETTING){
-      state = soundSetStatus;
-    }else if(curOption == Option.GAME_MODE){
-      state = gameModeStatus;
-    }
     switch (state){
       case 0: 
         posX = 3 * width / 4 - 3 * buttonInterval + horiOffset + 3 * smallHoriOffset;
@@ -115,6 +110,11 @@ public class OptionPointer{
         posY = 2 * height / 3 + 2 * buttonInterval  + 2 * vertOffset;
         break;
     }
+    if(curOption == Option.SOUND_SETTING){
+      soundSetStatus = state;
+    }else if(curOption == Option.GAME_MODE){
+      gameModeStatus = state;
+    }
   }
   public void drawButton(float x, float y, String label) {
     textAlign(CENTER, CENTER);
@@ -126,6 +126,7 @@ public class OptionPointer{
     switch(curOption){
       case OPTION_MENU:
         drawButtons(0);
+        break;
       case SOUND_SETTING:
         drawButtons(1);
         break;

@@ -12,7 +12,7 @@ public class Manager{
   //by default, use the main menu
   Scene curScene=Scene.MAIN_MENU;
   Scene preScene=Scene.MAIN_MENU;
-  Option curOption=Option.OPTION_MENU;
+  //Option curOption=Option.OPTION_MENU;
   
   //Menu pointer
   MenuPointer menuPointer = new MenuPointer();
@@ -151,9 +151,9 @@ public class Manager{
   public void drawOptions(){
     image(optionBg,0,0);
     image(optionPointer.img,optionPointer.getPosX(),optionPointer.getPosY());
-    optionPointer.drawButtons(optionPointer.getStatus());
+    println(optionPointer.curOption);
+    optionPointer.changeOption();
     // In the options using state Machine to change the bottons
-    //optionPointer.drawButtons(1);
   }
   
   public void drawGameOver(){
