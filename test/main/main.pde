@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 
 Manager newManager;
 
@@ -39,7 +41,7 @@ void draw() {
 
 void keyPressed(){
   if(hasDone){
-   // Forbbiden the ESC key to quit the whole processing
+   // Forbbiden the ESC using  quit to exit the processing
      if(key==27){
       key=0;
     }
@@ -87,7 +89,11 @@ void keyPressed(){
       }
       if (keyCode == UP || keyCode == DOWN || keyCode == LEFT || keyCode == RIGHT) {
         newManager.player.shootFireBalls(keyCode);
-      } 
+      }
+      if(key == 'e'){
+        if(newManager.player.numOfBomb > 0 )
+          newManager.createBomb();     
+      }
     }
   //other keyboard activities
   // in the options
@@ -99,7 +105,7 @@ void keyPressed(){
         newManager.optionPointer.movePointers(1);
       }else if(keyCode == DOWN){
         newManager.optionPointer.movePointers(-1);
-      }else if(keyCode == 32 || keyCode == ENTER){
+      }else if(keyCode == 32){
         //turn to other scene
         if(newManager.optionPointer.getStatus()==0){
           // add music setting

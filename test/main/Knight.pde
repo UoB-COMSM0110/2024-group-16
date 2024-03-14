@@ -29,6 +29,7 @@ public class Knight{
   int currentFrame = 0; 
   int currentStatus = 0;
   int lastShootTime;
+  int numOfBomb;
   
   
   public Knight(){
@@ -42,6 +43,7 @@ public class Knight{
      shootSpeed = 2.0;
      lastShootTime = millis();
      isFaceToLeft = true;
+     numOfBomb = 1;
      
      for(int i=0;i<Idle.length;i++){
         Idle[i]=loadImage("../images/Knight/Idle/Idle_"+i+".PNG");

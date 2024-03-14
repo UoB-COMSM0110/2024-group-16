@@ -7,13 +7,26 @@ public class OptionPointer{
   int vertOffset = 15;
   int buttonInterval = 60;
   PImage img=new PImage();
+  ArrayList<Snowflake> snowflakes = new ArrayList<Snowflake>();
   
   public OptionPointer(){
     status = 0 ;
     updatePos();
     img=loadImage("../images/Options/Cursor.png");
     img.resize(60,60);
+    for (int i = 0; i < 50; i++) {
+      snowflakes.add(new Snowflake());
+    }
   }
+  
+  public void drawSnow(){
+    for (Snowflake flake : snowflakes) {
+      flake.update();
+      flake.display();
+    } 
+  }
+  
+  
   public void movePointers(int e){
     if(e==-1){
       status=(status+1)%5;
