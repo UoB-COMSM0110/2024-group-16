@@ -121,10 +121,7 @@ void keyPressed(){
           // add different game level setting
           newManager.optionPointer.curOption = Option.GAME_MODE;
           newManager.optionPointer.setGameModeStatus(0);
-          //movePointers3 moving function write on where?
-          // Now write here..
-          
-          
+          // Move Pointer now is on manager class
           
         }else if(newManager.optionPointer.getStatus()==2){ 
           if(newManager.preScene == Scene.GAMING) {     

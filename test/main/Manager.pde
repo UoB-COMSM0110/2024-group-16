@@ -152,8 +152,27 @@ public class Manager{
     image(optionBg,0,0);
     image(optionPointer.img,optionPointer.getPosX(),optionPointer.getPosY());
     println(optionPointer.curOption);
-    optionPointer.changeOption();
+    //optionPointer.changeOption();
     // In the options using state Machine to change the bottons
+    //GAME MODE
+    if(optionPointer.curOption == Option.GAME_MODE){
+      if(keyCode == UP){
+        newManager.optionPointer.movePointers3(1);
+        }else if(keyCode == DOWN){
+          newManager.optionPointer.movePointers3(-1);
+        }else if(keyCode == 32 || keyCode == ENTER){
+          // add moving pointer status
+          if(newManager.optionPointer.getGameModeStatus()==0){
+            println("Normal option now");
+          }else if(newManager.optionPointer.getGameModeStatus()==1){
+            println("Random option now");
+          }else if(newManager.optionPointer.getGameModeStatus()==2){
+            newManager.optionPointer.curOption = Option.OPTION_MENU;
+            //newManager.curScene = Scene.OPTIONS;
+          }
+        }
+      }
+      optionPointer.changeOption();
   }
   
   public void drawGameOver(){
