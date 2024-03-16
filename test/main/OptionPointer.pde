@@ -161,4 +161,45 @@ public class OptionPointer{
         drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 2*buttonInterval , "Back to Options");
       }
   }
+  
+  public void optionSwitch(){
+      if(newManager.optionPointer.curOption == Option.GAME_MODE){
+          if(keyCode == UP){
+          newManager.optionPointer.movePointers3(1);
+          }else if(keyCode == DOWN){
+            newManager.optionPointer.movePointers3(-1);
+          }else if(keyCode == 32 || keyCode == ENTER){
+            if(newManager.optionPointer.getGameModeStatus()==0){
+              println("Normal option now:0");
+              gameMode = 0;
+            }else if(newManager.optionPointer.getGameModeStatus()==1){
+              
+              gameMode = (int)random(10);
+              println("Random option now:1, gameMode now is: " + gameMode);
+            }else if(newManager.optionPointer.getGameModeStatus()==2){
+              newManager.optionPointer.setStatus(2);
+              newManager.optionPointer.updatePos();
+              newManager.curScene = Scene.OPTIONS;
+              newManager.optionPointer.curOption = Option.OPTION_MENU;
+            }
+          }
+      }else if(newManager.optionPointer.curOption == Option.SOUND_SETTING){
+          if(keyCode == UP){
+          newManager.optionPointer.movePointers3(1);
+          }else if(keyCode == DOWN){
+            newManager.optionPointer.movePointers3(-1);
+          }else if(keyCode == 32 || keyCode == ENTER){
+            if(newManager.optionPointer.getSoundStatus()==0){
+              println("SE option now:0");
+            }else if(newManager.optionPointer.getSoundStatus()==1){
+              println("MUSIC option now:1");
+            }else if(newManager.optionPointer.getSoundStatus()==2){
+              newManager.optionPointer.setStatus(2);
+              newManager.optionPointer.updatePos();
+              newManager.curScene = Scene.OPTIONS;
+              newManager.optionPointer.curOption = Option.OPTION_MENU;
+            }
+          }
+        }
+  }
 }
