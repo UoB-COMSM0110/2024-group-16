@@ -81,9 +81,8 @@ public class OptionPointer{
   
   public int getStatus(){return status;}
   public void setStatus(int newStatus){status = newStatus;}
-  public int getSoundStatus(){return soundSetStatus;}
+
   public void setSoundStatus(int newStatus){soundSetStatus = newStatus;}
-  public int getGameModeStatus(){return gameModeStatus;}
   public void setGameModeStatus(int newStatus){gameModeStatus = newStatus;}
   
   private void updatePos(){
@@ -137,12 +136,14 @@ public class OptionPointer{
       gameModeStatus = state;
     }
   }
+  
   public void drawButton(float x, float y, String label) {
     textAlign(CENTER, CENTER);
     fill(255);
     textFont(optionFont); 
     text(label, x, y);
   }
+  
   public void changeOption(){
     switch(curOption){
       case OPTION_MENU:
@@ -174,43 +175,41 @@ public class OptionPointer{
         drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 2*buttonInterval , "Back to Options");
       }
   }
-  
   public void optionSwitch(){
-      if(newManager.optionPointer.curOption == Option.GAME_MODE){
+      if(curOption == Option.GAME_MODE){
           if(keyCode == UP){
-          newManager.optionPointer.movePointers3(1);
+             movePointers3(1);
           }else if(keyCode == DOWN){
-            newManager.optionPointer.movePointers3(-1);
+            movePointers3(-1);
           }else if(keyCode == 32 || keyCode == ENTER){
-            if(newManager.optionPointer.getGameModeStatus()==0){
+            if(gameModeStatus==0){
               println("Normal option now:0");
               gameMode = 0;
-            }else if(newManager.optionPointer.getGameModeStatus()==1){
-              
+            }else if(gameModeStatus==1){
               gameMode = (int)random(10);
               println("Random option now:1, gameMode now is: " + gameMode);
-            }else if(newManager.optionPointer.getGameModeStatus()==2){
-              newManager.optionPointer.setStatus(2);
-              newManager.optionPointer.updatePos();
+            }else if(gameModeStatus==2){
+              setStatus(2);
+              updatePos();
               newManager.curScene = Scene.OPTIONS;
-              newManager.optionPointer.curOption = Option.OPTION_MENU;
+              curOption = Option.OPTION_MENU;
             }
           }
-      }else if(newManager.optionPointer.curOption == Option.SOUND_SETTING){
+      }else if(curOption == Option.SOUND_SETTING){
           if(keyCode == UP){
-          newManager.optionPointer.movePointers3(1);
+          movePointers3(1);
           }else if(keyCode == DOWN){
-            newManager.optionPointer.movePointers3(-1);
+            movePointers3(-1);
           }else if(keyCode == 32 || keyCode == ENTER){
-            if(newManager.optionPointer.getSoundStatus()==0){
+            if(soundSetStatus==0){
               println("SE option now:0");
-            }else if(newManager.optionPointer.getSoundStatus()==1){
+            }else if(soundSetStatus==1){
               println("MUSIC option now:1");
-            }else if(newManager.optionPointer.getSoundStatus()==2){
-              newManager.optionPointer.setStatus(2);
-              newManager.optionPointer.updatePos();
+            }else if(soundSetStatus==2){
+              setStatus(2);
+              updatePos();
               newManager.curScene = Scene.OPTIONS;
-              newManager.optionPointer.curOption = Option.OPTION_MENU;
+              curOption = Option.OPTION_MENU;
             }
           }
         }
