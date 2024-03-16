@@ -47,6 +47,9 @@ void keyPressed(){
     //in the main menu
     if( newManager.curScene == Scene.MAIN_MENU ){//in the main menu
       // reset the cursor postion and status
+      newManager.optionPointer.setSoundStatus(0);
+      newManager.optionPointer.setGameModeStatus(0);
+      newManager.optionPointer.updatePos3();
       newManager.optionPointer.setStatus(2);
       newManager.optionPointer.updatePos();
       newManager.preScene = Scene.MAIN_MENU;
@@ -97,49 +100,73 @@ void keyPressed(){
        newManager.curScene = Scene.OPTIONS; 
     }
     if(newManager.curScene == Scene.OPTIONS){
-      newManager.curScene = Scene.OPTIONS; 
-      //newManager.optionPointer.curOption = Option.OPTION_MENU;
-      if(keyCode == UP){
-        newManager.optionPointer.movePointers(1);
-      }else if(keyCode == DOWN){
-        newManager.optionPointer.movePointers(-1);
-      }else if(keyCode == 32 || keyCode == ENTER){
-        if(newManager.optionPointer.getStatus()==0){
-          // add sound setting
-          newManager.optionPointer.curOption = Option.SOUND_SETTING;
-          newManager.optionPointer.setSoundStatus(0);
-          // setting move pointers
+          if(newManager.optionPointer.curOption == Option.OPTION_MENU){
+            newManager.curScene = Scene.OPTIONS; 
+            if(keyCode == UP){
+              newManager.optionPointer.movePointers(1);
+            }else if(keyCode == DOWN){
+              newManager.optionPointer.movePointers(-1);
+            }else if(keyCode == 32 || keyCode == ENTER){
+            if(newManager.optionPointer.getStatus()==0){
+              newManager.optionPointer.curOption = Option.SOUND_SETTING;
+              newManager.optionPointer.setSoundStatus(0);
+              newManager.optionPointer.updatePos3();
+            }else if(newManager.optionPointer.getStatus()==1){
+              newManager.optionPointer.curOption = Option.GAME_MODE;
+              newManager.optionPointer.setGameModeStatus(0);
+              newManager.optionPointer.updatePos3();
+            }else if(newManager.optionPointer.getStatus()==2){ 
+              if(newManager.preScene == Scene.GAMING) {     
+                newManager.curScene=Scene.GAMING; 
+              }
+            }else if(newManager.optionPointer.getStatus()==3){
+              if(newManager.preScene == Scene.MAIN_MENU) {     
+                newManager.curScene=Scene.MAIN_MENU;
+              }else if(newManager.preScene == Scene.GAMING) {     
+                newManager.curScene=Scene.MAIN_MENU;
+              }
+            }else if(newManager.optionPointer.getStatus()==4){
+              exit();
+            }
+          }
+        }else if(newManager.optionPointer.curOption == Option.GAME_MODE){
           if(keyCode == UP){
           newManager.optionPointer.movePointers3(1);
           }else if(keyCode == DOWN){
             newManager.optionPointer.movePointers3(-1);
           }else if(keyCode == 32 || keyCode == ENTER){
-            // add moving pointer status
+            if(newManager.optionPointer.getGameModeStatus()==0){
+              println("Normal option now:0");
+            }else if(newManager.optionPointer.getGameModeStatus()==1){
+              println("Random option now:1");
+            }else if(newManager.optionPointer.getGameModeStatus()==2){
+              newManager.optionPointer.setStatus(2);
+              newManager.optionPointer.updatePos();
+              newManager.curScene = Scene.OPTIONS;
+              newManager.optionPointer.curOption = Option.OPTION_MENU;
+            }
           }
-          
-        }else if(newManager.optionPointer.getStatus()==1){
-          // add different game level setting
-          newManager.optionPointer.curOption = Option.GAME_MODE;
-          newManager.optionPointer.setGameModeStatus(0);
-          // Move Pointer now is on manager class
-          
-        }else if(newManager.optionPointer.getStatus()==2){ 
-          if(newManager.preScene == Scene.GAMING) {     
-            newManager.curScene=Scene.GAMING; 
+      }else if(newManager.optionPointer.curOption == Option.SOUND_SETTING){
+          if(keyCode == UP){
+          newManager.optionPointer.movePointers3(1);
+          }else if(keyCode == DOWN){
+            newManager.optionPointer.movePointers3(-1);
+          }else if(keyCode == 32 || keyCode == ENTER){
+            if(newManager.optionPointer.getSoundStatus()==0){
+              println("SE option now:0");
+            }else if(newManager.optionPointer.getSoundStatus()==1){
+              println("MUSIC option now:1");
+            }else if(newManager.optionPointer.getSoundStatus()==2){
+              newManager.optionPointer.setStatus(2);
+              newManager.optionPointer.updatePos();
+              newManager.curScene = Scene.OPTIONS;
+              newManager.optionPointer.curOption = Option.OPTION_MENU;
+            }
           }
-        }else if(newManager.optionPointer.getStatus()==3){
-          if(newManager.preScene == Scene.MAIN_MENU) {     
-            newManager.curScene=Scene.MAIN_MENU;
-          }else if(newManager.preScene == Scene.GAMING) {     
-            newManager.curScene=Scene.MAIN_MENU;
-          }
-        }else if(newManager.optionPointer.getStatus()==4){
-          exit();
         }
       }
     }
   }
-}
 
 void keyReleased() {
   if(hasDone){

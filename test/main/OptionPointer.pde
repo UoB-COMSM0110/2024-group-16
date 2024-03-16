@@ -2,6 +2,7 @@ public class OptionPointer{
   float posX;
   float posY;
   int status; // need to using
+  int state;
   int soundSetStatus;
   int gameModeStatus;
  
@@ -19,7 +20,6 @@ public class OptionPointer{
     soundSetStatus=0;
     gameModeStatus=0;
     optionFont = createFont("../Fonts/TrajanPro-Bold.otf", 40);
-    //drawButtons();
     updatePos();
     updatePos3();
     img=loadImage("../images/Options/Cursor.png");
@@ -37,7 +37,11 @@ public class OptionPointer{
     updatePos();
   }
   public void movePointers3(int e){
-    int state = 0;
+    if(curOption == Option.SOUND_SETTING){
+      state = soundSetStatus;
+    }else if(curOption == Option.GAME_MODE){
+      state = gameModeStatus;
+    }
     if(e==-1){
       state=(state+1)%3;
     }else if(e==1){
@@ -46,12 +50,12 @@ public class OptionPointer{
       }
       state=(state-1);
     }
-    updatePos3();
     if(curOption == Option.SOUND_SETTING){
       soundSetStatus = state;
     }else if(curOption == Option.GAME_MODE){
       gameModeStatus = state;
     }
+    updatePos3();
   }
   
   
@@ -95,19 +99,23 @@ public class OptionPointer{
   }
   
   private void updatePos3(){
-    int state = 0;
+    if(curOption == Option.SOUND_SETTING){
+      state = soundSetStatus;
+    }else if(curOption == Option.GAME_MODE){
+      state = gameModeStatus;
+    }
     switch (state){
       case 0: 
         posX = 3 * width / 4 - 3 * buttonInterval + horiOffset + 3 * smallHoriOffset;
-        posY = 2 * height / 3 + 2 * vertOffset;
+        posY = 2 * height / 3 - vertOffset;
         break;
       case 1:
-        posX = 3 * width / 4 - 3 * buttonInterval + horiOffset + 3 * smallHoriOffset;
-        posY = 2 * height / 3 + 1 * buttonInterval + 5 * vertOffset / 3;
+        posX = 3 * width / 4 - 3 * buttonInterval  + horiOffset + smallHoriOffset;
+        posY = 2 * height / 3 + 1 * buttonInterval - vertOffset / 3;
         break;
       case 2:
-        posX = 3 * width / 4 - 3 * buttonInterval + horiOffset + 4 * smallHoriOffset;
-        posY = 2 * height / 3 + 2 * buttonInterval  + 2 * vertOffset;
+        posX = 3 * width / 4 - 3 * buttonInterval  + horiOffset + 2 * smallHoriOffset;
+        posY = 2 * height / 3 + 2 * buttonInterval  - vertOffset;
         break;
     }
     if(curOption == Option.SOUND_SETTING){
