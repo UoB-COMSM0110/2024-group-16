@@ -14,6 +14,7 @@ public class OptionPointer{
   PFont optionFont;
   Option curOption=Option.OPTION_MENU;
   //Manager drawB = new Manager();
+  ArrayList<Snowflake> snowflakes = new ArrayList<Snowflake>();
   
   public OptionPointer(){
     status = 0 ;
@@ -24,7 +25,19 @@ public class OptionPointer{
     updatePos3();
     img=loadImage("../images/Options/Cursor.png");
     img.resize(60,60);
+    for (int i = 0; i < 50; i++) {
+      snowflakes.add(new Snowflake());
+    }
   }
+  
+  public void drawSnow(){
+    for (Snowflake flake : snowflakes) {
+      flake.update();
+      flake.display();
+    } 
+  }
+  
+  
   public void movePointers(int e){
     if(e==-1){
       status=(status+1)%5;

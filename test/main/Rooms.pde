@@ -2,7 +2,7 @@ public class Rooms{
     PImage roomBg;
     PImage[] doors= new PImage[4];
     PImage lockedDoor;
-    
+    Boss soulMaster=null;
     
     int[] doorsCoordinates = {650,0,width-115,340,650,height-110,0,340};
     
@@ -59,6 +59,7 @@ public class Rooms{
           break;
         //Boos room
         case 4:
+          soulMaster = new Boss();
           roomBg=loadImage("../images/Map/basement.png");
           doors[0]=null;
           doors[1]=loadImage("../images/Map/bossroom_door_right.png");

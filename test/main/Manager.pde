@@ -30,7 +30,8 @@ public class Manager{
   //save map info init-up-left-down-right
   Rooms[] rooms = new Rooms[5];
   
-  
+  //Bomb
+  ArrayList<Bomb> bombs = new ArrayList<Bomb>();
   
   public Manager(){
     
@@ -88,22 +89,32 @@ public class Manager{
     
     
     //roombg & door
-    
     this.rooms[curRoom].drawRoom();
     
     //UI
     image(ui.HUD_main,20,20);
     for(int i=0;i<player.getmaxHP();i++){
       image(ui.HUD_emptyHP,120+40*i,70);
-    }
-    
+    }  
     for(int i=0;i<player.getHP();i++){
       image(ui.HUD_HP,119+40*i,70);
     }
     
+    
     //obstacle or items or drops
     drawObstacle(rooms[curRoom].obs);
-        
+    
+    Iterator<Bomb> iterator = bombs.iterator();
+    while (iterator.hasNext()) {
+    Bomb bomb = iterator.next();
+    bomb.update();
+    drawBombs(bomb);
+      if (bomb.exploded) {
+        iterator.remove();
+      }
+    }
+
+    
     
     //player
     if(player.movePlayer()){
@@ -145,7 +156,11 @@ public class Manager{
        }
      
      }
-
+     
+     //Boss 
+     if(curRoom == 4 && rooms[4].soulMaster.isAlive){
+       drawBoss(player.playerPos);
+     }
   }
     
   public void drawOptions(){
@@ -209,11 +224,13 @@ public class Manager{
                  && player.getPosY() <= rooms[curRoom].doorsCoordinates[3]+80-2*imageShift){
       if(curRoom == 0){
         curRoom=2;
-      }else if(curRoom == 4){
+        player.cleanFireballs();
+        player.setPosX(horiMargin+imageShift);
+      }else if(curRoom == 4 && !rooms[curRoom].soulMaster.isAlive){
         curRoom=0;
+        player.cleanFireballs();
+        player.setPosX(horiMargin+imageShift);
       }
-      player.cleanFireballs();
-      player.setPosX(horiMargin+imageShift);
       
      //left door
      }else if(rooms[curRoom].doors[3]!=null
@@ -247,5 +264,31 @@ public class Manager{
        image(multi_use_images.hardObstacle[hard.hardObsType],temp.pos.x,temp.pos.y);
      }
     }
-  }  
+  }
+  
+  //Bomb
+  void createBomb(){
+    bombs.add( new Bomb(player.getPosX()-20,player.getPosY()+50,50));  
+    player.numOfBomb--;
+  }
+  void drawBombs(Bomb bomb) {
+    if (!bomb.exploded) { 
+      if (frameCount % 30 < 15) {
+        image(multi_use_images.bomb,bomb.pos.x,bomb.pos.y);
+      } 
+    } else {
+      image(multi_use_images.bombing,bomb.pos.x,bomb.pos.y);
+    }
+  }
+  
+  void drawBoss(PVector player){
+     rooms[curRoom].soulMaster.updateActionMode();
+     rooms[curRoom].soulMaster.bossAction(player);
+     rooms[4].soulMaster.moveBigBlob();
+     rooms[4].soulMaster.drawBigBlob();
+  }
+  
+  
+
+  
 }
