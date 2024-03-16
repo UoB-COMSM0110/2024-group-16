@@ -7,7 +7,6 @@ public class Manager{
   PImage title;
   int buttonInterval = 50;
   
-  
   int curRoom;
   //by default, use the main menu
   Scene curScene=Scene.MAIN_MENU;
@@ -166,6 +165,7 @@ public class Manager{
   public void drawOptions(){
     image(optionBg,0,0);
     image(optionPointer.img,optionPointer.getPosX(),optionPointer.getPosY());
+    optionPointer.drawSnow();
     optionPointer.changeOption();
   }
   
