@@ -45,13 +45,9 @@ void keyPressed(){
      if(key==27){
       key=0;
     }
-    println(newManager.curScene);
     //in the main menu
     if( newManager.curScene == Scene.MAIN_MENU ){//in the main menu
       // reset the cursor postion and status
-      newManager.optionPointer.setSoundStatus(0);
-      newManager.optionPointer.setGameModeStatus(0);
-      newManager.optionPointer.updatePos3();
       newManager.optionPointer.setStatus(2);
       newManager.optionPointer.updatePos();
       newManager.preScene = Scene.MAIN_MENU;
