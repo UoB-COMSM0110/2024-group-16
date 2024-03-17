@@ -1,5 +1,6 @@
 public class Boss{
     PVector pos;
+    float HP;
     int radius;
     int attack;
     int actionCode;
@@ -13,6 +14,7 @@ public class Boss{
     PImage idle;
     PImage dash;
     PImage shoot;
+    PImage dead;
     PImage BigBlobImg ;
     ArrayList<BigBlob> bb = new ArrayList<BigBlob>();
     
@@ -20,12 +22,14 @@ public class Boss{
       idle = loadImage("../images/Enemies/Boss/Soul_Master.png");
       dash = loadImage("../images/Enemies/Boss/Soul_Master_Dash.png");
       shoot = loadImage("../images/Enemies/Boss/Soul_Master_Shoot.png");
+      dead = loadImage("../images/Enemies/Boss/Soul_Master_Dead.png");
       BigBlobImg = loadImage("../images/Enemies/Boss/Big_Blob/Big_Blob_00.png");
       
       pos = new PVector(100f,height/2);
+      HP = 200;
       attack = 1;
       actionCode = 0;
-      moveSpeed = 2.0f;
+      moveSpeed = 2.5f;
       dashSpeed = 5* moveSpeed;
       isAlive = true;
       timer = 0;
@@ -115,6 +119,12 @@ public class Boss{
         }
       }
     }
+    public void decHP(float damage){
+     this.HP = this.HP - damage;
+     System.out.println("boss HP = "+this.HP);
+    }
     
-
+    void drawDead(){
+      image(dead,pos.x,pos.y);
+    }
 }

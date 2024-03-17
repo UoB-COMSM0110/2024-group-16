@@ -1,10 +1,19 @@
 public class Manager{
   
+  
+  
+  PFont gameoverFont; 
+  int gameoverFontSize = 20; 
+  String chineseCharacter = "死"; 
+  int targetSize = 500;
+  int sizeIncrement = 2;
+  
   PFont mainMenuFont;
   PImage menuBg;
   PImage gameBg;
   PImage optionBg;
   PImage title;
+  PImage gameoverBg;
   int buttonInterval = 50;
   int buttonIntervalOption = 60;
   
@@ -43,7 +52,8 @@ public class Manager{
     optionBg.resize(width,height);
     title=loadImage("../images/Menu/vheart_title.png");  
     title.resize(1000,300);
-    
+    gameoverBg =loadImage("../images/GameOver/GameOverbg.jpg");
+    gameoverBg.resize(width,height);
     for(int i=0;i<5;i++){
       rooms[i]=new Rooms(i);
     }
@@ -83,6 +93,10 @@ public class Manager{
   }
  
   public void drawGaming(){
+    //check player HP
+    if(player.HP <= 0){
+      curScene = Scene.GAME_OVER;
+    }
     
     //change room
     changeRoom(player.getPosX(),player.getPosY());
@@ -155,7 +169,7 @@ public class Manager{
         }
        }
      }
-     if(curRoom == 4){
+     if(curRoom == 4 && rooms[4].soulMaster.isAlive){
        // collision of bigblob and knight
        if(!rooms[4].soulMaster.bb.isEmpty()) {
          for(int i=0;i<rooms[4].soulMaster.bb.size();i++) {
@@ -186,14 +200,21 @@ public class Manager{
            player.playerPos.x -= player.moveSpeed;
           }
        }
-       // collision of fireballs and boss
+       
+       
+     // collision of fireballs and boss
      if(!player.fireBalls.isEmpty() && 
       player.fireBalls.get(player.fireBalls.size() - 1).checkBossCollision(rooms[4].soulMaster)) {
         player.fireBalls.remove(player.fireBalls.size()-1);
+        rooms[4].soulMaster.decHP(player.getAttack());
+
      }
-     }
+    }
+     
+     
+     
    // Boss 
-   if(curRoom == 4 && rooms[4].soulMaster.isAlive){
+   if(curRoom == 4){
      drawBoss(player.playerPos);
    }
   }
@@ -211,11 +232,8 @@ public class Manager{
   }
   
   public void drawGameOver(){
-    background(255);
-    textAlign(CENTER, CENTER);
-    fill(0);
-    textSize(24);
-    text("Game Over", width/2, height/2);
+    image(gameoverBg,0,0);
+    drawCharacter(chineseCharacter.charAt(0), width/2, height/2);
   }
     
   public void drawButton(float x, float y, String label) {
@@ -321,13 +339,30 @@ public class Manager{
   }
   
   void drawBoss(PVector player){
-     rooms[curRoom].soulMaster.updateActionMode();
-     rooms[curRoom].soulMaster.bossAction(player);
-     rooms[4].soulMaster.moveBigBlob();
-     rooms[4].soulMaster.drawBigBlob();
+     if(rooms[4].soulMaster.HP < 0){
+       rooms[4].soulMaster.isAlive = false;
+     }
+    
+     if(rooms[4].soulMaster.isAlive){
+       rooms[curRoom].soulMaster.updateActionMode();
+       rooms[curRoom].soulMaster.bossAction(player);
+       rooms[4].soulMaster.moveBigBlob();
+       rooms[4].soulMaster.drawBigBlob();
+     }else{
+        rooms[4].soulMaster.drawDead();
+     }
   }
   
+  void drawCharacter(char character, float x, float y) {
+  fill(155, 0, 0); 
+  textAlign(CENTER, CENTER);
+  textSize(gameoverFontSize);
+  text(character, x, y);
   
-
-  
+  if (gameoverFontSize < targetSize) {
+    gameoverFontSize += sizeIncrement;
+    gameoverFont = createFont("FangSong", gameoverFontSize); 
+    textFont(gameoverFont);
+  }
+}
 }

@@ -44,6 +44,7 @@ public class Knight{
      lastShootTime = millis();
      isFaceToLeft = true;
      numOfBomb = 1;
+     attack = 3.5;
      
      for(int i=0;i<Idle.length;i++){
         Idle[i]=loadImage("../images/Knight/Idle/Idle_"+i+".PNG");
@@ -239,6 +240,7 @@ public class Knight{
   public float getPosY(){return playerPos.y;}
   public int getHeight(){return knightHeight;}
   public int getWidth(){return knightWidth;}
+  public float getAttack(){return attack;}
   
   
   public void setmaxHP(int maxHP){this.maxHP=maxHP;}
