@@ -223,6 +223,14 @@ public class Knight{
     return d < this.radius + obstacle.radius;
   }
   
+  // check collision of knight and boss
+  public boolean checkBossCollision(Boss boss){
+      PVector fixedBossPos = new PVector(boss.pos.x+180,boss.pos.y+180);
+      PVector fixedPlayerPos = new PVector(this.playerPos.x+33, this.playerPos.y+97);
+      float d = PVector.dist(fixedBossPos, fixedPlayerPos);
+      return d < this.radius + boss.radius;
+  }
+
   // set & get func
   public int getmaxHP(){return maxHP;}
   public int getHP(){return HP;}

@@ -33,7 +33,17 @@ public class FireBalls{
     return d < radius + enemy.radius;
   }
   
-  
+  public boolean checkBossCollision(Boss boss){
+    PVector fixedBullet ;
+    if(direction %2 == 0){
+      fixedBullet =  new PVector(this.pos.x + 40, this.pos.y + 25);
+    }else{
+      fixedBullet =  new PVector(this.pos.x + 25, this.pos.y + 40);
+    }
+    PVector fixedBossPos = new PVector(boss.pos.x+180,boss.pos.y+180);
+    float d = PVector.dist(fixedBullet, fixedBossPos);
+    return d < radius + boss.radius;
+  }
   
   public boolean checkObstacleCollision(Obstacle obstacle) {
     PVector fixedPos = new PVector(obstacle.pos.x + 50, obstacle.pos.y + 50);

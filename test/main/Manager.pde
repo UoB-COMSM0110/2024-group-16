@@ -154,13 +154,48 @@ public class Manager{
          player.playerPos.x -= player.moveSpeed;
         }
        }
-     
      }
-     
-     //Boss 
-     if(curRoom == 4 && rooms[4].soulMaster.isAlive){
-       drawBoss(player.playerPos);
+     if(curRoom == 4){
+       // collision of bigblob and knight
+       if(!rooms[4].soulMaster.bb.isEmpty()) {
+         for(int i=0;i<rooms[4].soulMaster.bb.size();i++) {
+           if(rooms[4].soulMaster.bb.get(i).checkKnightCollision(player)) {
+                rooms[4].soulMaster.bb.remove(i);
+                 player.HP--;
+           }
+         }
+        }
+       
+       // collision of Boss and knight
+       if(player.checkBossCollision(rooms[4].soulMaster)) {
+         player.HP--;
+         if (player.moveUp) {
+           for(int i=0;i<20;i++)
+            player.playerPos.y += player.moveSpeed;
+          }
+           if (player.moveDown) { 
+           for(int i=0;i<20;i++)
+           player.playerPos.y -= player.moveSpeed;
+          }
+           if (player.moveLeft) {
+           for(int i=0;i<20;i++)
+           player.playerPos.x += player.moveSpeed;
+          }
+           if (player.moveRight) {
+            for(int i=0;i<20;i++)
+           player.playerPos.x -= player.moveSpeed;
+          }
+       }
+       // collision of fireballs and boss
+     if(!player.fireBalls.isEmpty() && 
+      player.fireBalls.get(player.fireBalls.size() - 1).checkBossCollision(rooms[4].soulMaster)) {
+        player.fireBalls.remove(player.fireBalls.size()-1);
      }
+     }
+   // Boss 
+   if(curRoom == 4 && rooms[4].soulMaster.isAlive){
+     drawBoss(player.playerPos);
+   }
   }
     
   public void drawOptions(){

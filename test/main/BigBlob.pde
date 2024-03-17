@@ -11,7 +11,7 @@ public class BigBlob{
   public BigBlob(PVector pos, PVector dir, float speed) {
     this.pos = new PVector(pos.x,pos.y);
     vel = dir.normalize().mult(speed);
-    radius = 20;
+    radius = 40;
   }
   public void move(){
     this.pos.add(this.vel);
@@ -26,8 +26,9 @@ public class BigBlob{
   }
 
   public boolean checkKnightCollision(Knight player) {
-    PVector fixedPos = new PVector(player.playerPos.x + 10, player.playerPos.y + 10);
-    float d = PVector.dist(this.pos, fixedPos);
+    PVector fixedPos = new PVector(player.playerPos.x + 33, player.playerPos.y + 97);
+    PVector fixedBlob = new PVector(this.pos.x+40,this.pos.y+40);
+    float d = PVector.dist(fixedBlob, fixedPos);
     return d < radius + player.radius;
   }
 }
