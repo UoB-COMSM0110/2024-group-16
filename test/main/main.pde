@@ -9,6 +9,7 @@ int horiMargin = 115;
 int imageShift = 20;
 boolean hasDone = false;
 int gameMode = 0;
+boolean gameStart = false;
 
 //control the loading images
 PImage[] loadingImage=new PImage[8];
@@ -72,6 +73,7 @@ void keyPressed(){
     
     //in the game
     if(newManager.curScene==Scene.GAMING){
+      gameStart = true;
       newManager.preScene = Scene.GAMING;
       if (key == 'w') {
         newManager.player.moveUp = true;
@@ -113,7 +115,7 @@ void keyPressed(){
               newManager.optionPointer.curOption = Option.SOUND_SETTING;
               newManager.optionPointer.setSoundStatus(0);
               newManager.optionPointer.updatePos3();
-            }else if(newManager.optionPointer.getStatus()==1){
+            }else if(newManager.optionPointer.getStatus()==1 && !gameStart){
               newManager.optionPointer.curOption = Option.GAME_MODE;
               newManager.optionPointer.setGameModeStatus(0);
               newManager.optionPointer.updatePos3();

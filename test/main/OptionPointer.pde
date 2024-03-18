@@ -186,7 +186,7 @@ public class OptionPointer{
               println("Normal option now:0");
               gameMode = 0;
             }else if(gameModeStatus==1){
-              gameMode = (int)random(10);
+              gameMode = 1;
               println("Random option now:1, gameMode now is: " + gameMode);
             }else if(gameModeStatus==2){
               setStatus(2);
