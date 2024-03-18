@@ -44,6 +44,7 @@ public class Knight{
      lastShootTime = millis();
      isFaceToLeft = true;
      numOfBomb = 1;
+     attack = 3.5;
      
      for(int i=0;i<Idle.length;i++){
         Idle[i]=loadImage("../images/Knight/Idle/Idle_"+i+".PNG");
@@ -223,6 +224,14 @@ public class Knight{
     return d < this.radius + obstacle.radius;
   }
   
+  // check collision of knight and boss
+  public boolean checkBossCollision(Boss boss){
+      PVector fixedBossPos = new PVector(boss.pos.x+180,boss.pos.y+180);
+      PVector fixedPlayerPos = new PVector(this.playerPos.x+33, this.playerPos.y+97);
+      float d = PVector.dist(fixedBossPos, fixedPlayerPos);
+      return d < this.radius + boss.radius;
+  }
+
   // set & get func
   public int getmaxHP(){return maxHP;}
   public int getHP(){return HP;}
@@ -231,6 +240,7 @@ public class Knight{
   public float getPosY(){return playerPos.y;}
   public int getHeight(){return knightHeight;}
   public int getWidth(){return knightWidth;}
+  public float getAttack(){return attack;}
   
   
   public void setmaxHP(int maxHP){this.maxHP=maxHP;}
@@ -238,5 +248,12 @@ public class Knight{
   public void setMP(int MP){this.MP=MP;}
   public void setPosX(float posX){ playerPos.x=posX;}
   public void setPosY(float posY){ playerPos.y=posY;}
-  
+  public void setValue(){
+    if(gameMode == 1){
+       attack=random(2,10)+3.5;
+       HP = (int) random(0,5)+1;
+       bulletSpeed = random(5,20);
+       moveSpeed = random(5,10);
+     }
+  };
 }
