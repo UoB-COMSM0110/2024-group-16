@@ -8,6 +8,7 @@ public class Rooms{
     
     //save obstacle
     ArrayList<Obstacle> obs = new ArrayList<>();
+    ArrayList<Enemy> emy = new ArrayList<>();
     int[][] map = new int[12][6];
     
     public Rooms (int roometype){
@@ -73,26 +74,31 @@ public class Rooms{
       //normal enemy room
       if(roometype==2 || roometype==3){
         //create obstacle & enemies
-        int times = (int)random(1,30);
-        while(times>0){
-          obs=randomCreateObstacle(obs,map);
-          times--;
+        int timesObs = (int)random(1,20);
+        int timesEmy = (int)random(2,8);
+        System.out.println("emy:"+timesEmy);
+        while(timesObs>0){
+          randomCreateObstacle(map);
+          
+          timesObs--;
         }
-        
+        while(timesEmy>0){
+          randomCreateEnemies(map);
+          timesEmy--;
+        }
+
       }
     }
     
-   public ArrayList<Obstacle> randomCreateObstacle(ArrayList<Obstacle> obs,int[][] map){
+    public void randomCreateObstacle(int[][] map){
       int x = (int)random(1,11);
       int y = (int)random(1,5);
-      
       
       //have had obstacle,get a new number
       while(map[x][y]==1){
         x = (int)random(1,11);
         y = (int)random(1,5);
       }
-      
       
       switch((int)random(0,2)){
         case 0:
@@ -106,9 +112,28 @@ public class Rooms{
           map[x][y]=1;
           break;
       }
-    
-      return obs;
     }
+
+    public void randomCreateEnemies(int[][] map){
+      int x = (int)random(1,12);
+      int y = (int)random(1,5);
+      
+      //have had allocated, get a new number
+      while(map[x][y]==1){
+        x = (int)random(1,12);
+        y = (int)random(1,5);
+      }
+
+      switch(0){
+        case 0:
+          Enemy crawlid = new Crawlid(obstacleWidth*x+horiMargin,obstacleWidth*y+vertiMargin);
+          System.out.println("x,y"+crawlid.enemyPos.x+" "+crawlid.enemyPos.y);
+          emy.add(crawlid);
+          map[x][y]=1;
+          break;
+      }
+    }
+
     
     
     public void drawRoom(){

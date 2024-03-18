@@ -5,7 +5,7 @@ public class MultiUseImages{
   PImage[] fireBalls_down = new PImage[7];
   PImage[] fireBalls_right = new PImage[7];
   PImage[] grass = new PImage[4];
-  PImage[] crawlid = new PImage[13];
+  PImage[] crawlid = new PImage[3];
   PImage[] primal_aspid = new PImage[13];
   PImage[] zombie_fly = new PImage[7];
   PImage[] hardObstacle = new PImage[3];

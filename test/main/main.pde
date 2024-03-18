@@ -1,6 +1,5 @@
 import java.util.Iterator;
 
-
 Manager newManager;
 
 int obstacleWidth = 98;
