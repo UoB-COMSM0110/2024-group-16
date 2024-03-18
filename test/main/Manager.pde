@@ -17,7 +17,7 @@ public class Manager{
   int buttonInterval = 50;
   int buttonIntervalOption = 60;
   
-  
+  int bossCollideFlag = 0;
   int curRoom;
   //by default, use the main menu
   Scene curScene=Scene.MAIN_MENU;
@@ -52,7 +52,7 @@ public class Manager{
     optionBg.resize(width,height);
     title=loadImage("../images/Menu/vheart_title.png");  
     title.resize(1000,300);
-    gameoverBg =loadImage("../images/GameOver/GameOverbg.jpg");
+    gameoverBg =loadImage("../images/GameOver/GameOverBg.jpg");
     gameoverBg.resize(width,height);
     for(int i=0;i<5;i++){
       rooms[i]=new Rooms(i);
@@ -181,24 +181,24 @@ public class Manager{
         }
        
        // collision of Boss and knight
-       if(player.checkBossCollision(rooms[4].soulMaster)) {
-         player.HP--;
+       if(player.checkBossCollision(rooms[4].soulMaster) || bossCollideFlag != 0) {
+         if(bossCollideFlag == 0){
+           player.HP--;
+           bossCollideFlag = 30;       
+         }
          if (player.moveUp) {
-           for(int i=0;i<20;i++)
-            player.playerPos.y += player.moveSpeed;
+            player.playerPos.y += 3*player.moveSpeed;
           }
            if (player.moveDown) { 
-           for(int i=0;i<20;i++)
-           player.playerPos.y -= player.moveSpeed;
+           player.playerPos.y -= 3*player.moveSpeed;
           }
            if (player.moveLeft) {
-           for(int i=0;i<20;i++)
-           player.playerPos.x += player.moveSpeed;
+           player.playerPos.x += 3*player.moveSpeed;
           }
            if (player.moveRight) {
-            for(int i=0;i<20;i++)
-           player.playerPos.x -= player.moveSpeed;
+           player.playerPos.x -= 3*player.moveSpeed;
           }
+          bossCollideFlag--;
        }
        
        
