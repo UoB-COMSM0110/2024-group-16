@@ -52,7 +52,7 @@ public class Manager{
     optionBg.resize(width,height);
     title=loadImage("../images/Menu/vheart_title.png");  
     title.resize(1000,300);
-    gameoverBg =loadImage("../images/GameOver/GameOverbg.jpg");
+    gameoverBg =loadImage("../images/GameOver/GameOverBg.jpg");
     gameoverBg.resize(width,height);
     for(int i=0;i<5;i++){
       rooms[i]=new Rooms(i);
