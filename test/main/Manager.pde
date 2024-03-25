@@ -15,7 +15,6 @@ public class Manager{
   int buttonInterval = 50;
   int buttonIntervalOption = 60;
   
-  int bossCollideFlag = 0;
   int curRoom;
   //by default, use the main menu
   Scene curScene=Scene.MAIN_MENU;
@@ -168,6 +167,33 @@ public class Manager{
         }
       }
     }
+    
+    // collision of Enemy and Knight
+    for(Enemy enemy:rooms[curRoom].emy) {
+      if(!player.fireBalls.isEmpty() && 
+        player.fireBalls.get(player.fireBalls.size() - 1).checkEnemyCollision(enemy)) {
+        enemy.decHP(player.getAttack());
+        player.fireBalls.remove(player.fireBalls.size()-1);
+     
+    }
+    if(enemy.checkKnightCollision(player)|| player.InvincibleFrame != 0) {
+      if(player.InvincibleFrame == 0){
+            player.HP--;
+            player.InvincibleFrame = 200;       
+          } else {
+              player.InvincibleFrame--;    
+          }
+          if(player.playerPos.x - enemy.enemyPos.x > 0 && player.InvincibleFrame > 190)
+            player.playerPos.x+=10;
+          if(player.playerPos.x - enemy.enemyPos.x < 0 && player.InvincibleFrame > 190)
+            player.playerPos.x-=10;
+          if(player.playerPos.y - enemy.enemyPos.y < 0 && player.InvincibleFrame > 190)
+            player.playerPos.y-=10;
+          if(player.playerPos.y - enemy.enemyPos.y > 0 && player.InvincibleFrame > 190)
+            player.playerPos.y+=10;
+      }
+    }
+    
     if(curRoom == 4 && rooms[4].soulMaster.isAlive){
         // collision of bigblob and knight
         if(!rooms[4].soulMaster.bb.isEmpty()) {
@@ -180,24 +206,21 @@ public class Manager{
         }
        
         // collision of Boss and knight
-        if(player.checkBossCollision(rooms[4].soulMaster) || bossCollideFlag != 0) {
-          if(bossCollideFlag == 0){
+        if(player.checkBossCollision(rooms[4].soulMaster) || player.InvincibleFrame != 0) {
+          if(player.InvincibleFrame == 0){
             player.HP--;
-            bossCollideFlag = 30;       
+            player.InvincibleFrame = 200;       
+          } else {
+              player.InvincibleFrame--;
           }
-          if (player.moveUp) {
-            player.playerPos.y += 2*player.moveSpeed;
-          }
-          if (player.moveDown) { 
-            player.playerPos.y -= 2*player.moveSpeed;
-          }
-          if (player.moveLeft) {
-            player.playerPos.x += 2*player.moveSpeed;
-          }
-          if (player.moveRight) {
-            player.playerPos.x -= 2*player.moveSpeed;
-          }
-          bossCollideFlag--;
+          if(player.playerPos.x - rooms[4].soulMaster.pos.x > 0 && player.InvincibleFrame > 190)
+            player.playerPos.x+=10;
+          if(player.playerPos.x - rooms[4].soulMaster.pos.x  < 0 && player.InvincibleFrame > 190)
+            player.playerPos.x-=10;
+          if(player.playerPos.y - rooms[4].soulMaster.pos.y  < 0 && player.InvincibleFrame > 190)
+            player.playerPos.y-=10;
+          if(player.playerPos.y - rooms[4].soulMaster.pos.y  > 0 && player.InvincibleFrame > 190)
+            player.playerPos.y+=10;
       }
        
        

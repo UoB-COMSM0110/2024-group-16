@@ -28,8 +28,14 @@ public class FireBalls{
   }
 
   public boolean checkEnemyCollision(Enemy enemy) {
-    PVector fixedPos = new PVector(enemy.enemyPos.x + 10, enemy.enemyPos.y + 10);
-    float d = PVector.dist(this.pos, fixedPos);
+    PVector fixedPos = new PVector(enemy.enemyPos.x + enemy.radius, enemy.enemyPos.y + enemy.radius);
+    PVector fixedBullet ;
+    if(direction %2 == 0){
+      fixedBullet =  new PVector(this.pos.x + 40, this.pos.y + 25);
+    }else{
+      fixedBullet =  new PVector(this.pos.x + 25, this.pos.y + 40);
+    }
+    float d = PVector.dist(fixedBullet, fixedPos);
     return d < radius + enemy.radius;
   }
   

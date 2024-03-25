@@ -12,6 +12,7 @@ public class Knight{
   float attack;
   float bulletSpeed;
   float shootSpeed;// 1 sec x bullets
+  int InvincibleFrame;
   
   //FireBalls
   ArrayList<FireBalls> fireBalls = new ArrayList<FireBalls>();
@@ -45,6 +46,7 @@ public class Knight{
      isFaceToLeft = true;
      numOfBomb = 1;
      attack = 3.5;
+     InvincibleFrame = 0;
      
      for(int i=0;i<Idle.length;i++){
         Idle[i]=loadImage("../images/Knight/Idle/Idle_"+i+".PNG");
