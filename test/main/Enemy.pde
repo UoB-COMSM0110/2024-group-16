@@ -15,7 +15,7 @@ public class Enemy{
   int curStatus = 0;
   int lastShootTime;
   
-    public void subMoveCrawlid(PVector obstacle){
+  public void subMoveCrawlid(PVector obstacle){
         PVector temp = new PVector(obstacle.x+50,obstacle.y+50);
         enemyVel = PVector.sub(temp,enemyPos).normalize().mult(1.2*moveSpeed);
         enemyPos = enemyPos.sub(enemyVel);
