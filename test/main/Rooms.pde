@@ -127,7 +127,6 @@ public class Rooms{
       switch(0){
         case 0:
           Enemy crawlid = new Crawlid(obstacleWidth*x+horiMargin,obstacleWidth*y+vertiMargin);
-          System.out.println("x,y"+crawlid.enemyPos.x+" "+crawlid.enemyPos.y);
           emy.add(crawlid);
           map[x][y]=1;
           break;
