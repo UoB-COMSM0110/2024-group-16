@@ -122,6 +122,7 @@ public class Manager{
     bomb.update();
     drawBombs(bomb);
       if (bomb.exploded) {
+        bombDamage(bomb);
         iterator.remove();
       }
     }
@@ -347,8 +348,12 @@ public class Manager{
   
   //Bomb
   void createBomb(){
-    bombs.add( new Bomb(player.getPosX()-20,player.getPosY()+50,50));  
-    player.numOfBomb--;
+    if(player.numOfBomb <= 0){
+      return;
+    }else{
+      bombs.add( new Bomb(player.getPosX()-20,player.getPosY()+50,50));  
+      player.numOfBomb--;
+    }
   }
 
   void drawBombs(Bomb bomb) {
@@ -361,6 +366,25 @@ public class Manager{
     }
   }
   
+  void bombDamage(Bomb bomb){
+    for(Obstacle tmp:rooms[curRoom].obs){
+      float distance = bomb.pos.dist(tmp.pos);
+      if(distance<50){
+        tmp.hardness--;
+      }
+    }
+    for(Enemy tmp:rooms[curRoom].emy){
+      float distance = bomb.pos.dist(tmp.enemyPos);
+      if(distance<50){
+        tmp.decHP(bomb.bombDmg);
+      }
+    }
+    if(curRoom==4 && rooms[4].soulMaster.pos.dist(bomb.pos)<=500){
+      rooms[4].soulMaster.decHP(bomb.bombDmg);
+    }
+  }
+
+
   void drawBoss(PVector player){
      if(rooms[4].soulMaster.HP < 0){
        rooms[4].soulMaster.isAlive = false;

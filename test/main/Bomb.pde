@@ -3,7 +3,7 @@ public class Bomb{
   int size; 
   int timer;   
   boolean exploded;
-  
+  float bombDmg = 1000f;
   
   
   Bomb(float x, float y, int size) {
