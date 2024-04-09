@@ -175,6 +175,12 @@ public class Manager{
     
     // collision of Enemy and Knight
     for(Enemy enemy:rooms[curRoom].emy) {
+      for(Obstacle obs:rooms[curRoom].obs){
+        if(enemy.type == 0 && enemy.checkObstacleCollision(obs)){
+          enemy.subMoveCrawlid(obs.pos);
+        }
+      
+      }
       if(!player.fireBalls.isEmpty() && 
         player.fireBalls.get(player.fireBalls.size() - 1).checkEnemyCollision(enemy)) {
         enemy.decHP(player.getAttack());
@@ -189,13 +195,13 @@ public class Manager{
               player.InvincibleFrame--;    
           }
           if(player.playerPos.x - enemy.enemyPos.x > 0 && player.InvincibleFrame > 190)
-            player.playerPos.x+=10;
+            player.playerPos.x+=5;
           if(player.playerPos.x - enemy.enemyPos.x < 0 && player.InvincibleFrame > 190)
-            player.playerPos.x-=10;
+            player.playerPos.x-=5;
           if(player.playerPos.y - enemy.enemyPos.y < 0 && player.InvincibleFrame > 190)
-            player.playerPos.y-=10;
+            player.playerPos.y-=5;
           if(player.playerPos.y - enemy.enemyPos.y > 0 && player.InvincibleFrame > 190)
-            player.playerPos.y+=10;
+            player.playerPos.y+=5;
       }
     }
     
