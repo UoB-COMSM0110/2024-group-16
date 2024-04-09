@@ -16,6 +16,8 @@ public class Crawlid extends Enemy{
         super.enemyVel = PVector.sub(player,enemyPos).normalize().mult(moveSpeed);
         enemyPos = enemyPos.add(enemyVel);
     }
+    
+
 
     public void updateStatus(){
         if(curFrame%8==0){

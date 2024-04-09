@@ -176,6 +176,12 @@ public class Manager{
     
     // collision of Enemy and Knight
     for(Enemy enemy:rooms[curRoom].emy) {
+      for(Obstacle obs:rooms[curRoom].obs){
+        if(enemy.type == 0 && enemy.checkObstacleCollision(obs)){
+          enemy.subMoveCrawlid(obs.pos);
+        }
+      
+      }
       if(!player.fireBalls.isEmpty() && 
         player.fireBalls.get(player.fireBalls.size() - 1).checkEnemyCollision(enemy)) {
         enemy.decHP(player.getAttack());
@@ -189,14 +195,14 @@ public class Manager{
           } else {
               player.InvincibleFrame--;    
           }
-          if(player.playerPos.x - enemy.enemyPos.x > 0 && player.InvincibleFrame > 190)
-            player.playerPos.x+=10;
-          if(player.playerPos.x - enemy.enemyPos.x < 0 && player.InvincibleFrame > 190)
-            player.playerPos.x-=10;
-          if(player.playerPos.y - enemy.enemyPos.y < 0 && player.InvincibleFrame > 190)
-            player.playerPos.y-=10;
-          if(player.playerPos.y - enemy.enemyPos.y > 0 && player.InvincibleFrame > 190)
-            player.playerPos.y+=10;
+          if(player.playerPos.x - enemy.enemyPos.x > 0 && player.InvincibleFrame > 190 && player.playerPos.x < horiMargin + obstacleWidth*12 - player.knightWidth)
+            player.playerPos.x+=5;
+          if(player.playerPos.x - enemy.enemyPos.x < 0 && player.InvincibleFrame > 190 && player.playerPos.x > horiMargin)
+            player.playerPos.x-=5;
+          if(player.playerPos.y - enemy.enemyPos.y < 0 && player.InvincibleFrame > 190 && player.playerPos.y > vertiMargin + obstacleWidth - player.knightHeight)
+            player.playerPos.y-=5;
+          if(player.playerPos.y - enemy.enemyPos.y > 0 && player.InvincibleFrame > 190 && player.playerPos.y < vertiMargin + obstacleWidth*6 - player.knightHeight)
+            player.playerPos.y+=5;
       }
     }
     
@@ -219,13 +225,13 @@ public class Manager{
           } else {
               player.InvincibleFrame--;
           }
-          if(player.playerPos.x - rooms[4].soulMaster.pos.x > 0 && player.InvincibleFrame > 190)
+          if(player.playerPos.x - rooms[4].soulMaster.pos.x > 0 && player.InvincibleFrame > 190 && player.playerPos.x < horiMargin + obstacleWidth*12 - player.knightWidth)
             player.playerPos.x+=10;
-          if(player.playerPos.x - rooms[4].soulMaster.pos.x  < 0 && player.InvincibleFrame > 190)
+          if(player.playerPos.x - rooms[4].soulMaster.pos.x < 0 && player.InvincibleFrame > 190 && player.playerPos.x > horiMargin)
             player.playerPos.x-=10;
-          if(player.playerPos.y - rooms[4].soulMaster.pos.y  < 0 && player.InvincibleFrame > 190)
+          if(player.playerPos.y - rooms[4].soulMaster.pos.y < 0 && player.InvincibleFrame > 190 && player.playerPos.y > vertiMargin + obstacleWidth - player.knightHeight)
             player.playerPos.y-=10;
-          if(player.playerPos.y - rooms[4].soulMaster.pos.y  > 0 && player.InvincibleFrame > 190)
+          if(player.playerPos.y - rooms[4].soulMaster.pos.y > 0 && player.InvincibleFrame > 190 && player.playerPos.y < vertiMargin + obstacleWidth*6 - player.knightHeight)
             player.playerPos.y+=10;
       }
        
