@@ -26,5 +26,9 @@ public class Enemy{
   public void decHP(float damage){
      this.health = this.health - damage;
     }
+    
+  public float getHealth(){
+    return this.health;
+  }
   
 }

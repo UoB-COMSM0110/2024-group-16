@@ -96,6 +96,9 @@ public class Manager{
       curScene = Scene.GAME_OVER;
     }
     
+
+    
+    
     //change room
     changeRoom(player.getPosX(),player.getPosY());
     
@@ -145,11 +148,13 @@ public class Manager{
                          multi_use_images.fireBalls_right);
                          
      // collision of grass and fireball
-    for(Obstacle temp:rooms[curRoom].obs){
+    for(int i=0;i<rooms[curRoom].obs.size();i++){
+      Obstacle temp = rooms[curRoom].obs.get(i);
       if(!player.fireBalls.isEmpty() && 
       player.fireBalls.get(player.fireBalls.size() - 1).checkObstacleCollision(temp)) {
         player.fireBalls.remove(player.fireBalls.size()-1);
-     
+        temp.hardness--;
+
     }
      
      // collision of grass and knight
@@ -330,6 +335,11 @@ public class Manager{
   
   
   public void drawObstacle(ArrayList<Obstacle> obs){
+   for(int i=0;i<obs.size();i++) {
+     if(obs.get(i).getHardness() == 0) {
+       obs.remove(i);
+     }
+   }
    for(Obstacle temp : obs){
      //this is grass
      if(temp.type == 0){
@@ -414,7 +424,12 @@ public class Manager{
   }
   
   void drawEmemies(PVector player){
+    for(int i=0;i<rooms[curRoom].emy.size();i++){
+      if(rooms[curRoom].emy.get(i).getHealth() <= 0) {
+        rooms[curRoom].emy.remove(i);
+      }
     
+    }
     for(Enemy curEmy: rooms[curRoom].emy){
        if(curEmy.type==0){
          Crawlid crawlid = (Crawlid)curEmy;

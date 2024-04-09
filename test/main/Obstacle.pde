@@ -4,4 +4,8 @@ public class Obstacle{
   int hardness;//one bullet -> - one hardness
   
   PVector pos;  //position
+  
+  public int getHardness(){
+    return this.hardness;
+  }
 }
