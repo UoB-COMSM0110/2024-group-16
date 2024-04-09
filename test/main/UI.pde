@@ -4,7 +4,7 @@ public class UI{
   PImage HUD_HP;
   PImage HUD_emptyHP;
   PImage HUD_MP;
-  
+  PImage HUD_Bomb;
   
   public UI(){
     HUD_main=loadImage("../images/HUD/HUD_main.png");

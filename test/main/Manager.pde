@@ -114,7 +114,7 @@ public class Manager{
     for(int i=0;i<player.getHP();i++){
       image(ui.HUD_HP,119+40*i,70);
     }
-    
+    drawText(Integer.toString(player.numOfBomb),150,150);
     
     //obstacle or items or drops
     drawObstacle(rooms[curRoom].obs);
@@ -242,7 +242,7 @@ public class Manager{
     if(curRoom == 4){
       drawBoss(player.playerPos);
     }else if(curRoom == 2 || curRoom ==3){
-      drawEmemies(player.playerPos);
+      drawEmemies(player);
     }
 
   }
@@ -271,8 +271,19 @@ public class Manager{
     text(label, x, y);
   } 
   
+  void drawText(String str,int x,int y){
+    textFont(mainMenuFont); 
+    fill(255); 
+    textSize(32);
+    textAlign(CENTER, CENTER); 
+    text(str, x, y); 
+  }  
+  
+  
   public void changeRoom(float playerPosX,float playerPosY){
-        
+    if(curRoom != 0 && curRoom !=1 && curRoom != 4 && rooms[curRoom].emy.size()>0){
+      return;
+    }    
     //top door
     if(rooms[curRoom].doors[0]!=null                
                  && playerPosX >= rooms[curRoom].doorsCoordinates[0] 
@@ -423,7 +434,12 @@ public class Manager{
     }
   }
   
-  void drawEmemies(PVector player){
+  void drawEmemies(Knight player){
+    if(rooms[curRoom].hasBomb && rooms[curRoom].emy.size()<=0){
+      player.numOfBomb++;
+      rooms[curRoom].hasBomb = false;
+    }
+    
     for(int i=0;i<rooms[curRoom].emy.size();i++){
       if(rooms[curRoom].emy.get(i).getHealth() <= 0) {
         rooms[curRoom].emy.remove(i);
@@ -432,11 +448,18 @@ public class Manager{
     }
     for(Enemy curEmy: rooms[curRoom].emy){
        if(curEmy.type==0){
+         //Crawlid
          Crawlid crawlid = (Crawlid)curEmy;
          crawlid.updateStatus();
-         crawlid.moveCrawlid(player);
+         crawlid.moveCrawlid(player.playerPos);
          image(multi_use_images.crawlid[crawlid.curStatus],crawlid.enemyPos.x,crawlid.enemyPos.y);
-      }
+       }else if(curEmy.type ==1){
+         //Mosquito
+         Mosquito mosquito = (Mosquito)curEmy;
+         mosquito.updateStatus();
+         mosquito.moveMosquito(player.playerPos);
+         image(multi_use_images.mosquito[mosquito.curStatus],mosquito.enemyPos.x,mosquito.enemyPos.y);
+       }
     }
   }
 }

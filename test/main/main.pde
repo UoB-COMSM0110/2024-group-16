@@ -1,7 +1,7 @@
 import java.util.Iterator;
 
 Manager newManager;
-
+PFont loadingFont ;
 int obstacleWidth = 98;
 int vertiMargin = 110;
 int horiMargin = 115;
@@ -19,6 +19,7 @@ void setup() {
   for(int i=0;i<loadingImage.length;i++){
     loadingImage[i]=loadImage("../images/Loading/loading_icon_0"+i+".png");
   }
+  loadingFont = createFont("../Fonts/Perpetua.ttf", 40); 
   Thread loadingThread = new Thread(new LoadingThread());
   loadingThread.start();
 }
@@ -28,6 +29,17 @@ void draw() {
   if(!hasDone){
      background(0);
      image(loadingImage[curStatus],width/2-loadingImage[curStatus].width/2,height/2-loadingImage[curStatus].height/2);
+     textFont(loadingFont); 
+     fill(255); 
+     textSize(30);
+     textAlign(LEFT, CENTER); 
+
+     text("Tips:  Use the up, down, left and right keys to shoot, wasd to move!", width/4, 500);
+     text("Tips:  Use E to release powerful bombs!", width/4, 540);
+     text("Tips:  Before heading to the boss room on the left,", width/4, 580);
+     textAlign(CENTER, CENTER); 
+     text("you can clear the normal monster rooms on the right and below to get some bombs!", width/2, 620);    
+
      if(curFrame%5==0){
         curStatus=(curStatus+1)%8;
      }
