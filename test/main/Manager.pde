@@ -396,18 +396,20 @@ public class Manager{
   void bombDamage(Bomb bomb){
     for(Obstacle tmp:rooms[curRoom].obs){
       float distance = bomb.pos.dist(tmp.pos);
-      if(distance<200){
+      if(distance<300){
         tmp.hardness = tmp.hardness-2;
       }
     }
     for(Enemy tmp:rooms[curRoom].emy){
       float distance = bomb.pos.dist(tmp.enemyPos);
-      if(distance<200){
+      if(distance<300){
         tmp.decHP(bomb.bombDmg);
       }
     }
-    if(curRoom==4 && rooms[4].soulMaster.pos.dist(bomb.pos)<=200){
-      rooms[4].soulMaster.decHP(bomb.bombDmg);
+    if(curRoom==4){
+      PVector tmp = new PVector(rooms[4].soulMaster.pos.x+180,rooms[4].soulMaster.pos.y+180);
+      if(tmp.dist(bomb.pos)<=300)
+        rooms[4].soulMaster.decHP(bomb.bombDmg);
     }
   }
 
