@@ -14,9 +14,11 @@ public class MultiUseImages{
   PImage[] silver_coin = new PImage[4];
   PImage[] gold_coin = new PImage[5];
   PImage[] bling_coin = new PImage[4];
+  
+  
   PImage bombing = new PImage();
   PImage bomb = new PImage();
-  
+
   
   public MultiUseImages(){
     for(int i=0;i<fireBalls_up.length;i++){
@@ -76,8 +78,6 @@ public class MultiUseImages{
     bombing.resize(100,100);
     bomb = loadImage("../images/Bomb/Bomb.png");
     bomb.resize(100,100);
-   
- 
   }
   
   public String convertNumber(int i){

@@ -1,6 +1,17 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 import java.util.Iterator;
 
+Minim minim;
+AudioPlayer audioPlayer;
+
 Manager newManager;
+
 PFont loadingFont ;
 int obstacleWidth = 98;
 int vertiMargin = 110;
@@ -11,6 +22,9 @@ int gameMode = 0;
 
 //control the loading images
 PImage[] loadingImage=new PImage[8];
+String[] pillTips ={"ATTACK UP!","ATTACK DOWN!","HEALTH UP!","HEALTH DOWN!","SPEED UP!","SPEED DOWN!","SHOOTSPEED UP","SHOOTSPEED DOWN"};
+int startTime = 0;
+int pillCode = -1;
 int curFrame = 1;
 int curStatus = 0;
 
@@ -19,6 +33,10 @@ void setup() {
   for(int i=0;i<loadingImage.length;i++){
     loadingImage[i]=loadImage("../images/Loading/loading_icon_0"+i+".png");
   }
+  
+  //initial the music library
+  minim = new Minim(this);
+  loadMusic();
   loadingFont = createFont("../Fonts/Perpetua.ttf", 40); 
   Thread loadingThread = new Thread(new LoadingThread());
   loadingThread.start();
@@ -31,21 +49,24 @@ void draw() {
      image(loadingImage[curStatus],width/2-loadingImage[curStatus].width/2,height/2-loadingImage[curStatus].height/2);
      textFont(loadingFont); 
      fill(255); 
-     textSize(30);
+     textSize(25);
      textAlign(LEFT, CENTER); 
 
-     text("Tips:  Use the up, down, left and right keys to shoot, wasd to move!", width/4, 500);
+     text("Tips:  Use the up, down, left and right keys to shoot, WASD to move!", width/4, 500);
      text("Tips:  Use E to release powerful bombs!", width/4, 540);
      text("Tips:  Before heading to the boss room on the left,", width/4, 580);
      textAlign(CENTER, CENTER); 
-     text("you can clear the normal monster rooms on the right and below to get some bombs!", width/2, 620);    
-
+     text("you can clear the normal monster rooms on the right and below to get some bombs!", width/2+90, 620); 
+     textSize(30);
+     text("The game's resources come from Hollow Knight and The Binding of Isaac, paying homage to both of these games!", width/2, 200);
      if(curFrame%5==0){
         curStatus=(curStatus+1)%8;
      }
      curFrame++;
   }else{
     newManager.drawMap();
+    if(pillCode>0 && pillCode<pillTips.length)
+      newManager.showEffect(pillTips[pillCode]);
   }
 }
 
@@ -105,6 +126,9 @@ void keyPressed(){
         if(newManager.player.numOfBomb > 0 )
           newManager.createBomb();     
       }
+      if (keyCode == 32 && newManager.player.numOfPill > 0) {
+        newManager.eatPill();     
+      }
     }
   //other keyboard activities
   // in the options
@@ -124,7 +148,7 @@ void keyPressed(){
           // add keyboard setting
         }else if(newManager.optionPointer.getStatus()==2){ 
           if(newManager.preScene == Scene.GAMING) {     
-            newManager.curScene=Scene.GAMING; 
+            newManager.curScene=Scene.GAMING;;
           }
         }else if(newManager.optionPointer.getStatus()==3){
           if(newManager.preScene == Scene.MAIN_MENU) {     
@@ -168,3 +192,32 @@ void keyReleased() {
     }
   }
 }
+
+
+
+
+
+void loadMusic() {
+  if (audioPlayer != null) {
+    audioPlayer.close();
+  }
+  audioPlayer = minim.loadFile("../bgm/piano_for_opening_text.wav"); 
+  if (audioPlayer != null) {
+    audioPlayer.loop();
+  }
+}
+
+
+void stop() {
+  if (audioPlayer != null) {
+    audioPlayer.close();
+  }
+  minim.stop();
+  super.stop();
+}
+
+/*MAIN_MENU,
+  GAMING,
+  OPTIONS,
+  GAME_OVER
+  */

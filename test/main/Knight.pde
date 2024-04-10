@@ -31,6 +31,7 @@ public class Knight{
   int currentStatus = 0;
   int lastShootTime;
   int numOfBomb;
+  int numOfPill;
   
   
   public Knight(){
@@ -45,6 +46,7 @@ public class Knight{
      lastShootTime = millis();
      isFaceToLeft = true;
      numOfBomb = 1;
+     numOfPill = 0;
      attack = 3.5;
      InvincibleFrame = 0;
      

@@ -2,6 +2,7 @@ public class Rooms{
     PImage roomBg;
     PImage[] doors= new PImage[4];
     PImage lockedDoor;
+    PImage pillImg = new PImage();
     Boss soulMaster=null;
     
     int[] doorsCoordinates = {650,0,width-115,340,650,height-110,0,340};
@@ -9,6 +10,7 @@ public class Rooms{
     //save obstacle
     ArrayList<Obstacle> obs = new ArrayList<>();
     ArrayList<Enemy> emy = new ArrayList<>();
+    ArrayList<Pills> pills = new ArrayList<>();
     int[][] map = new int[12][6];
     boolean hasBomb;
     
@@ -41,6 +43,12 @@ public class Rooms{
           doors[2]=loadImage("../images/Map/itemroom_door_down.png");
           doors[3]=null;
           doors[2].resize(80,110);
+          pillImg = loadImage("../images/Items/pills.png");
+          pillImg.resize(100,100);
+          //generate pills
+          for(int i = 0 ;i<3;i++){
+            pills.add(new Pills(i*300+300,400));
+          }
           hasBomb = false;
           break;
         //common room
@@ -148,9 +156,16 @@ public class Rooms{
     
     public void drawRoom(){
       image(this.roomBg,0,0);
+      //draw the door
       for(int i=0;i<4;i++){
         if(this.doors[i]!=null){
           image(this.doors[i],this.doorsCoordinates[2*i],this.doorsCoordinates[2*i+1]);
+        }
+      }
+      //draw the pills
+      if(pills.size()>0){
+        for(int i=0;i<pills.size();i++){
+          image(pillImg,pills.get(i).itemsPos.x,pills.get(i).itemsPos.y);
         }
       }
     }

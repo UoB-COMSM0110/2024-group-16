@@ -105,16 +105,23 @@ public class Manager{
     
     //roombg & door
     this.rooms[curRoom].drawRoom();
+    //get pills
+    if(curRoom == 1){
+      getPills();
+    }
     
     //UI
     image(ui.HUD_main,20,20);
+    image(ui.HUD_Bomb,20,160);
+    image(ui.HUD_Pill,20,220);
     for(int i=0;i<player.getmaxHP();i++){
       image(ui.HUD_emptyHP,120+40*i,70);
     }  
     for(int i=0;i<player.getHP();i++){
       image(ui.HUD_HP,119+40*i,70);
     }
-    drawText(Integer.toString(player.numOfBomb),150,150);
+    drawText(Integer.toString(player.numOfBomb),90,200);
+    drawText(Integer.toString(player.numOfPill),90,250);
     
     //obstacle or items or drops
     drawObstacle(rooms[curRoom].obs);
@@ -468,6 +475,64 @@ public class Manager{
          mosquito.moveMosquito(player.playerPos);
          image(multi_use_images.mosquito[mosquito.curStatus],mosquito.enemyPos.x,mosquito.enemyPos.y);
        }
+    }
+  }
+  
+  void getPills(){
+     for(int i=0;i<rooms[curRoom].pills.size();i++){
+       //get pills
+       if(rooms[curRoom].pills.get(i).itemsPos.dist(player.playerPos)<80){
+         player.numOfPill++;
+         rooms[curRoom].pills.remove(i);
+       }
+     }
+  }
+  
+  void eatPill(){
+    player.numOfPill--;
+    startTime = frameCount;
+    pillCode = (int)random(0,8);
+    switch(pillCode){
+      case 0:{
+        player.attack++;
+        break;
+      }
+      case 1:{
+        player.attack--;
+        break;
+      }
+      case 2:{
+        player.HP++;
+      }
+      case 3:{
+        player.HP--;
+        break;
+      }
+      case 4:{
+        player.moveSpeed = player.moveSpeed+2;
+        break;
+      }
+      case 5:{
+        player.moveSpeed = player.moveSpeed-2;
+        break;
+      }
+      case 6:{
+        player.shootSpeed = player.shootSpeed+1;
+        break;
+      }
+      case 7:{
+        player.shootSpeed = player.shootSpeed-1;
+        break;
+      }
+    }
+  }
+  
+  void showEffect(String str){
+    
+    textAlign(CENTER, CENTER);
+    textSize(50);
+    if (frameCount - startTime <= 60) {
+      text(str, width/2, height/2);
     }
   }
 }
