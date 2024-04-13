@@ -201,7 +201,7 @@ void loadMusic() {
   if (audioPlayer != null) {
     audioPlayer.close();
   }
-  audioPlayer = minim.loadFile("../bgm/piano_for_opening_text.wav"); 
+  audioPlayer = minim.loadFile("../bgm/soundtrack.wav"); 
   if (audioPlayer != null) {
     audioPlayer.loop();
   }
