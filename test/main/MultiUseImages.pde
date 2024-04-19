@@ -5,17 +5,20 @@ public class MultiUseImages{
   PImage[] fireBalls_down = new PImage[7];
   PImage[] fireBalls_right = new PImage[7];
   PImage[] grass = new PImage[4];
-  PImage[] crawlid = new PImage[13];
-  PImage[] primal_aspid = new PImage[13];
-  PImage[] zombie_fly = new PImage[7];
+  
+  PImage[] crawlid = new PImage[3];
+  PImage[] mosquito = new PImage[5];
+   
   PImage[] hardObstacle = new PImage[3];
   PImage[] small_coin = new PImage[5];
   PImage[] silver_coin = new PImage[4];
   PImage[] gold_coin = new PImage[5];
   PImage[] bling_coin = new PImage[4];
+  
+  
   PImage bombing = new PImage();
   PImage bomb = new PImage();
-  
+
   
   public MultiUseImages(){
     for(int i=0;i<fireBalls_up.length;i++){
@@ -53,12 +56,9 @@ public class MultiUseImages{
       crawlid[i]=loadImage("../images/Enemies/Crawlid/Crawlid_"+convertNumber(i)+".png");
     }
     
-    for(int i=0;i<primal_aspid.length;i++){
-      primal_aspid[i]=loadImage("../images/Enemies/Primal_Aspid/Primal_Aspid_"+convertNumber(i)+".png");
-    }
-    
-    for(int i=0;i<zombie_fly.length;i++){
-      primal_aspid[i]=loadImage("../images/Enemies/Zombie_Fly/Zombie_Fly_"+convertNumber(i)+".png");
+    for(int i=0;i<mosquito.length;i++){
+      mosquito[i]=loadImage("../images/Enemies/Mosquito/Mosquito_"+convertNumber(i)+".png");
+      mosquito[i].resize(obstacleWidth-10,obstacleWidth-10);
     }
     
     for(int i=0;i<small_coin.length;i++){
@@ -78,8 +78,6 @@ public class MultiUseImages{
     bombing.resize(100,100);
     bomb = loadImage("../images/Bomb/Bomb.png");
     bomb.resize(100,100);
-   
- 
   }
   
   public String convertNumber(int i){

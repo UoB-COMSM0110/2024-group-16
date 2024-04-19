@@ -3,8 +3,7 @@ public class Bomb{
   int size; 
   int timer;   
   boolean exploded;
-  
-  
+  float bombDmg = 80f;
   
   Bomb(float x, float y, int size) {
     pos = new PVector(x, y);

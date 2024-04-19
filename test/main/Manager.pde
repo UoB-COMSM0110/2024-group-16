@@ -1,7 +1,5 @@
 public class Manager{
   
-  
-  
   PFont gameoverFont; 
   int gameoverFontSize = 20; 
   String chineseCharacter = "死"; 
@@ -17,6 +15,7 @@ public class Manager{
   int buttonInterval = 50;
   int buttonIntervalOption = 60;
   int bossCollideFlag = 0;
+
   int curRoom;
   
   boolean isRandom;
@@ -47,7 +46,7 @@ public class Manager{
   public Manager(){
     
     mainMenuFont = createFont("../Fonts/TrajanPro-Bold.otf", 40); 
-    
+    gameoverFont = createFont("../Fonts/si.ttf", 40);
     menuBg=loadImage("../images/Menu/controller_prompt_bg.png");
     menuBg.resize(width,height);
     optionBg=loadImage("../images/Menu/menu_option_bg.png");
@@ -56,10 +55,11 @@ public class Manager{
     title.resize(1000,300);
     gameoverBg =loadImage("../images/GameOver/GameOverBg.jpg");
     gameoverBg.resize(width,height);
+
     for(int i=0;i<5;i++){
       rooms[i]=new Rooms(i);
     }
-    
+  
     curRoom=0;
     isRandom = true;
   }
@@ -105,22 +105,32 @@ public class Manager{
       curScene = Scene.GAME_OVER;
     }
     
+
+    
+    
     //change room
     changeRoom(player.getPosX(),player.getPosY());
     
     
     //roombg & door
     this.rooms[curRoom].drawRoom();
+    //get pills
+    if(curRoom == 1){
+      getPills();
+    }
     
     //UI
     image(ui.HUD_main,20,20);
+    image(ui.HUD_Bomb,20,160);
+    image(ui.HUD_Pill,20,220);
     for(int i=0;i<player.getmaxHP();i++){
       image(ui.HUD_emptyHP,120+40*i,70);
     }  
     for(int i=0;i<player.getHP();i++){
       image(ui.HUD_HP,119+40*i,70);
     }
-    
+    drawText(Integer.toString(player.numOfBomb),90,200);
+    drawText(Integer.toString(player.numOfPill),90,250);
     
     //obstacle or items or drops
     drawObstacle(rooms[curRoom].obs);
@@ -131,6 +141,7 @@ public class Manager{
     bomb.update();
     drawBombs(bomb);
       if (bomb.exploded) {
+        bombDamage(bomb);
         iterator.remove();
       }
     }
@@ -153,38 +164,73 @@ public class Manager{
                          multi_use_images.fireBalls_right);
                          
      // collision of grass and fireball
-     for(Obstacle temp:rooms[curRoom].obs){
-       if(!player.fireBalls.isEmpty() && 
+    for(int i=0;i<rooms[curRoom].obs.size();i++){
+      Obstacle temp = rooms[curRoom].obs.get(i);
+      if(!player.fireBalls.isEmpty() && 
       player.fireBalls.get(player.fireBalls.size() - 1).checkObstacleCollision(temp)) {
-      player.fireBalls.remove(player.fireBalls.size()-1);
-     
-     }
+        player.fireBalls.remove(player.fireBalls.size()-1);
+        temp.hardness--;
+
+    }
      
      // collision of grass and knight
-       if(player.checkObstacleCollision(temp)) {
-         if (player.moveUp) { 
+      if(player.checkObstacleCollision(temp)) {
+        if (player.moveUp) { 
           player.playerPos.y += player.moveSpeed;
         }
-         if (player.moveDown) { 
+        if (player.moveDown) { 
          player.playerPos.y -= player.moveSpeed;
         }
-         if (player.moveLeft) {
+        if (player.moveLeft) {
          player.playerPos.x += player.moveSpeed;
         }
-         if (player.moveRight) {
+        if (player.moveRight) {
          player.playerPos.x -= player.moveSpeed;
         }
-       }
-     }
-     if(curRoom == 4 && rooms[4].soulMaster.isAlive){
-       // collision of bigblob and knight
-       if(!rooms[4].soulMaster.bb.isEmpty()) {
-         for(int i=0;i<rooms[4].soulMaster.bb.size();i++) {
-           if(rooms[4].soulMaster.bb.get(i).checkKnightCollision(player)) {
-                rooms[4].soulMaster.bb.remove(i);
-                 player.HP--;
-           }
-         }
+      }
+    }
+    
+    // collision of Enemy and Knight
+    for(Enemy enemy:rooms[curRoom].emy) {
+      for(Obstacle obs:rooms[curRoom].obs){
+        if(enemy.type == 0 && enemy.checkObstacleCollision(obs)){
+          enemy.subMoveCrawlid(obs.pos);
+        }
+      
+      }
+      if(!player.fireBalls.isEmpty() && 
+        player.fireBalls.get(player.fireBalls.size() - 1).checkEnemyCollision(enemy)) {
+        enemy.decHP(player.getAttack());
+        player.fireBalls.remove(player.fireBalls.size()-1);
+     
+    }
+    if(enemy.checkKnightCollision(player)|| player.InvincibleFrame != 0) {
+      if(player.InvincibleFrame == 0){
+            player.HP--;
+            player.InvincibleFrame = 200;       
+          } else {
+              player.InvincibleFrame--;    
+          }
+          if(player.playerPos.x - enemy.enemyPos.x > 0 && player.InvincibleFrame > 190 && player.playerPos.x < horiMargin + obstacleWidth*12 - player.knightWidth)
+            player.playerPos.x+=5;
+          if(player.playerPos.x - enemy.enemyPos.x < 0 && player.InvincibleFrame > 190 && player.playerPos.x > horiMargin)
+            player.playerPos.x-=5;
+          if(player.playerPos.y - enemy.enemyPos.y < 0 && player.InvincibleFrame > 190 && player.playerPos.y > vertiMargin + obstacleWidth - player.knightHeight)
+            player.playerPos.y-=5;
+          if(player.playerPos.y - enemy.enemyPos.y > 0 && player.InvincibleFrame > 190 && player.playerPos.y < vertiMargin + obstacleWidth*6 - player.knightHeight)
+            player.playerPos.y+=5;
+      }
+    }
+    
+    if(curRoom == 4 && rooms[4].soulMaster.isAlive){
+        // collision of bigblob and knight
+        if(!rooms[4].soulMaster.bb.isEmpty()) {
+          for(int i=0;i<rooms[4].soulMaster.bb.size();i++) {
+            if(rooms[4].soulMaster.bb.get(i).checkKnightCollision(player)) {
+              rooms[4].soulMaster.bb.remove(i);
+              player.HP--;
+            }
+          }
         }
        
        // collision of Boss and knight
@@ -207,23 +253,40 @@ public class Manager{
           }
           bossCollideFlag--;
        }
+        // collision of Boss and knight
+        if(player.checkBossCollision(rooms[4].soulMaster) || player.InvincibleFrame != 0) {
+          if(player.InvincibleFrame == 0){
+            player.HP--;
+            player.InvincibleFrame = 200;       
+          } else {
+              player.InvincibleFrame--;
+          }
+          if(player.playerPos.x - rooms[4].soulMaster.pos.x > 0 && player.InvincibleFrame > 190 && player.playerPos.x < horiMargin + obstacleWidth*12 - player.knightWidth)
+            player.playerPos.x+=10;
+          if(player.playerPos.x - rooms[4].soulMaster.pos.x < 0 && player.InvincibleFrame > 190 && player.playerPos.x > horiMargin)
+            player.playerPos.x-=10;
+          if(player.playerPos.y - rooms[4].soulMaster.pos.y < 0 && player.InvincibleFrame > 190 && player.playerPos.y > vertiMargin + obstacleWidth - player.knightHeight)
+            player.playerPos.y-=10;
+          if(player.playerPos.y - rooms[4].soulMaster.pos.y > 0 && player.InvincibleFrame > 190 && player.playerPos.y < vertiMargin + obstacleWidth*6 - player.knightHeight)
+            player.playerPos.y+=10;
+      }
        
        
      // collision of fireballs and boss
-     if(!player.fireBalls.isEmpty() && 
-      player.fireBalls.get(player.fireBalls.size() - 1).checkBossCollision(rooms[4].soulMaster)) {
-        player.fireBalls.remove(player.fireBalls.size()-1);
-        rooms[4].soulMaster.decHP(player.getAttack());
-
-     }
+      if(!player.fireBalls.isEmpty() && 
+        player.fireBalls.get(player.fireBalls.size() - 1).checkBossCollision(rooms[4].soulMaster)) {
+          player.fireBalls.remove(player.fireBalls.size()-1);
+          rooms[4].soulMaster.decHP(player.getAttack());
+      }
     }
-     
-     
-     
-   // Boss 
-   if(curRoom == 4){
-     drawBoss(player.playerPos);
-   }
+    
+    // Boss & Enemies
+    if(curRoom == 4){
+      drawBoss(player.playerPos);
+    }else if(curRoom == 2 || curRoom ==3){
+      drawEmemies(player);
+    }
+
   }
     
   public void drawOptions(){
@@ -247,8 +310,19 @@ public class Manager{
     text(label, x, y);
   } 
   
+  void drawText(String str,int x,int y){
+    textFont(mainMenuFont); 
+    fill(255); 
+    textSize(32);
+    textAlign(CENTER, CENTER); 
+    text(str, x, y); 
+  }  
+  
+  
   public void changeRoom(float playerPosX,float playerPosY){
-        
+    if(curRoom != 0 && curRoom !=1 && curRoom != 4 && rooms[curRoom].emy.size()>0){
+      return;
+    }    
     //top door
     if(rooms[curRoom].doors[0]!=null                
                  && playerPosX >= rooms[curRoom].doorsCoordinates[0] 
@@ -311,6 +385,11 @@ public class Manager{
   
   
   public void drawObstacle(ArrayList<Obstacle> obs){
+   for(int i=0;i<obs.size();i++) {
+     if(obs.get(i).getHardness() == 0) {
+       obs.remove(i);
+     }
+   }
    for(Obstacle temp : obs){
      //this is grass
      if(temp.type == 0){
@@ -329,9 +408,14 @@ public class Manager{
   
   //Bomb
   void createBomb(){
-    bombs.add( new Bomb(player.getPosX()-20,player.getPosY()+50,50));  
-    player.numOfBomb--;
+    if(player.numOfBomb <= 0){
+      return;
+    }else{
+      bombs.add( new Bomb(player.getPosX()-20,player.getPosY()+50,50));  
+      player.numOfBomb--;
+    }
   }
+
   void drawBombs(Bomb bomb) {
     if (!bomb.exploded) { 
       if (frameCount % 30 < 15) {
@@ -342,6 +426,27 @@ public class Manager{
     }
   }
   
+  void bombDamage(Bomb bomb){
+    for(Obstacle tmp:rooms[curRoom].obs){
+      float distance = bomb.pos.dist(tmp.pos);
+      if(distance<300){
+        tmp.hardness = tmp.hardness-2;
+      }
+    }
+    for(Enemy tmp:rooms[curRoom].emy){
+      float distance = bomb.pos.dist(tmp.enemyPos);
+      if(distance<300){
+        tmp.decHP(bomb.bombDmg);
+      }
+    }
+    if(curRoom==4){
+      PVector tmp = new PVector(rooms[4].soulMaster.pos.x+180,rooms[4].soulMaster.pos.y+180);
+      if(tmp.dist(bomb.pos)<=300)
+        rooms[4].soulMaster.decHP(bomb.bombDmg);
+    }
+  }
+
+
   void drawBoss(PVector player){
      if(rooms[4].soulMaster.HP < 0){
        rooms[4].soulMaster.isAlive = false;
@@ -358,15 +463,102 @@ public class Manager{
   }
   
   void drawCharacter(char character, float x, float y) {
-  fill(155, 0, 0); 
-  textAlign(CENTER, CENTER);
-  textSize(gameoverFontSize);
-  text(character, x, y);
-  
-  if (gameoverFontSize < targetSize) {
-    gameoverFontSize += sizeIncrement;
-    gameoverFont = createFont("FangSong", gameoverFontSize); 
-    textFont(gameoverFont);
+    fill(155, 0, 0); 
+    textAlign(CENTER, CENTER);
+    textSize(gameoverFontSize);
+    text(character, x, y);
+    
+    if (gameoverFontSize < targetSize) {
+      gameoverFontSize += sizeIncrement;
+      gameoverFont = createFont("../Fonts/si.ttf", gameoverFontSize); 
+      textFont(gameoverFont);
+    }
   }
-}
+  
+  void drawEmemies(Knight player){
+    if(rooms[curRoom].hasBomb && rooms[curRoom].emy.size()<=0){
+      player.numOfBomb++;
+      rooms[curRoom].hasBomb = false;
+    }
+    
+    for(int i=0;i<rooms[curRoom].emy.size();i++){
+      if(rooms[curRoom].emy.get(i).getHealth() <= 0) {
+        rooms[curRoom].emy.remove(i);
+      }
+    
+    }
+    for(Enemy curEmy: rooms[curRoom].emy){
+       if(curEmy.type==0){
+         //Crawlid
+         Crawlid crawlid = (Crawlid)curEmy;
+         crawlid.updateStatus();
+         crawlid.moveCrawlid(player.playerPos);
+         image(multi_use_images.crawlid[crawlid.curStatus],crawlid.enemyPos.x,crawlid.enemyPos.y);
+       }else if(curEmy.type ==1){
+         //Mosquito
+         Mosquito mosquito = (Mosquito)curEmy;
+         mosquito.updateStatus();
+         mosquito.moveMosquito(player.playerPos);
+         image(multi_use_images.mosquito[mosquito.curStatus],mosquito.enemyPos.x,mosquito.enemyPos.y);
+       }
+    }
+  }
+  
+  void getPills(){
+     for(int i=0;i<rooms[curRoom].pills.size();i++){
+       //get pills
+       if(rooms[curRoom].pills.get(i).itemsPos.dist(player.playerPos)<80){
+         player.numOfPill++;
+         rooms[curRoom].pills.remove(i);
+       }
+     }
+  }
+  
+  void eatPill(){
+    player.numOfPill--;
+    startTime = frameCount;
+    pillCode = (int)random(0,8);
+    switch(pillCode){
+      case 0:{
+        player.attack++;
+        break;
+      }
+      case 1:{
+        player.attack--;
+        break;
+      }
+      case 2:{
+        player.HP++;
+      }
+      case 3:{
+        player.HP--;
+        break;
+      }
+      case 4:{
+        player.moveSpeed = player.moveSpeed+2;
+        break;
+      }
+      case 5:{
+        player.moveSpeed = player.moveSpeed-2;
+        break;
+      }
+      case 6:{
+        player.shootSpeed = player.shootSpeed+1;
+        break;
+      }
+      case 7:{
+        player.shootSpeed = player.shootSpeed-1;
+        break;
+      }
+    }
+  }
+  
+  void showEffect(String str){
+    
+    textAlign(CENTER, CENTER);
+    textSize(50);
+    if (frameCount - startTime <= 60) {
+      text(str, width/2, height/2);
+    }
+  }
 }

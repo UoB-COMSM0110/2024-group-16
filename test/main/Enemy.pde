@@ -1,68 +1,47 @@
 public class Enemy{
-  
   //Position
   PVector enemyPos;
+  PVector enemyVel;
   
   //Character properties
   float moveSpeed;
   float attack;
-  float bulletSpeed;
-  float shootSpeed;// 1 sec x bullets
   float health;
   float radius;
-  
-  //FireBalls
-  ArrayList<FireBalls> fireBalls = new ArrayList<FireBalls>();
-  
-  
-  //Auxiliary variable
-  boolean moveUp, moveDown, moveLeft, moveRight; 
-  int currentFrame = 0;
-  int currentStatus = 0;
+  int type;
+
+  //Auxiliary variable 
+  int curFrame = 0;
+  int curStatus = 0;
   int lastShootTime;
   
-  public Enemy() {
-    enemyPos = new PVector(900, 600);
-    health = 10;
-    radius = 20;
+  public void subMoveCrawlid(PVector obstacle){
+        PVector temp = new PVector(obstacle.x+50,obstacle.y+50);
+        enemyVel = PVector.sub(temp,enemyPos).normalize().mult(1.2*moveSpeed);
+        enemyPos = enemyPos.sub(enemyVel);
   }
   
   
+  public boolean checkKnightCollision(Knight player) {
+    PVector fixedPos = new PVector(player.playerPos.x + 33, player.playerPos.y + 97);
+    PVector fixedBlob = new PVector(this.enemyPos.x+radius,this.enemyPos.y+radius);
+    float d = PVector.dist(fixedBlob, fixedPos);
+    return d < radius + player.radius;
+  }
   
-  // public void drawWalk(){
-  //   if(currentstatus>=enemiesWalk.length){
-  //     currentstatus=0;
-  //   }
-  //   if(currentFrame%8==0){
-  //     currentstatus = (currentstatus+1) % enemiesWalk.length;
-  //   }
-  //   image(Walk[currentstatus], EnemyPos.x , EnemyPos.y);
-  //   currentFrame++;
-  // }
+  public boolean checkObstacleCollision(Obstacle obs) {
+    PVector fixedPos = new PVector(obs.pos.x + 33, obs.pos.y + 97);
+    PVector fixedBlob = new PVector(this.enemyPos.x+radius,this.enemyPos.y+radius);
+    float d = PVector.dist(fixedBlob, fixedPos);
+    return d < radius + obs.radius;
+  }
   
-  
-  
-  void moveFireBalls() {
-    for (int i = fireBalls.size()-1; i >= 0; i--) {
-      FireBalls fb = fireBalls.get(i);
-      fb.move();
-      if (fb.pos.x < 70 || fb.pos.x > width-100 ||
-          fb.pos.y < 70 || fb.pos.y > height-100) {
-        fireBalls.remove(i);
-      }
+  public void decHP(float damage){
+     this.health = this.health - damage;
     }
+    
+  public float getHealth(){
+    return this.health;
   }
   
-  //public boolean checkFireballCollision(FireBalls fireball) {
-  //  PVector fixedPos = new PVector(enemy.enemyPos.x + 10, enemy.enemyPos.y + 10);
-  //  float d = PVector.dist(this.pos, fixedPos);
-  //  return d < radius + enemy.radius;
-  //}
-
-//  public void takeDamage(float damage) {
-//  health -= damage;
-//  if (health <= 0) {
-//    parent.println("Enemy defeated!");
-//  }
-//}
 }

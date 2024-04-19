@@ -2,13 +2,17 @@ public class Rooms{
     PImage roomBg;
     PImage[] doors= new PImage[4];
     PImage lockedDoor;
+    PImage pillImg = new PImage();
     Boss soulMaster=null;
     
     int[] doorsCoordinates = {650,0,width-115,340,650,height-110,0,340};
     
     //save obstacle
     ArrayList<Obstacle> obs = new ArrayList<>();
+    ArrayList<Enemy> emy = new ArrayList<>();
+    ArrayList<Pills> pills = new ArrayList<>();
     int[][] map = new int[12][6];
+    boolean hasBomb;
     
     public Rooms (int roometype){
       
@@ -29,6 +33,7 @@ public class Rooms{
           doors[1].resize(115,80);
           doors[2].resize(80,110);
           doors[3].resize(115,80);
+          hasBomb = false;
           break;
         //item room
         case 1:
@@ -38,6 +43,13 @@ public class Rooms{
           doors[2]=loadImage("../images/Map/itemroom_door_down.png");
           doors[3]=null;
           doors[2].resize(80,110);
+          pillImg = loadImage("../images/Items/pills.png");
+          pillImg.resize(100,100);
+          //generate pills
+          for(int i = 0 ;i<3;i++){
+            pills.add(new Pills(i*300+300,400));
+          }
+          hasBomb = false;
           break;
         //common room
         case 2:
@@ -47,6 +59,7 @@ public class Rooms{
           doors[2]=null;
           doors[3]=loadImage("../images/Map/commondoor_left.png");
           doors[3].resize(115,80);
+          hasBomb = true;
           break;
         //other use: to be update
         case 3:
@@ -56,6 +69,7 @@ public class Rooms{
           doors[2]=null;
           doors[3]=null;
           doors[0].resize(80,110);
+          hasBomb = true;
           break;
         //Boos room
         case 4:
@@ -66,6 +80,7 @@ public class Rooms{
           doors[2]=null;
           doors[3]=null;
           doors[1].resize(115,80);
+          hasBomb = false;
           break;
       }
       roomBg.resize(width,height);
@@ -73,26 +88,31 @@ public class Rooms{
       //normal enemy room
       if(roometype==2 || roometype==3){
         //create obstacle & enemies
-        int times = (int)random(1,30);
-        while(times>0){
-          obs=randomCreateObstacle(obs,map);
-          times--;
+        int timesObs = (int)random(5,10);
+        int timesEmy = (int)random(2,8);
+        System.out.println("emy:"+timesEmy);
+        while(timesObs>0){
+          randomCreateObstacle(map);
+          
+          timesObs--;
         }
-        
+        while(timesEmy>0){
+          randomCreateEnemies(map);
+          timesEmy--;
+        }
+
       }
     }
     
-   public ArrayList<Obstacle> randomCreateObstacle(ArrayList<Obstacle> obs,int[][] map){
+    public void randomCreateObstacle(int[][] map){
       int x = (int)random(1,11);
       int y = (int)random(1,5);
-      
       
       //have had obstacle,get a new number
       while(map[x][y]==1){
         x = (int)random(1,11);
         y = (int)random(1,5);
       }
-      
       
       switch((int)random(0,2)){
         case 0:
@@ -106,16 +126,46 @@ public class Rooms{
           map[x][y]=1;
           break;
       }
-    
-      return obs;
     }
+
+    public void randomCreateEnemies(int[][] map){
+      int x = (int)random(1,12);
+      int y = (int)random(1,5);
+      
+      //have had allocated, get a new number
+      while(map[x][y]==1){
+        x = (int)random(1,12);
+        y = (int)random(1,5);
+      }
+
+      switch((int)random(0,2)){
+        case 0:
+          Enemy crawlid = new Crawlid(obstacleWidth*x+horiMargin,obstacleWidth*y+vertiMargin);
+          emy.add(crawlid);
+          map[x][y]=1;
+          break;
+        case 1:
+          Enemy mosquito = new Mosquito(obstacleWidth*x+horiMargin,obstacleWidth*y+vertiMargin);
+          emy.add(mosquito);
+          map[x][y]=1;
+          break;
+      }
+    }
+
     
     
     public void drawRoom(){
       image(this.roomBg,0,0);
+      //draw the door
       for(int i=0;i<4;i++){
         if(this.doors[i]!=null){
           image(this.doors[i],this.doorsCoordinates[2*i],this.doorsCoordinates[2*i+1]);
+        }
+      }
+      //draw the pills
+      if(pills.size()>0){
+        for(int i=0;i<pills.size();i++){
+          image(pillImg,pills.get(i).itemsPos.x,pills.get(i).itemsPos.y);
         }
       }
     }
