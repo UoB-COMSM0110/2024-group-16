@@ -125,26 +125,27 @@ alternative flow:
 
 ![class](./pictures/class.png)
 
+#Evaluation
 
-## Think Aloud and Heuristic Evaluations
+## Qualitative - Think Aloud and Heuristic Evaluations
 
 We invited our course mates during the lab sessions to qualitatively evaluate our game in the development process. After the first-round evaluation, we had a quick meeting to discuss the issues that needed to be fixed. These helped us identify the areas of focus for us to improve our game.
 
-First round qualitative evaluations:
+### First round qualitative evaluations:
 
 ![wee8_workshop_findings](./pictures/wee8_workshop_findings.png)
 
-Think Aloud Evaluation 1 on 11/3/2024:
+    Think Aloud Evaluation 1 on 11/3/2024:
 
-Positive comments: Beautiful design throughout the game.
+    Positive comments: Beautiful design throughout the game.
 
-Negative comments: In the main and option menu, a bit lost which button to press to confirm. The character could not pass through the doors properly.
+    Negative comments: In the main and option menu, a bit lost which button to press to confirm. The character could not pass through the doors properly.
 
-Think Aloud Evaluation 2 on 11/3/2024:
+    Think Aloud Evaluation 2 on 11/3/2024:
 
-Positive comments: Fun to play.
+    Positive comments: Fun to play.
 
-Negative comments: Didn’t know the difference between the 4 doors. Didn’t realise I went into a boss room. Had difficult passing through the doors in the game. 
+    Negative comments: Didn’t know the difference between the 4 doors. Didn’t realise I went into a boss room. Had difficult passing through the doors in the game. 
 
 Based on the results from the qualitative evaluations, the below areas needed to be improved:
  
@@ -158,23 +159,23 @@ These three areas were mentioned a few times in both think aloud and heuristic e
 
 After the evaluation session, we had a quick group meeting to set out action plans to fix the issues.  In response to the first area of improvement, a clear instruction on which button to press needed to be displayed in the main page so that users understand which button to press. Secondly, we set up a coding session to work on the code for door dimensions specifically. Lastly, we decided to use different door pictures to make the boss room distinguishable. 
 
-Second round qualitative evaluations: 
+### Second round qualitative evaluations: 
 
-Think Aloud Evaluation 1 on 8/4/2024:
+    Think Aloud Evaluation 1 on 8/4/2024:
 
-Positive comments: Challenging but fun game and amazing background music. Instructions are clearer. 
+    Positive comments: Challenging but fun game and amazing background music. Instructions are clearer. 
 
-Negative comments: The bomb on the ground did not look like a bomb.
+    Negative comments: The bomb on the ground did not look like a bomb.
 
-Think Aloud Evaluation 2 on 8/4/2024:
+    Think Aloud Evaluation 2 on 8/4/2024:
 
-Positive comments: Instructions are clearer. Can pass through the doors smoothly. 
+    Positive comments: Instructions are clearer. Can pass through the doors smoothly. 
 
-Negative comments: The health potion on the ground was just like an obstacle. 
+    Negative comments: The health potion on the ground was just like an obstacle. 
 
 In the second round qualitative evaluations, we did not receive negative feedback on control and game accessibility and received positive feedback on the clear instructions provided in the game. As compared the first round evaluations, the major concerns were fixed, therefore we received more feedback than the first round. The negative feedback received this time was mostly around the use of graphics. This was relatively easy to fix, and we decided to make our own game graphics.
 
-## System Usability Scale
+## Quantitative: System Usability Scale
 
 ![SUSresponse](./pictures/SUSresponse.png)
 
@@ -188,7 +189,7 @@ SUS paper: https://uxpajournal.org/sus-a-retrospective/
 
 We carried out Black Box Testing on our game during our development. We adopted a feature testing approach in testing our program. First, we decomposed our game into smaller function units. Then we identified the key features for each unit. Lastly, we specified test cases for the key features. Our test cases focused on boundary cases as errors are more likely to occur in them. We were able to identify errors where the character could not pass through the boss door and where the attack range of the character’s bullets was incorrect. These were boundary errors and were spotted by the black box testing. We then proceeded to changing the size metrics in the code, and then tested these features again.
 
-## Process
+# Process
 
 Our team worked together to formulate the game design. During the development process, we split into two sub-teams to manage the development process. One sub-team was responsible for the programming part of the game, the other sub-team was responsible for managing the game resources and documentations. We found that splitting into 2 teams in fact made our program development more efficient because each sub-team could concentrate on our own domain of tasks, and sometimes there was synergy within the tasks. Also, we used the weekly lab sessions to catch up and ensured everyone was on the same page.
 
