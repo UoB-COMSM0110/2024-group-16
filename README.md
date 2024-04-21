@@ -125,9 +125,9 @@ alternative flow:
 
 ![class](./pictures/class.png)
 
-#Evaluation
+# Evaluation
 
-## Qualitative - Think Aloud and Heuristic Evaluations
+## Qualitative evaluation - Think Aloud and Heuristic Evaluations
 
 We invited our course mates during the lab sessions to qualitatively evaluate our game in the development process. After the first-round evaluation, we had a quick meeting to discuss the issues that needed to be fixed. These helped us identify the areas of focus for us to improve our game.
 
@@ -175,7 +175,7 @@ After the evaluation session, we had a quick group meeting to set out action pla
 
 In the second round qualitative evaluations, we did not receive negative feedback on control and game accessibility and received positive feedback on the clear instructions provided in the game. As compared the first round evaluations, the major concerns were fixed, therefore we received more feedback than the first round. The negative feedback received this time was mostly around the use of graphics. This was relatively easy to fix, and we decided to make our own game graphics.
 
-## Quantitative: System Usability Scale
+## Quantitative evaluation: System Usability Scale
 
 ![SUSresponse](./pictures/SUSresponse.png)
 
