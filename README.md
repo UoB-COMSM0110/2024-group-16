@@ -176,6 +176,10 @@ In the second round qualitative evaluations, we did not receive negative feedbac
 
 ## System Usability Scale
 
+![SUSresponse](./pictures/SUSresponse.png)
+
+![SUSscore](./pictures/SUSscore.png)
+
 We conducted quantitative evaluation of our game before the easter break. We invited 12 users to complete the System Usability Scale questionnaire. Studies show that using SUS enables us to receive a fair assessment of the perceived usability of a system even with only 8-12users. Studies also suggest that non-native speakers may find the word “cumbersome” in the statement difficult to understand. We adopted the suggestion by Finstad to replace the word “cumbersome” with “awkward” in the questionnaire to accommodate non-native speakers. From the 12 samples, our game obtained an average SUS score of 80 and the median is also 80. A SUS score above a 68 is considered above average, the results suggest that respondents were satisfied with our game in terms of usability.
 
 SUS paper: https://uxpajournal.org/sus-a-retrospective/
