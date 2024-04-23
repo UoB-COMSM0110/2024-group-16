@@ -78,6 +78,12 @@ void keyPressed(){
      if(key==27){
       key=0;
     }
+    //in the game over
+    if( newManager.curScene == Scene.GAME_OVER){
+      if(keyCode == ESC){
+        exit();
+      }
+    }
     //in the main menu
     if( newManager.curScene == Scene.MAIN_MENU ){//in the main menu
       // reset the cursor postion and status

@@ -173,7 +173,14 @@ public class OptionPointer{
         drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 , "Normal Mode");
         drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + buttonInterval, "Random Mode");
         drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 2*buttonInterval , "Back to Options");
+          if(gameMode == 0){
+            text("MODE: NORMAL",300,100);
+            }
+          if(gameMode == 1){
+            text("MODE: HARD(RANDOM)",300,100);
+          }
       }
+      
   }
   public void optionSwitch(){
       if(curOption == Option.GAME_MODE){
@@ -183,11 +190,9 @@ public class OptionPointer{
             movePointers3(-1);
           }else if(keyCode == 32 || keyCode == ENTER){
             if(gameModeStatus==0){
-              println("Normal option now:0");
               gameMode = 0;
             }else if(gameModeStatus==1){
               gameMode = 1;
-              println("Random option now:1, gameMode now is: " + gameMode);
             }else if(gameModeStatus==2){
               setStatus(2);
               updatePos();
