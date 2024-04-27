@@ -101,6 +101,9 @@ Click on the image below to jump to the video of paper prototype.
 2. Markers
 3. Game platform
 
+## User Case Diagram
+![UserCase](./diagrams/user_case_diagram.png)
+
 ## User Case Specification
 
 1. Systems displays main menu with start and setting buttons
