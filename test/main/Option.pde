@@ -1,0 +1,5 @@
+enum Option {
+  OPTION_MENU,
+  SOUND_SETTING,
+  GAME_MODE,
+}
