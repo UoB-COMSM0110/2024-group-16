@@ -123,8 +123,8 @@ alternative flow:
     
 ## Class diagram
 
-![class](./pictures/class.png)
-![TimeSequence](./diagrams/TimeSequence.pdf)
+![class](./diagrams/classdiagram.png)
+![TimeSequence](./diagrams/TimeSequence.png)
 
 # Evaluation
 
