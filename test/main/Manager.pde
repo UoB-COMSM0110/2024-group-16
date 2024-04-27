@@ -10,6 +10,7 @@ public class Manager{
   PImage menuBg;
   PImage gameBg;
   PImage optionBg;
+  PImage gameEndBg;
   PImage title;
   PImage gameoverBg;
   int buttonInterval = 50;
@@ -51,6 +52,8 @@ public class Manager{
     menuBg.resize(width,height);
     optionBg=loadImage("../images/Menu/menu_option_bg.png");
     optionBg.resize(width,height);
+    gameEndBg=loadImage("../images/Menu/game_end_bg.png");
+    gameEndBg.resize(width,height);
     title=loadImage("../images/Menu/vheart_title.png");  
     title.resize(1000,300);
     gameoverBg =loadImage("../images/GameOver/GameOverBg.jpg");
@@ -84,6 +87,9 @@ public class Manager{
      case GAME_OVER:
          drawGameOver();
          break;
+     case GAME_TBC:
+         drawGameTbc();
+         break;
       }
   }
   
@@ -104,9 +110,6 @@ public class Manager{
     if(player.HP <= 0){
       curScene = Scene.GAME_OVER;
     }
-    
-
-    
     
     //change room
     changeRoom(player.getPosX(),player.getPosY());
@@ -286,7 +289,11 @@ public class Manager{
     }else if(curRoom == 2 || curRoom ==3){
       drawEmemies(player);
     }
-
+    
+    // Boss is defeated
+    if(curRoom == 4 && rooms[4].soulMaster.isAlive == false){
+      curScene = Scene.GAME_TBC;
+    }
   }
     
   public void drawOptions(){
@@ -301,6 +308,10 @@ public class Manager{
     drawCharacter(chineseCharacter.charAt(0), width/2, height/2);
   }
   
+  public void drawGameTbc(){
+   image(gameEndBg,0,0);
+   drawTbc("TO BE CONTINUED...",700,400);
+  }
   
     
   public void drawButton(float x, float y, String label) {
@@ -316,7 +327,14 @@ public class Manager{
     textSize(32);
     textAlign(CENTER, CENTER); 
     text(str, x, y); 
-  }  
+  }
+  void drawTbc(String str,int x,int y){
+    textFont(mainMenuFont); 
+    fill(255); 
+    textSize(72);
+    textAlign(CENTER, CENTER); 
+    text(str, x, y); 
+  }
   
   
   public void changeRoom(float playerPosX,float playerPosY){

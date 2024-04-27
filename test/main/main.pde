@@ -79,7 +79,7 @@ void keyPressed(){
       key=0;
     }
     //in the game over
-    if( newManager.curScene == Scene.GAME_OVER){
+    if(newManager.curScene == Scene.GAME_OVER || newManager.curScene == Scene.GAME_TBC){
       if(keyCode == ESC){
         exit();
       }
