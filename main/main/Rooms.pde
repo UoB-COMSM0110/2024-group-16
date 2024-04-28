@@ -90,7 +90,6 @@ public class Rooms{
         //create obstacle & enemies
         int timesObs = (int)random(5,10);
         int timesEmy = (int)random(2,8);
-        System.out.println("emy:"+timesEmy);
         while(timesObs>0){
           randomCreateObstacle(map);
           

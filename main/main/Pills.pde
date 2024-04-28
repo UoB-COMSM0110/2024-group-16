@@ -5,8 +5,5 @@ public class Pills extends Items{
     radius = 50;
     itemsPos = new PVector(x,y);
   }
-  
-  
-  
-  
+
 }

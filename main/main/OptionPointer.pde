@@ -5,6 +5,7 @@ public class OptionPointer{
   int state;
   int soundSetStatus;
   int gameModeStatus;
+  float volume=0.5;
  
   int horiOffset = 150;
   int smallHoriOffset = 20;
@@ -164,17 +165,24 @@ public class OptionPointer{
         drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 2*buttonInterval, "Back to Game");
         drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 3*buttonInterval, "Back to Menu");
         drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3  + 4*buttonInterval, "Exit");
-      }else if(Mode == 1){
+      }else if(Mode == 1){ 
         drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 , "SE");
         drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + buttonInterval, "MUSIC");
         drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3+ 2*buttonInterval , "Back to Options");
-        
+        if(soundSetStatus == 0){
+            text("This fucntion is coming soon...", 400, 50);
+        }else if(soundSetStatus == 1){ // Write the music relative items
+            text("Increase volume: Left arrow key",400,100);
+            text("Decrease volume: Right arrow key",415,150);
+            text("Current Volume: ", 400, 50);
+            drawVolumeBar(volume, 700, 35, 400, 30);
+        }
       }else if(Mode == 2){
         drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 , "Normal Mode");
         drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + buttonInterval, "Random Mode");
         drawButton(3*width / 4 - 3*buttonInterval , 2*height / 3 + 2*buttonInterval , "Back to Options");
           if(gameMode == 0){
-            text("MODE: NORMAL",300,100);
+            text("MODE: NORMAL",212,100);
             }
           if(gameMode == 1){
             text("MODE: HARD(RANDOM)",300,100);
@@ -207,16 +215,34 @@ public class OptionPointer{
             movePointers3(-1);
           }else if(keyCode == 32 || keyCode == ENTER){
             if(soundSetStatus==0){
-              println("SE option now:0");
             }else if(soundSetStatus==1){
-              println("MUSIC option now:1");
-            }else if(soundSetStatus==2){
+              }
+            }else if (keyCode == LEFT) {
+                // Increase volume
+                volume = constrain(volume - 0.1, 0, 1); // Prevent volume from going out of range
+                soundFile.amp(volume); 
+              } else if (keyCode == RIGHT) {
+                // Decrease volume
+                volume = constrain(volume + 0.1, 0, 1); // Prevent volume from going out of range
+                soundFile.amp(volume);     
+          }
+          if(soundSetStatus==2 && keyCode == ENTER){
               setStatus(2);
               updatePos();
               newManager.curScene = Scene.OPTIONS;
               curOption = Option.OPTION_MENU;
             }
-          }
         }
+  }
+  
+  void drawVolumeBar(float level, float x, float y, float w, float h) {
+    // draw outside frame
+    stroke(0);
+    fill(180);
+    rect(x, y, w, h);
+    // fill the inside
+    fill(255);
+    float barWidth = map(level, 0, 1, 0, w); 
+    rect(x, y, barWidth, h);
   }
 }

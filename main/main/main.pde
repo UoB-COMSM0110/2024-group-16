@@ -1,16 +1,8 @@
-import ddf.minim.*;
-import ddf.minim.analysis.*;
-import ddf.minim.effects.*;
-import ddf.minim.signals.*;
-import ddf.minim.spi.*;
-import ddf.minim.ugens.*;
-
+import processing.sound.SoundFile;
 import java.util.Iterator;
 
-Minim minim;
-AudioPlayer audioPlayer;
-
 Manager newManager;
+SoundFile soundFile;
 
 PFont loadingFont ;
 int obstacleWidth = 98;
@@ -20,9 +12,12 @@ int imageShift = 20;
 boolean hasDone = false;
 int gameMode = 0;
 boolean gameStart = false;
+float volume;
 
 //control the loading images
 PImage[] loadingImage=new PImage[8];
+boolean imagesLoaded = false;
+boolean musicLoaded = false;
 String[] pillTips ={"ATTACK UP!","ATTACK DOWN!","HEALTH UP!","HEALTH DOWN!","SPEED UP!","SPEED DOWN!","SHOOTSPEED UP","SHOOTSPEED DOWN"};
 int startTime = 0;
 int pillCode = -1;
@@ -34,13 +29,9 @@ void setup() {
   for(int i=0;i<loadingImage.length;i++){
     loadingImage[i]=loadImage("../images/Loading/loading_icon_0"+i+".png");
   }
-  
-  //initial the music library
-  minim = new Minim(this);
-  loadMusic();
   loadingFont = createFont("../Fonts/Perpetua.ttf", 40); 
   Thread loadingThread = new Thread(new LoadingThread());
-  loadingThread.start();
+  loadingThread.start(); // In the loadingThread loading the music
 }
 
 
@@ -82,8 +73,12 @@ void keyPressed(){
     if(newManager.curScene == Scene.GAME_OVER || newManager.curScene == Scene.GAME_TBC){
       if(keyCode == ESC){
         exit();
+      } 
+      if(newManager.curScene == Scene.GAME_OVER){// Player died so stop playing the music(You lose)
+          soundFile.stop();
       }
     }
+    
     //in the main menu
     if( newManager.curScene == Scene.MAIN_MENU ){//in the main menu
       // reset the cursor postion and status
@@ -209,29 +204,10 @@ void keyReleased() {
   }
 }
 
-
-
-
-
-void loadMusic() {
-  if (audioPlayer != null) {
-    audioPlayer.close();
-  }
-  audioPlayer = minim.loadFile("../bgm/soundtrack.wav"); 
-  if (audioPlayer != null) {
-    audioPlayer.loop();
-  }
+void loadMusic(){
+  soundFile = new SoundFile(this,"../bgm/soundtrack.wav");
+  soundFile.loop();
 }
-
-
-void stop() {
-  if (audioPlayer != null) {
-    audioPlayer.close();
-  }
-  minim.stop();
-  super.stop();
-}
-
 /*MAIN_MENU,
   GAMING,
   OPTIONS,

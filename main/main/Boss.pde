@@ -121,7 +121,6 @@ public class Boss{
     }
     public void decHP(float damage){
      this.HP = this.HP - damage;
-     System.out.println("boss HP = "+this.HP);
     }
     
     void drawDead(){
