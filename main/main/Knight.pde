@@ -38,7 +38,7 @@ public class Knight{
      playerPos = new PVector(700, 400);
      radius = 35;
      maxHP=6;
-     HP=3;
+     HP=5;
      MP=2;
      moveSpeed = 7.0;
      bulletSpeed = 10.0;
@@ -47,7 +47,7 @@ public class Knight{
      isFaceToLeft = true;
      numOfBomb = 1;
      numOfPill = 0;
-     attack = 3.5;
+     attack = 4.5;
      InvincibleFrame = 0;
      
      for(int i=0;i<Idle.length;i++){

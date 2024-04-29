@@ -141,6 +141,9 @@ public class OptionPointer{
   public void drawButton(float x, float y, String label) {
     textAlign(CENTER, CENTER);
     fill(255);
+    if(label.equals("Back to Game")&&gameStart==false){
+      fill(125);
+    }
     textFont(optionFont); 
     text(label, x, y);
   }

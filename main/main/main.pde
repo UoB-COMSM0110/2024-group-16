@@ -74,7 +74,7 @@ void keyPressed(){
     }
     //in the game over
     if(newManager.curScene == Scene.GAME_OVER || newManager.curScene == Scene.GAME_TBC){
-      if(keyCode == ESC){
+      if(keyCode == ESC|| keyCode == ENTER){
         exit();
       } 
       if(newManager.curScene == Scene.GAME_OVER){// Player died so stop playing the music(You lose)

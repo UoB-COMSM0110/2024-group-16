@@ -26,7 +26,7 @@ public class Boss{
       BigBlobImg = loadImage("../images/Enemies/Boss/Big_Blob/Big_Blob_00.png");
       
       pos = new PVector(100f,height/2);
-      HP = 200;
+      HP = 150;
       attack = 1;
       actionCode = 0;
       moveSpeed = 2.5f;

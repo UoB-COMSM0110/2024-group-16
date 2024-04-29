@@ -554,11 +554,12 @@ public class Manager{
         break;
       }
       case 4:{
-        player.moveSpeed = player.moveSpeed+2;
+        player.moveSpeed = player.moveSpeed+1;
         break;
       }
       case 5:{
-        player.moveSpeed = player.moveSpeed-2;
+        if(player.moveSpeed > 1)
+          player.moveSpeed = player.moveSpeed-1;
         break;
       }
       case 6:{
@@ -566,7 +567,8 @@ public class Manager{
         break;
       }
       case 7:{
-        player.shootSpeed = player.shootSpeed-1;
+        if(player.shootSpeed > 1)
+          player.shootSpeed = player.shootSpeed-1;
         break;
       }
     }

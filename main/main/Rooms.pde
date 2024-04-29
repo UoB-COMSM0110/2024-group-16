@@ -88,11 +88,10 @@ public class Rooms{
       //normal enemy room
       if(roometype==2 || roometype==3){
         //create obstacle & enemies
-        int timesObs = (int)random(5,10);
-        int timesEmy = (int)random(2,8);
+        int timesObs = (int)random(2,10);
+        int timesEmy = (int)random(2,5);
         while(timesObs>0){
           randomCreateObstacle(map);
-          
           timesObs--;
         }
         while(timesEmy>0){
