@@ -103,6 +103,7 @@ public class Manager{
     drawButton(width / 2 - 50 , height / 2 + buttonInterval , "Start");
     drawButton(width / 2 - 50 , height / 2 + 3 * buttonInterval , "Options");
     drawButton(width / 2 - 50 , height / 2 + 5 * buttonInterval , "Exit");
+    menuPointer.drawSnow();
   }
  
   public void drawGaming(){

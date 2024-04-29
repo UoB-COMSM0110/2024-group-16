@@ -8,7 +8,7 @@ public class MenuPointer {
   int smallOffset = 20;
   int buttonInterval = 50;
   PImage[] img=new PImage[2];
-  
+  ArrayList<Snowflake> snowflakes = new ArrayList<Snowflake>();
   public MenuPointer(){
     status = 0 ;
     updatePos();
@@ -16,6 +16,9 @@ public class MenuPointer {
     img[1]=loadImage("../images/Menu/Pointers/pointerRight.png");
     img[0].resize(80,60);
     img[1].resize(80,60);
+    for (int i = 0; i < 50; i++) {
+      snowflakes.add(new Snowflake());
+    }
   }
   
   public void movePointers(int e){
@@ -28,6 +31,7 @@ public class MenuPointer {
       status=(status-1);
     }
     updatePos();
+
   }
   
   public float getPosXLeft(){return posX_left;}
@@ -60,6 +64,10 @@ public class MenuPointer {
         break;
     }      
   }
-  
-  
+   public void drawSnow(){
+    for (Snowflake flake : snowflakes) {
+      flake.update();
+      flake.display();
+    } 
+  }
 }

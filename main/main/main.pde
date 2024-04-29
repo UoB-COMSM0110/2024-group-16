@@ -32,6 +32,7 @@ void setup() {
   loadingFont = createFont("../Fonts/Perpetua.ttf", 40); 
   Thread loadingThread = new Thread(new LoadingThread());
   loadingThread.start(); // In the loadingThread loading the music
+  //loadMusic();
 }
 
 
@@ -51,6 +52,8 @@ void draw() {
      text("you can clear the normal monster rooms on the right and below to get some bombs!", width/2+90, 620); 
      textSize(30);
      text("The game's resources come from Hollow Knight and The Binding of Isaac, paying homage to both of these games!", width/2, 200);
+     fill(255,0,0);
+     text("Warning: The Knight only has one chance of defeating the enemies.Tread lightly!",width/2,300);
      if(curFrame%5==0){
         curStatus=(curStatus+1)%8;
      }
