@@ -217,9 +217,13 @@ If we had a chance to develop the game further, we would consider expanding the 
 # Individual contribution:
 
 Xinyu Wang : 1
+
 Zhihao Meng : 1
+
 Yuxin Sun : 1
+
 Haolei Wang : 1
+
 Lewis Kwok : 1
 
 
