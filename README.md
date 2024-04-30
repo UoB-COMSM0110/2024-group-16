@@ -214,7 +214,13 @@ For future projects, we will consider all teammates’ commitments and workload 
 
 If we had a chance to develop the game further, we would consider expanding the map and adding more attack modes for both player and monsters. We would also like to design a storyline, illustrated through game graphics, to make the game even more engaging. 
 
+# Individual contribution:
 
+Xinyu Wang : 1
+Zhihao Meng : 1
+Yuxin Sun : 1
+Haolei Wang : 1
+Lewis Kwok : 1
 
 
 
