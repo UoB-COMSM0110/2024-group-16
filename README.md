@@ -206,6 +206,14 @@ Although we worked in two sub-teams during the game development, we had catchup 
 We used the weekly Monday lab sessions of this unit as our regular check-ins. As our team had high attendance, we found the lab sessions very helpful in keeping us connected. We updated each other on the progress, and planned what needed to be done for the week, ensuring we were all on the same page. Without the Monday lab sessions, we would not have been able to collaborate this successfully.  
 
 
+# Conclusion
+
+This project provided a great opportunity for us to use a variety of software development techniques. The project is not only about developing a game but also about delivering a project in an agile way. After developing the game idea, we used planning poker to estimate the effort so that we had an idea of how much time we would need to deliver the project. During the development process, we found the evaluation techniques introduced in the lectures very useful, as we could get feedback from users which in turn helped us improve our game. For example, we adjusted the size metrics of the doors, composed our own original soundtrack for the game and designed our own gaming graphics. These improvements were inspired by the user feedback. Developing the game in an agile way allowed us to respond to changes easily during the game development. 
+
+For future projects, we will consider all teammates’ commitments and workload outside of the project when planning for the project delivery. This year we benefited from the postponed deadline of another assignment, giving us enough buffer time to concentrate on the game demo, report write up and in-class test, all of which happened in the last teaching week. If that assignment had not been postponed, we would have had a hectic and stressful time in the last teaching week. 
+
+If we had a chance to develop the game further, we would consider expanding the map and adding more attack modes for both player and monsters. We would also like to design a storyline, illustrated through game graphics, to make the game even more engaging. 
+
 
 
 
