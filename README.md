@@ -154,7 +154,7 @@ We carried out Black Box Testing on our game during our development. We adopted 
 
 # Process
 
-![Kanban](./pictures/Kanban.png)
+![Kanban](./diagrams/Kanban.png)
 
 Our team worked together to formulate the game design. During the development process, we split into two sub-teams to manage the development process. One sub-team was responsible for the programming part of the game, the other sub-team was responsible for managing the game resources and documentations. We found that splitting into 2 teams in fact made our program development more efficient because each sub-team could concentrate on our own domain of tasks, and sometimes there was synergy within the tasks. Also, we used the weekly lab sessions to catch up and ensured everyone was on the same page.
 
