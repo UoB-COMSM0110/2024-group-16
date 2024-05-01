@@ -3,7 +3,7 @@
    COMSM0110 - Group 16 (2024) <br/></h1>
    <h2>Hollow Knight</h2>
    <p>VOIDHEART EDITION</p> 
-   <h3 align=center><a href="test" target="">Click the here to view Game video</a></h3>
+   <h3 align=center><a href="test" target="">Click here to view Game video</a></h3>
 </div> 
 
 # **Member list**
@@ -84,15 +84,33 @@ Another aspect worth mentioning is the use of the Manager class. We created this
 
 ## Challenges
 
-One of the main challenges we had was creating animation for the in-game characters. We did not want to just use still images to represent them; instead, we preferred having movements so that the game feels more immersive. After some discussions across the coders, we agreed on a single approach which we would apply to all characters: we would have multiple images of the same character which we would display one after another, and we would implement a built-in “timer” to keep track of which images to display at one particular time.  
+One of the main challenges we had was creating animation for the in-game characters. We did not want to just use still images to represent them; instead, we preferred having movements so that the game feels more immersive. While this can be achieved by using multiple images for each entity, simply iterating them in sequence would result in changing the image every frame, making the animation too fast. After some discussions across the coders, we agreed on a single approach which we would apply to all characters: we would implement a built-in “timer” to keep track of which images to display at one particular time.  
+
+<div style="display: flex; justify-content: space-around; align-items: center;">
+    <img src="./diagrams/NoTimerIdle.gif" width="300" height="200">
+    <img src="./diagrams/NoTimerWalk.gif" width="300" height="200">
+</div>  
+
+_Without using a timer: idle and walking_  
+
+<div style="display: flex; justify-content: space-around; align-items: center;">
+    <img src="./diagrams/TimerIdle.gif" width="300" height="200">
+    <img src="./diagrams/TimerWalk.gif" width="300" height="200">
+</div>  
+
+_Using a timer: idle and walking_  
 
 This “timer” is realised using two attributes: currentFrame and currentStatus. Take the function drawIdle in Knight.pde as an example: we display the next image every 8 frames, having determined that this was an appropriate gap to leave between images so that the animation looks natural. Within this function we also constantly check which direction a character should be facing and flip the images accordingly.  
 
 Another challenge we had was keeping track of the states of the characters, for which we essentially deployed a state machine. The function bossAction determines which action the boss is supposed to take depending on the actionCode, while functions such as drawIdle and drawWalk controls how the main character appears on screen depending on whether the player is moving him.  
 
+![TimeSequence](./diagrams/BossStates.gif)
+
 We also wanted to implement an “invincible” state: after the knight collides with an enemy and loses health, there should be a short period of time during which the knight takes no damage, so that the player has time to react. This state is realised in the Manager class: we declared a variable called invinsibleFrame. At collision, if invinsibleFrame is zero, the knight takes damage and invinsibleFrame is reset to the initial value of 200, after which we begin a countdown during which the knight would take no further damage.  
 
-We would also like to mention our handling of collisions. Our solution was to represent each entity as a circle, assigning it a centre and a radius. In the function checkObstacleCollision in Knight.pde, as an example, we compute the straight-line distance between the knight and the obstacle by calling the PVector.dist() function, after which checking whether the distance is smaller than the sum of the radii of the two objects would suffice.  
+We would also like to mention our handling of collisions. Our solution was to represent each entity as a circle, assigning it a centre and a radius. In the function checkObstacleCollision in Knight.pde, as an example, we compute the straight-line distance between the knight and the obstacle by calling the PVector.dist() function, after which checking whether the distance is smaller than the sum of the radii of the two objects would suffice. 
+
+![TimeSequence](./diagrams/Collision.gif)
 
 Another part to collision handling the actions to take upon collision. For enemies, the knight should lose health upon collision; for obstacles like grass, we would like to have the knight to bounce off in the opposite direction when he touches it. This functionality is handled in Manager.pde. Using the state machine mentioned above, we were able to keep track of which direction the knight is facing, and we could add movement in the opposite direction accordingly.  
 
@@ -194,11 +212,3 @@ Yuxin Sun : 1
 Haolei Wang : 1
 
 Lewis Kwok : 1
-
-
-
-
-
-
-
-
