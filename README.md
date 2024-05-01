@@ -15,119 +15,78 @@
 ![members](./pictures/teammembers.jpg)
 
 -----
- 
-# GAME IDEAS
 
-## ***Idea 1***
+# Introduction
 
-### **The Binding of Isaac: Rebirth**
-
-Classic ruguelike game with lots of random elements, use WASD to move up, down, left, right, and use the arrow keys to fire bullets (tears)!
-
-![isaac00](./pictures/Isaac00.png)
-
-Earn random drops or pedestal props by defeating bosses or clearing rooms.
-
-![isaac01](./pictures/Isaac01.png)
-
-A combination of multiple props may have an unexpected effect! (This is definitely the charm of the game!)
-
-![isaac02](./pictures/Isaac02.png)
-
-![isaac03](./pictures/Isaac04.png)
-
-### Twist：
-
-Some of the new props and resources, and the effects of combining them with other items (might need an update to the underlying logic?).
-
-### Challenges:
-    
-    1.Map generation: Need to make sure the map makes sense while random elements are added.
-
-    2.Enemy behaviour: Ensure the enemy's aggressiveness or behavioural coherence.
-
-    3.Combination of multiple props.
-----
-
-
-
-## ***Idea 2***
-
-### **Hollow Knight**
-
-Horizontal Crossing Game with gravity. Fixed map and enemies, defeat enemies by attack or skill. Main character has more movement, turning left and right, attacking, jumping (two jumps), skills (maybe?), etc.
-
-![HK00](./pictures/HK00.png)
-
-![HK01](./pictures/HK01.png)
-
-![HK_effects](./pictures/HK_effects.png)
-
-### Twist：
-
-expect brand new skills and boss?
-
-### Challenges:
-    
-    1.Map design: need to focus on interaction with the protagonist.
-
-    2.Enemy behaviour: some actions which follow a certain logic.
-
-    3.Character movement articulation: including attack, skill, hit and hostile character effects.
----
-
-
-# Final Idea 
-
-## Game1 name 
-
-Click on the image below to jump to the video of paper prototype.
-
-[![Paper prototype of ideas](pictures/VideoCover.png "VideoCover")](https://youtu.be/3UcUQOiD24k?si=ynn56xHwD7vI0ifm)
-
-## Game2 name
-
-Click on the image below to jump to the video of paper prototype.
-
-[![Paper prototype of ideas](pictures/VideoCover.png "VideoCover")](https://youtu.be/cqox7BNGpro?si=KRlCIJkNvwlWVl1z)
-
-
+Our game is based on Hollow Knight, a 2D platform adventure game in which the main character explores various areas and defeats bosses to gain special abilities. While the artwork might look familiar to those who have played Hollow Knight before, the experience of playing our game would be completely different. We removed the gravity system from the original game, so that the character could explore all areas of the visible map; we changed the original attacking mechanism for the main character to be able to attack enemies not in the nearest vicinity; and most crucially, we added rogue-like elements, e.g. random effects of artefacts picked up. The rogue-like parts of the game are inspired by another game called The Binding of Isaac, some of whose artwork we also incorporated in our game.
 
 # Requirements
 
-## Stakeholders
+Deciding on two games was not too difficult. Many of our team members have played and enjoyed both Hollow Knight and The Binding of Isaac, so we were familiar with the game play of both. We then went on to produce paper prototype demos of games based on both.  
 
-1. Players
-2. Markers
-3. Game platform
+[![Paper prototype of ideas](pictures/VideoCover.png "VideoCover")](https://youtu.be/3UcUQOiD24k?si=ynn56xHwD7vI0ifm)
+[![Paper prototype of ideas](pictures/VideoCover.png "VideoCover")](https://youtu.be/cqox7BNGpro?si=KRlCIJkNvwlWVl1z)
 
-## User Case Diagram
+User story:  
+- As a player, I want to be guided through how the game works.
+- As a player, I want to see what the effects are after my character consumes an item.
+-	As a player, I want to see how many artefacts I have in my inventory.
+-	As a player, I want to see how much health I have left.
+-	As a player, I want to challenge myself and try defeating boss-level enemies.  
+
+We agreed that our final game should adhere to the above regardless of which game we end up going for. Picking one of the two, however, turned out to be nearly impossible. We eventually decided to combine elements of both games, using artwork mainly from Hollow Knight as they were readily available, and incorporated elements of game play from The Binding of Isaac.  
+
+After deciding on what to work on, we first set out the use case specification of our game:  
+1.	Systems displays main menu with start and setting buttons.
+2.	User presses setting button.
+3.	Systems displays options, including volume, language, font, mode, as well as copyright info and a reset button. System also provides options to modify default key presses.
+4.	User presses esc to go back to the main menu.
+5.	User presses start.
+6.	Systems generates game data, including maps and in-game items. It displays prompts in the first room that instructs the user to operate the character with wasd, arrows etc.
+7.	User presses buttons to control the character.
+8.	System tracks user's key presses and modifies the game data accordingly.
+9.	User completes the game.
+10.	System displays "well done".
+
 ![UserCase](./diagrams/user_case_diagram.png)
 
-## User Case Specification
+To keep in line with the game design of Hollow Knight, we want our game to be playable entirely via the keyboard, and as such have not included support for the mouse. We want the players to be able to control the movement of the main character using keys W, A, S and D, and attack enemies using the arrow keys, which we believe would be the most natural way to interact with a game. To add tension, we have modified the default behaviour of enemies in Hollow Knight – instead of being confined to a small area, they are now able to approach the main character and follow him wherever he goes in the room. We make sure the room above is always where the main character could obtain pills with random effects, so that the player always has the choice to take the risk of some uncertainty before facing the boss. That being said, rogue-like design is the most important principle for our game. So even if we provide players with the option to take the pills, we do not want to limit the game play to only one route. The player can freely choose which room he would like to visit first, whether he wants to take the pills. He can even go straight for the boss if he prefers!  
 
-1. Systems displays main menu with start and setting buttons
-2. User presses setting button
-3. Systems displays options, including volume, language, font, mode, as well as copyright info and a
-   reset button. System also provides options to modify default key presses.
-4. User presses esc to go back to the main menu
-5. User presses start
-6. Systems generates game data, including maps and in-game items. It displays prompts in the first
-   room that instructs the user to operate the character with wasd, arrows etc.
-7. User presses buttons to control the character
-8. System tracks user's key presses and modifies the game data accordingly
-9. User completes the game.
-10. System displays "well done"
+While we mainly used artworks from Hollow Knight, we did use the background of The Binding of Isaac in the first room the player finds himself in. This is because this image, very usefully, provides explanations of how the game could be played. This fits with one of our user stories, where we pointed out that a user should have some guidance on the game play.  
 
-alternative flow:
+# Design
 
-9. User defeated  
-10. System displays "you're dead"
-    
-## Class diagram
+Before our team started actually writing code, we first came up with a class diagram as a guideline to our game. One team member was responsible for designing the top-level structure, while all members responsible for coding the game filled in the details – this was to ensure that our game has a consistent and unified design, both in the overall structure of the code as well as in other factors such as naming conventions.  
 
 ![class](./diagrams/classdiagram.png)
+
+As the diagram presents, we have a class called Map which stores virtually all relevant states of the game. We initialise a Map object in the main function, and all our in-game objects are represented by sub-classes of Map. The sub-class UI, in particular, implements some of the aforementioned user stories that a user would like to see the current state the player is in.  
+
+This section aims to be an overview of our design of the game – the next section goes into detail on the functionalities of the code. We would like to mention that, despite be generally complete, the diagrams presented in this section may not represent our game in its entirety. This is because our team adopted agile development methodologies. While coming up with diagrams was important in guiding our development sessions, we also found it incredibly valuable to sometimes come up with ideas spontaneously followed by immediate implementation without documenting them first. Despite one of the disadvantages of agile development being the lack of comprehensive documentation, we do believe this method allowed us to write our game efficiently.  
+
+# Implementation
+
 ![TimeSequence](./diagrams/TimeSequence.png)
+
+To keep the code modular, our first task, loading various in-game images, is achieved via using a MultiUseImage class. We recognise that some images, such as enemies, will be used multiple times, while others will only need to load once. Images which are to be used repeatedly are loaded in MultiUseImages, and other ones are loaded in their respective sections where they are needed. As per one of the principles stated, users should be able to see the system status. Hence we started a new thread in setup to load the images. This is to avoid the screen turning black while waiting for the processing, during which the user would be puzzled by the lack of visible system status.  
+
+Since our game involves interacting with various objects, we need to implement functionalities to handle the collision of objects. Our fundamental approach is to represent each in-game character as a circle. As we know the centre and radii of the two objects, detecting whether two objects collide is a simple use of Pythagoras’ theorem: we compare the straight-line distance between two objects are see whether it’s less than the sum of their radii.  
+
+Another aspect worth mentioning is the use of the Manager class. We created this class to keep track of all the in-game resources, such as background images and the UI. Keeping them in one place works well with our development context – since each of our coders are responsible for parts of the game, having a single object to combine all of the features implemented avoids clashes in the code.  
+
+## Challenges
+
+One of the main challenges we had was creating animation for the in-game characters. We did not want to just use still images to represent them; instead, we preferred having movements so that the game feels more immersive. After some discussions across the coders, we agreed on a single approach which we would apply to all characters: we would have multiple images of the same character which we would display one after another, and we would implement a built-in “timer” to keep track of which images to display at one particular time.  
+
+This “timer” is realised using two attributes: currentFrame and currentStatus. Take the function drawIdle in Knight.pde as an example: we display the next image every 8 frames, having determined that this was an appropriate gap to leave between images so that the animation looks natural. Within this function we also constantly check which direction a character should be facing and flip the images accordingly.  
+
+Another challenge we had was keeping track of the states of the characters, for which we essentially deployed a state machine. The function bossAction determines which action the boss is supposed to take depending on the actionCode, while functions such as drawIdle and drawWalk controls how the main character appears on screen depending on whether the player is moving him.  
+
+We also wanted to implement an “invincible” state: after the knight collides with an enemy and loses health, there should be a short period of time during which the knight takes no damage, so that the player has time to react. This state is realised in the Manager class: we declared a variable called invinsibleFrame. At collision, if invinsibleFrame is zero, the knight takes damage and invinsibleFrame is reset to the initial value of 200, after which we begin a countdown during which the knight would take no further damage.  
+
+We would also like to mention our handling of collisions. Our solution was to represent each entity as a circle, assigning it a centre and a radius. In the function checkObstacleCollision in Knight.pde, as an example, we compute the straight-line distance between the knight and the obstacle by calling the PVector.dist() function, after which checking whether the distance is smaller than the sum of the radii of the two objects would suffice.  
+
+Another part to collision handling the actions to take upon collision. For enemies, the knight should lose health upon collision; for obstacles like grass, we would like to have the knight to bounce off in the opposite direction when he touches it. This functionality is handled in Manager.pde. Using the state machine mentioned above, we were able to keep track of which direction the knight is facing, and we could add movement in the opposite direction accordingly.  
 
 # Evaluation
 
