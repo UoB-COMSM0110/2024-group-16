@@ -2,7 +2,7 @@
    <h1> University  of  Bristol <br/>
    COMSM0110 - Group 16 (2024) <br/></h1>
    <h2>Hollow Knight</h2>
-   <p>VOIDHEART</p> 
+   <p>VOIDHEART EDITION</p> 
    <h3 align=center><a href="test" target="">Click the here to view Game video</a></h3>
 </div> 
 
