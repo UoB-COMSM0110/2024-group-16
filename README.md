@@ -3,7 +3,7 @@
    COMSM0110 - Group 16 (2024) <br/></h1>
    <h2>Hollow Knight</h2>
    <p>VOIDHEART EDITION</p> 
-   <h3 align=center><a href="test" target="">Click here to view Game video</a></h3>
+   <h3 align=center><a href="https://youtu.be/qvPGcITne6g" target="">Click here to view Game video</a></h3>
 </div> 
 
 # **Member list**
@@ -38,9 +38,9 @@ Deciding on two games was not too difficult. Many of our team members have playe
 User story:  
 - As a player, I want to be guided through how the game works.
 - As a player, I want to see what the effects are after my character consumes an item.
--	As a player, I want to see how many artefacts I have in my inventory.
--	As a player, I want to see how much health I have left.
--	As a player, I want to challenge myself and try defeating boss-level enemies.  
+- As a player, I want to see how many artefacts I have in my inventory.
+- As a player, I want to see how much health I have left.
+- As a player, I want to challenge myself and try defeating boss-level enemies.  
 
 We agreed that our final game should adhere to the above regardless of which game we end up going for. Picking one of the two, however, turned out to be nearly impossible. We eventually decided to combine elements of both games, using artwork mainly from Hollow Knight as they were readily available, and incorporated elements of game play from The Binding of Isaac.  
 
